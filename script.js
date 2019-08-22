@@ -1,36 +1,26 @@
-// FAQ: Remind debugger when state is cleaned
-console.log('App has been initialized or reloaded.');
-
 /** Classes for the CSS */
 const CLASSNAMES = {
   neg: 'is-negative',
-  pos: 'is-positive'
+  pos: 'is-positive',
+  disabled: 's-card-preview',
+  immune: 'js-immune'
 }
 
-/** Clone a template
- *  _If supported, use standard `<template>` manipulation. Otherwise, clone node._
- * @property {HTMLElement} template
+/** Toggle state of form (disabled or enabled i.e. preview or not)
+ * @parameter {Boolean} shouldDisable
+ * @parameter {HTMLFormElement} form
  */
-function cloneTemplate( template ) {
-  return ( template.content )
-    ? document.importNode( template.content, true )
-    : template.cloneNode( true );
-}
+function toggleState( shouldDisable, form ) {
+  const fieldsets = [ ...form.getElementsByTagName('fieldset') ]
+    .filter( fieldset => ! fieldset.classList.contains( CLASSNAMES.immune ) );
 
-/** Clone templates into place */
-function applyTemplates() {
-  const templates = [ ...document.querySelectorAll('template[data-append-to-output-for]') ];
-
-  templates.forEach( ( template ) => {
-    const outputs = document.querySelectorAll(`output[for="${template.dataset.appendToOutputFor}"]`);
-
-    outputs.forEach( ( output ) => {
-      const clone = cloneTemplate( template );
-
-      /* NOTE: In Chrome 76 and Firefox 78, an emptied `<template>` is seemingly appended */
-      output.appendChild( clone );
-    });
-  });
+  if ( shouldDisable ) {
+    document.body.classList.add( CLASSNAMES.disabled );
+    fieldsets.forEach( fieldset => fieldset.disabled = true );
+  } else {
+    document.body.classList.remove( CLASSNAMES.disabled );
+    fieldsets.forEach( fieldset => fieldset.disabled = false );
+  }
 }
 
 /** Assign classname(s) based on value
@@ -81,7 +71,8 @@ function updateOutputs( input ) {
 
 /** Initialize application of user input */
 function init() {
-  const form = document.getElementById('wysiwyg-in');
+  const form = document.getElementById('card');
+  const toggle = form.card_preview;
   // SEE: https://jsperf.com/queryselectorall-by-tags-v-concat-getelementsbytagname
   const inputs = [].concat(
     [ ...form.getElementsByTagName('input') ],
@@ -89,14 +80,19 @@ function init() {
     [ ...form.getElementsByTagName('select') ],
   );
 
-  applyTemplates();
-
+  // Support value changes
   inputs.forEach( ( input ) => {
     updateOutputs( input );
 
-    input.addEventListener('input', function ( e ) {
+    input.addEventListener('change', function ( e ) {
       updateOutputs( e.target );
     });
+  });
+
+  // Support state toggling
+  toggleState( toggle.checked, form );
+  toggle.addEventListener('change', function ( e ) {
+    toggleState( toggle.checked, form );
   });
 }
 

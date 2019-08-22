@@ -1,8 +1,6 @@
 /* Generics */
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   /* FAQ: Makes `1.0rem` equal `10px` */
@@ -13,11 +11,9 @@ html {
 body,
 input, select, textarea {
   color: #333333;
-  line-height: 1.5;
-  font-family: "Georgia", Times, serif;
-  font-size: 1.8rem;
+  font: 1.8rem/1.5 "Georgia", Times, serif;
 }
-/* NOTE: The `select` element value never shows directly on a card, so let it keep browser styles */
+/* NOTE: Let `select` element retain browser styles; overriding those is out of scope */
 input, textarea {
   padding: 0;
   border: 1px solid;
@@ -39,10 +35,10 @@ header p  { margin-top: 0; }
 /* Elements: Forms */
 
 /* RFE: For non-pointer devices (via media query), show `[title]` attributes as content */
-label {
+label:not(input[type="checkbox"] + label) {
   display: block;
 }
-label::after {
+label:not(input[type="checkbox"] + label)::after {
   content: ":";
   margin-left: 0.05em;
 }
@@ -72,6 +68,7 @@ fieldset + fieldset legend {
   width: 25rem;
   min-height: 35rem;
   padding: 1rem;
+  position: relative; /* For absolutely-positioned children */
 
   border: 1px solid black;
   border-radius: 1rem;
@@ -116,29 +113,28 @@ fieldset + fieldset legend {
   /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
   height: calc( 1.5 * 1.6rem * 3 ); /* line-height + font-size + "line count" */
 
-  overflow: hidden;
-
   font-size: 1.6rem;
   text-align: center;
 }
 
-/* FAQ: Excess specificity clarifies expected structure */
+/* Distinguish options from entry fields */
+.c-card--opts-list {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+}
+
 .c-card__attr-list {
   display: flex;
-  flex-direction: row;
   flex-flow: row wrap;
-  align-items: flex-start;
-
-  margin: 0;
-  padding: 0;
 }
-/* Prevent dangling pair from stretching */
+/* Prevent dangling `c-card__attr` from stretching */
 .c-card__attr-list::after {
   content: "";
-  flex-grow: 3; /* add up flex-grow to get one pair */
+  flex-grow: 3; /* equal to `flex-grow` values of `c-card__attr` children */
 }
 
-.c-card__attr-key-value-pair {
+.c-card__attr {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -147,16 +143,16 @@ fieldset + fieldset legend {
 }
 .c-card__attr-key,
 .c-card__attr-value,
-.c-card__attr-key-value-pair {
+.c-card__attr {
   flex-basis: 0;
 }
 /* Move input to end of box */
-.c-card__attr-key-value-pair .c-card__attr-key { order: 1; }
-.c-card__attr-key-value-pair .c-card__attr-value { order: 2; }
-.c-card__attr-key-value-pair .c-card__attr-input { order: 3; }
+.c-card__attr .c-card__attr-key { order: 1; }
+.c-card__attr .c-card__attr-value { order: 2; }
+.c-card__attr .c-card__attr-input { order: 3; }
 /* Force wrap after two pairs */
 .c-card__attr-value:nth-child(4n),
-.c-card__attr-key-value-pair:nth-of-type(2n) {
+.c-card__attr:nth-of-type(2n) {
   break-after: always;
 }
 
@@ -180,9 +176,20 @@ fieldset + fieldset legend {
 
 /* Trumps */
 
-/* Trumps: Scope: Card */
+/* Trumps: Scope: Card Preview */
 
-.s-card .c-card__name { margin: 0; } /* FAQ: Any tag with margin, like `h3` */
-.s-card dd.c-card__attr-value { margin: 0; }
-.s-card .c-card__name output { display: block; }
-figure.s-card { margin: 0; }
+.s-card-preview #card-ident label,
+.s-card-preview #card-attr input,
+.s-card-preview select,
+.s-card-preview legend {
+  display: none;
+}
+.s-card-preview input,
+.s-card-preview textarea {
+  border: none;
+  background: transparent;
+}
+.s-card-preview textarea {
+  resize: none;
+  scroll: none;
+}

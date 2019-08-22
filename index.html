@@ -13,126 +13,87 @@
     <script src="/script.js" type="module" defer></script>
   </head>
   <body>
-    <section>
-      <header>
-        <h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Game Card Creator</h1>
-        <p>Fake card. Fake game. Real fun.</p>
-      </header>
+    <header>
+      <h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Game Card Creator</h1>
+      <p>Fake card. Fake game. Real fun.</p>
+    </header>
 
-      <article>
-        <p>Create a custom game for an imaginary trading card game.</p>
-        <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
-      </article>
-    </section>
+    <p>Create a custom game for an imaginary trading card game.</p>
 
-    <section>
-      <h2>Edit Card</h2>
+    <form id="card" class="c-card"
+          data-output-for="card-ident-element" data-value="">
+      <fieldset id="card-ident">
+        <legend>Card Identity</legend>
 
-      <form id="wysiwyg-in" class="c-card s-card"
-        data-output-for="wysiwyg-in--ident-element" data-value="">
-        <fieldset class="c-card__fieldset">
-          <legend>Card Identity</legend>
-          <div class="c-field">
-            <label for="wysiwyg-in--ident-name"
-              title="The name of the enchanted item">Name</label>
-            <input id="wysiwyg-in--ident-name" class="c-card__name"
-              name="identName" type="text" />
-          </div>
-          <div class="c-field">
-            <label for="wysiwyg-in--ident-form"
-              title="The common form of the enchanted item">Form</label>
-            <select id="wysiwyg-in--ident-form"
-              name="identForm" class="c-card__metadata">
-              <optgroup label="Attire">
-                <option name="ident_form_hat" value="hat">Hat</option>
-                <option name="ident_form_glove" value="glove">Glove</option>
-                <option name="ident_form_boot" value="boot">Boot</option>
-                <option name="ident_form_mask" value="mask">Mask</option>
-              </optgroup>
-            </select>
-            <output for="wysiwyg-in--ident-form"
-              class="c-card__figure" data-value=""></output>
-          </div>
-          <div class="c-field">
-              <label for="wysiwyg-in--ident-desc"
-                title="A description of the enchanted item">Description</label>
-              <textarea id="wysiwyg-in--ident-desc" class="c-card__desc"
-                name="identDesc"></textarea>
-          </div>
-          <aside class="c-field">
-            <label for="wysiwyg-in--ident-element"
-              title="The elemental power of the enchanted item">Element</label>
-            <select id="wysiwyg-in--ident-element"
-              name="identElement" class="c-card__metadata">
-              <option name="ident_element_earth" value="earth">Earth</option>
-              <option name="ident_element_wind" value="water">Water</option>
-              <option name="ident_element_air" value="air">Air</option>
-              <option name="ident_element_fire" value="fire">Fire</option>
-            </select>
-          </aside>
-        </fieldset>
+        <label for="card-ident-name"
+               title="The name of the enchanted item">Name</label>
+        <input id="card-ident-name" class="c-card__name"
+               type="text" />
 
-        <fieldset class="c-card__attr-list c-card__fieldset">
-          <legend>Card Attributes</legend>
-          <div class="c-field c-card__attr-key-value-pair">
-            <label for="wysiwyg-in--attr-power" class="c-card__attr-key"
-              title="How many units stronger or weaker">Power</label>
-            <input id="wysiwyg-in--attr-power" class="c-card__attr-input"
-              name="attrPower" type="range"
-              min="-3" max="3" step="1" value="2" />
-            <output for="wysiwyg-in--attr-power"
-              class="c-card__attr-value">?</output>
-          </div>
-          <div class="c-field c-card__attr-key-value-pair">
-            <label for="wysiwyg-in--attr-speed" class="c-card__attr-key"
-              title="How many units faster or slower">Speed</label>
-            <input id="wysiwyg-in--attr-speed" class="c-card__attr-input"
-              name="attrSpeed" type="range"
-              min="-3" max="3" step="1" value="-2" />
-            <output for="wysiwyg-in--attr-speed"
-              class="c-card__attr-value">?</output>
-          </div>
-          <div class="c-field c-card__attr-key-value-pair">
-            <label for="wysiwyg-in--attr-defense" class="c-card__attr-key"
-              title="How many units less or more vulnerable">Defense</label>
-            <input id="wysiwyg-in--attr-defense" class="c-card__attr-input"
-              name="attrDefense" type="range"
-              min="-3" max="3" step="1" value="0" />
-            <output for="wysiwyg-in--attr-defense"
-              class="c-card__attr-value">?</output>
-          </div>
-        </fieldset>
-      </form>
-    </section>
+        <label for="card-ident-form"
+               title="The common form of the enchanted item">Form</label>
+        <select id="card-ident-form" class="c-card__metadata">
+          <optgroup label="Attire">
+            <option name="ident_form_hat" value="hat">Hat</option>
+            <option name="ident_form_glove" value="glove">Glove</option>
+            <option name="ident_form_boot" value="boot">Boot</option>
+            <option name="ident_form_mask" value="mask">Mask</option>
+          </optgroup>
+        </select>
+        <output for="card-ident-form" class="c-card__figure"
+                data-value=""></output>
 
-    <section>
-      <h2>Preview Card</h2>
+        <label for="card-ident-desc"
+               title="A description of the enchanted item">Description</label>
+        <textarea id="card-ident-desc" class="c-card__desc"></textarea>
 
-      <figure id="wysiwyg-out" class="c-card s-card"
-        data-output-for="wysiwyg-in--ident-element" data-value="">
-        <h3 class="c-card__name">
-          <output for="wysiwyg-in--ident-name">Great Thing</output>
-        </h3>
-        <output for="wysiwyg-in--ident-form"
-          class="c-card__figure" data-value=""></output>
-        <figcaption class="c-card__desc">
-          <output for="wysiwyg-in--ident-desc">A thing that does things.</output>
-        </figcaption>
-        <dl class="c-card__attr-list">
-          <dt class="c-card__attr-key">Power</dt>
-            <dd class="c-card__attr-value">
-              <output for="wysiwyg-in--attr-power">?</output>
-            </dd>
-          <dt class="c-card__attr-key">Speed</dt>
-            <dd class="c-card__attr-value">
-              <output for="wysiwyg-in--attr-speed">?</output>
-            </dd>
-          <dt class="c-card__attr-key">Defense</dt>
-            <dd class="c-card__attr-value">
-              <output for="wysiwyg-in--attr-defense">?</output>
-            </dd>
-        </dl>
-      </figure>
-    </section>
+        <label for="card-ident-element"
+               title="The elemental power of the enchanted item">Element</label>
+        <select id="card-ident-element" class="c-card__metadata">
+          <option name="ident_element_earth" value="earth">Earth</option>
+          <option name="ident_element_wind" value="water">Water</option>
+          <option name="ident_element_air" value="air">Air</option>
+          <option name="ident_element_fire" value="fire">Fire</option>
+        </select>
+      </fieldset>
+
+      <fieldset id="card-attr" class="c-card__attr-list">
+        <legend>Card Attributes</legend>
+
+        <div class="c-card__attr">
+          <label for="card-attr-power" class="c-card__attr-key"
+                 title="How many units stronger or weaker">Power</label>
+          <input id="card-attr-power" class="c-card__attr-input"
+                 type="range" min="-3" max="3" step="1" value="2" />
+          <output for="card-attr-power" class="c-card__attr-value">?</output>
+        </div>
+
+        <div class="c-card__attr">
+          <label for="card-attr-speed" class="c-card__attr-key"
+                 title="How many units faster or slower">Speed</label>
+          <input id="card-attr-speed" class="c-card__attr-input"
+                 type="range" min="-3" max="3" step="1" value="-2" />
+          <output for="card-attr-speed" class="c-card__attr-value">?</output>
+        </div>
+
+        <div class="c-card__attr">
+          <label for="card-attr-defense" class="c-card__attr-key"
+                 title="How many units less or more vulnerable">Defense</label>
+          <input id="card-attr-defense" class="c-card__attr-input"
+                 type="range" min="-3" max="3" step="1" value="0" />
+          <output for="card-attr-defense" class="c-card__attr-value">?</output>
+        </div>
+      </fieldset>
+
+      <fieldset id="card-opts" class="c-card--opts-list js-immune">
+        <input id="card-preview" name="card_preview" type="checkbox" />
+        <label for="card-preview"
+              title="Approximate final state of card">Preview Card</label>
+      </fieldset>
+    </form>
+
+    <footer>
+      <p>Made with <a href="https://glitch.com">Glitch</a>!</p>
+    </footer>
   </body>
 </html>
