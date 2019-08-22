@@ -1,4 +1,4 @@
-/* Generics */
+/* Generics (ITCSS) */
 
 * { box-sizing: border-box; }
 
@@ -13,55 +13,46 @@ input, select, textarea {
   color: #333333;
   font: 1.8rem/1.5 "Georgia", Times, serif;
 }
-/* NOTE: Let `select` element retain browser styles; overriding those is out of scope */
+/* FAQ: Styling `<select>` elements it outside the scope of the prototype */
 input, textarea {
-  padding: 0;
-  border: 1px solid;
+  border: 1px solid black;
 }
 
-/* WARN: Form element borders and changing background cause a11y issues */
 :focus {
   outline: 3px dotted black;
   outline-offset: 2px;
 }
 
-/* Elements */
+/* Elements (ITCSS) */
 
 /* Elements: Content Sectioning */
 
-header h1 { margin-bottom: 0; }
-header p  { margin-top: 0; }
+header * { margin: 0; }
 
 /* Elements: Forms */
 
 /* RFE: For non-pointer devices (via media query), show `[title]` attributes as content */
-label:not(input[type="checkbox"] + label) {
+label {
   display: block;
 }
-label:not(input[type="checkbox"] + label)::after {
+/* FAQ: The `[for]` prevents decorator on labels that inclosed checkboxes */
+/* HACK: The use of `[for]` assumes markup structure */
+label[for]::after {
   content: ":";
   margin-left: 0.05em;
 }
 
-fieldset {
-  padding: 0;
-  margin: 0;
-  border: none;
-}
+fieldset { padding: 0; margin: 0; border: none; }
 legend {
-  width: 100%;
   padding: 0;
-  margin-bottom: 0.5em;
+  width: 100%;
 
-  text-align: center;
   font-weight: bold;
+  text-align: center;
 }
-fieldset + fieldset legend {
-  margin-top: 0.5em;
-}
+fieldset + fieldset legend { margin: 0.5em 0; }
 
-/* Components */
-
+/* Components (ITCSS) */
 /* Components: Card */
 
 .c-card {
@@ -134,26 +125,25 @@ fieldset + fieldset legend {
   display: flex;
   flex-flow: row wrap;
 }
-/* Prevent dangling `c-card__attr` from stretching */
+.c-card__attr,
+/* HACK: Prevent stretch of dangling attribute by adding invisible final one */
 .c-card__attr-list::after {
-  content: "";
-  flex-grow: 3; /* equal to `flex-grow` values of `c-card__attr` children */
+  flex-grow: 3; /* that of `…-key` + that of `…-value` */
 }
+.c-card__attr-list::after { content: ""; }
 
 .c-card__attr {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
-  flex-grow: 3; /* that of `…-key` + that of `…-value` */
 }
+.c-card__attr,
 .c-card__attr-key,
-.c-card__attr-value,
-.c-card__attr {
+.c-card__attr-value {
   flex-basis: 0;
 }
 /* Move input to end of box */
-.c-card__attr .c-card__attr-key { order: 1; }
+.c-card__attr .c-card__attr-key   { order: 1; }
 .c-card__attr .c-card__attr-value { order: 2; }
 .c-card__attr .c-card__attr-input { order: 3; }
 /* Force wrap after two pairs */
@@ -163,38 +153,25 @@ fieldset + fieldset legend {
 }
 
 .c-card__attr-key { flex-grow: 2; text-align: right; }
-.c-card__attr-key::after {
-  content: ":";
-  margin-right: 0.2em;
-}
-.c-card__attr-key + .c-card__attr-key::after {
-  margin-left: 0.2em;
-}
+.c-card__attr-key::after { margin-right: 0.25em; }
 
 .c-card__attr-value { flex-grow: 1; text-align: left; }
-.c-card__attr-value.is-positive::before {
-  content: "+";
-}
+// FAQ: Add positive sign for positive values (negative values already have sign)
+.c-card__attr-value.is-positive::before { content: "+"; }
 
 .c-card__attr-input {
   width: 100%;
 }
 
-/* Trumps */
-
+/* Trumps (ITCSS) */
 /* Trumps: Scope: Card Preview */
 
 .s-card-preview #card-ident label,
 .s-card-preview #card-attr input,
 .s-card-preview select,
-.s-card-preview legend {
-  display: none;
-}
+.s-card-preview legend   { display: none; }
+
 .s-card-preview input,
-.s-card-preview textarea {
-  border: none;
-  background: transparent;
-}
-.s-card-preview textarea {
-  scroll: none;
-}
+.s-card-preview textarea { border: none; background: transparent; }
+
+.s-card-preview textarea { scroll: none; }

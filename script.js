@@ -2,7 +2,7 @@
 const CLASSNAMES = {
   neg: 'is-negative',
   pos: 'is-positive',
-  disabled: 's-card-preview',
+  disabled: 's-card-preview', // WARN: Overloaded property to simplify code
   immune: 'js-immune'
 }
 
@@ -11,16 +11,16 @@ const CLASSNAMES = {
  * @parameter {HTMLFormElement} form
  */
 function toggleState( shouldDisable, form ) {
-  const fieldsets = [ ...form.getElementsByTagName('fieldset') ]
-    .filter( fieldset => ! fieldset.classList.contains( CLASSNAMES.immune ) );
+  const fieldsets = [ ...form.getElementsByTagName('fieldset') ];
+  // SEE: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Methods
+  const classlistAction = ( shouldDisable ) ? 'add' : 'remove';
 
-  if ( shouldDisable ) {
-    document.body.classList.add( CLASSNAMES.disabled );
-    fieldsets.forEach( fieldset => fieldset.disabled = true );
-  } else {
-    document.body.classList.remove( CLASSNAMES.disabled );
-    fieldsets.forEach( fieldset => fieldset.disabled = false );
-  }
+  document.body.classList[ classlistAction ]( CLASSNAMES.disabled );
+
+  fieldsets.forEach( fieldset => {
+    const isImmune = fieldset.classList.contains( CLASSNAMES.immune );
+    fieldset.disabled = ( shouldDisable && ! isImmune );
+  });
 }
 
 /** Assign classname(s) based on value
@@ -28,16 +28,15 @@ function toggleState( shouldDisable, form ) {
  * @parameter {HTMLOutputElement|HTMLElement} input
  */
 function assignClassFromValue( value, element ) {
-  if ( value > 0 ) {
-    element.classList.add( CLASSNAMES.pos );
-    element.classList.remove( CLASSNAMES.neg );
-  } else {
-    element.classList.add( CLASSNAMES.neg );
-    element.classList.remove( CLASSNAMES.pos );
-  }
+  const isPositiveValue = ( value > 0 );
+  const classToAdd = ( isPositiveValue ) ? CLASSNAMES.pos : CLASSNAMES.neg;
+  const classToRemove = ( isPositiveValue ) ? CLASSNAMES.neg : CLASSNAMES.pos;
+
+  element.classList.add( classToAdd );
+  element.classList.remove( classToRemove );
 }
 
-/** Set element value based on element type and attributes
+/** Set element value based on element attribute(s)
  * @parameter {Number|String} value
  * @parameter {HTMLOutputElement|HTMLElement} input
  */
@@ -51,7 +50,7 @@ function setValue( value, element ) {
   }
 }
 
-/** Update outputs that only requires the given input
+/** Update `<output>`s that only requires the given input
  * @parameter {HTMLInputElement|HTMLSelectElement|HTMLTextareaElement} input
  */
 function updateOutputs( input ) {
@@ -61,15 +60,13 @@ function updateOutputs( input ) {
   `) ];
 
   outputs.forEach( ( output ) => {
-    // RFE: Format value via a function (it could use switch or if statement/s)
-    const value = input.value;
-
+    const value = input.value; // RFE: Format value via a function
     setValue( value, output );
     assignClassFromValue( value, output );
   });
 }
 
-/** Initialize application of user input */
+/** Initialize user experience */
 function init() {
   const form = document.getElementById('card');
   const toggle = form.card_preview;
@@ -83,16 +80,15 @@ function init() {
   // Support value changes
   inputs.forEach( ( input ) => {
     updateOutputs( input );
-
-    input.addEventListener('change', function ( e ) {
+    input.addEventListener('change', ( e ) => {
       updateOutputs( e.target );
     });
   });
 
   // Support state toggling
   toggleState( toggle.checked, form );
-  toggle.addEventListener('change', function ( e ) {
-    toggleState( toggle.checked, form );
+  toggle.addEventListener('change', ( e ) => {
+    toggleState( e.target.checked, form );
   });
 }
 
