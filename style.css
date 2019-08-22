@@ -1,0 +1,188 @@
+/* Generics */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* FAQ: Makes `1.0rem` equal `10px` */
+  /* SEE: http://snook.ca/archives/html_and_css/font-size-with-rem */
+  font-size: 62.5%;
+}
+
+body,
+input, select, textarea {
+  color: #333333;
+  line-height: 1.5;
+  font-family: "Georgia", Times, serif;
+  font-size: 1.8rem;
+}
+/* NOTE: The `select` element value never shows directly on a card, so let it keep browser styles */
+input, textarea {
+  padding: 0;
+  border: 1px solid;
+}
+
+/* WARN: Form element borders and changing background cause a11y issues */
+:focus {
+  outline: 3px dotted black;
+  outline-offset: 2px;
+}
+
+/* Elements */
+
+/* Elements: Content Sectioning */
+
+header h1 { margin-bottom: 0; }
+header p  { margin-top: 0; }
+
+/* Elements: Forms */
+
+/* RFE: For non-pointer devices (via media query), show `[title]` attributes as content */
+label {
+  display: block;
+}
+label::after {
+  content: ":";
+  margin-left: 0.05em;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+legend {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0.5em;
+
+  text-align: center;
+  font-weight: bold;
+}
+fieldset + fieldset legend {
+  margin-top: 0.5em;
+}
+
+/* Components */
+
+/* Components: Card */
+
+.c-card {
+  width: 25rem;
+  min-height: 35rem;
+  padding: 1rem;
+
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+.c-card[data-value="earth"] { background-color: darkseagreen; }
+.c-card[data-value="water"] { background-color: lightblue; }
+.c-card[data-value="air"]   { background-color: lightyellow; }
+.c-card[data-value="fire"]  { background-color: indianred }
+
+.c-card__name,
+.c-card__figure,
+.c-card__desc,
+.c-card__metadata {
+  display: block;
+  width: 100%;
+}
+
+.c-card__name {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.c-card__figure {
+  height: 10rem;
+
+  border: 1px solid black;
+  border-radius: 1rem;
+
+  background: white none center/contain no-repeat;
+}
+/* FAQ: I would use SVG, but https://icons8.com wants my money */
+/* RFE: Use 2x and 4x resolution as necessary (skipping for prototype) */
+/* RFE: I could be efficient if `attr()` was available for all properties… */
+.c-card__figure[data-value="hat"] { background-image: url("/assets/icon/hat.png"); }
+.c-card__figure[data-value="glove"] { background-image: url("/assets/icon/glove.png"); }
+.c-card__figure[data-value="boot"] { background-image: url("/assets/icon/boot.png"); }
+.c-card__figure[data-value="mask"] { background-image: url("/assets/icon/mask.png"); }
+
+.c-card__desc {
+  margin: 0.5rem 0;
+  /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
+  height: calc( 1.5 * 1.6rem * 3 ); /* line-height + font-size + "line count" */
+
+  overflow: hidden;
+
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+/* FAQ: Excess specificity clarifies expected structure */
+.c-card__attr-list {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-items: flex-start;
+
+  margin: 0;
+  padding: 0;
+}
+/* Prevent dangling pair from stretching */
+.c-card__attr-list::after {
+  content: "";
+  flex-grow: 3; /* add up flex-grow to get one pair */
+}
+
+.c-card__attr-key-value-pair {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  flex-grow: 3; /* that of `…-key` + that of `…-value` */
+}
+.c-card__attr-key,
+.c-card__attr-value,
+.c-card__attr-key-value-pair {
+  flex-basis: 0;
+}
+/* Move input to end of box */
+.c-card__attr-key-value-pair .c-card__attr-key { order: 1; }
+.c-card__attr-key-value-pair .c-card__attr-value { order: 2; }
+.c-card__attr-key-value-pair .c-card__attr-input { order: 3; }
+/* Force wrap after two pairs */
+.c-card__attr-value:nth-child(4n),
+.c-card__attr-key-value-pair:nth-of-type(2n) {
+  break-after: always;
+}
+
+.c-card__attr-key { flex-grow: 2; text-align: right; }
+.c-card__attr-key::after {
+  content: ":";
+  margin-right: 0.2em;
+}
+.c-card__attr-key + .c-card__attr-key::after {
+  margin-left: 0.2em;
+}
+
+.c-card__attr-value { flex-grow: 1; text-align: left; }
+.c-card__attr-value.is-positive::before {
+  content: "+";
+}
+
+.c-card__attr-input {
+  width: 100%;
+}
+
+/* Trumps */
+
+/* Trumps: Scope: Card */
+
+.s-card .c-card__name { margin: 0; } /* FAQ: Any tag with margin, like `h3` */
+.s-card dd.c-card__attr-value { margin: 0; }
+.s-card .c-card__name output { display: block; }
+figure.s-card { margin: 0; }
