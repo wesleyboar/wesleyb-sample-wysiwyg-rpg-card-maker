@@ -1,35 +1,25 @@
-// FAQ: Remind debugger when state is cleaned
-console.log('App has been initialized or reloaded.');
-
 /** Classes for the CSS */
 const CLASSNAMES = {
   neg: 'is-negative',
-  pos: 'is-positive'
+  pos: 'is-positive',
+  disabled: 's-card-preview', // WARN: Overloaded property to simplify code
+  immune: 'js-immune'
 }
 
-/** Clone a template
- *  _If supported, use standard `<template>` manipulation. Otherwise, clone node._
- * @property {HTMLElement} template
+/** Toggle state of form (disabled or enabled i.e. preview or not)
+ * @parameter {Boolean} shouldDisable
+ * @parameter {HTMLFormElement} form
  */
-function cloneTemplate( template ) {
-  return ( template.content )
-    ? document.importNode( template.content, true )
-    : template.cloneNode( true );
-}
+function toggleState( shouldDisable, form ) {
+  const fieldsets = [ ...form.getElementsByTagName('fieldset') ];
+  // SEE: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Methods
+  const classlistAction = ( shouldDisable ) ? 'add' : 'remove';
 
-/** Clone templates into place */
-function applyTemplates() {
-  const templates = [ ...document.querySelectorAll('template[data-append-to-output-for]') ];
+  document.body.classList[ classlistAction ]( CLASSNAMES.disabled );
 
-  templates.forEach( ( template ) => {
-    const outputs = document.querySelectorAll(`output[for="${template.dataset.appendToOutputFor}"]`);
-
-    outputs.forEach( ( output ) => {
-      const clone = cloneTemplate( template );
-
-      /* NOTE: In Chrome 76 and Firefox 78, an emptied `<template>` is seemingly appended */
-      output.appendChild( clone );
-    });
+  fieldsets.forEach( fieldset => {
+    const isImmune = fieldset.classList.contains( CLASSNAMES.immune );
+    fieldset.disabled = ( shouldDisable && ! isImmune );
   });
 }
 
@@ -38,16 +28,15 @@ function applyTemplates() {
  * @parameter {HTMLOutputElement|HTMLElement} input
  */
 function assignClassFromValue( value, element ) {
-  if ( value > 0 ) {
-    element.classList.add( CLASSNAMES.pos );
-    element.classList.remove( CLASSNAMES.neg );
-  } else {
-    element.classList.add( CLASSNAMES.neg );
-    element.classList.remove( CLASSNAMES.pos );
-  }
+  const isPositiveValue = ( value > 0 );
+  const classToAdd = ( isPositiveValue ) ? CLASSNAMES.pos : CLASSNAMES.neg;
+  const classToRemove = ( isPositiveValue ) ? CLASSNAMES.neg : CLASSNAMES.pos;
+
+  element.classList.add( classToAdd );
+  element.classList.remove( classToRemove );
 }
 
-/** Set element value based on element type and attributes
+/** Set element value based on element attribute(s)
  * @parameter {Number|String} value
  * @parameter {HTMLOutputElement|HTMLElement} input
  */
@@ -61,7 +50,7 @@ function setValue( value, element ) {
   }
 }
 
-/** Update outputs that only requires the given input
+/** Update `<output>`s that only requires the given input
  * @parameter {HTMLInputElement|HTMLSelectElement|HTMLTextareaElement} input
  */
 function updateOutputs( input ) {
@@ -71,17 +60,16 @@ function updateOutputs( input ) {
   `) ];
 
   outputs.forEach( ( output ) => {
-    // RFE: Format value via a function (it could use switch or if statement/s)
-    const value = input.value;
-
+    const value = input.value; // RFE: Format value via a function
     setValue( value, output );
     assignClassFromValue( value, output );
   });
 }
 
-/** Initialize application of user input */
+/** Initialize user experience */
 function init() {
-  const form = document.getElementById('wysiwyg-in');
+  const form = document.getElementById('card');
+  const toggle = form.card_preview;
   // SEE: https://jsperf.com/queryselectorall-by-tags-v-concat-getelementsbytagname
   const inputs = [].concat(
     [ ...form.getElementsByTagName('input') ],
@@ -89,14 +77,18 @@ function init() {
     [ ...form.getElementsByTagName('select') ],
   );
 
-  applyTemplates();
-
+  // Support value changes
   inputs.forEach( ( input ) => {
     updateOutputs( input );
-
-    input.addEventListener('input', function ( e ) {
+    input.addEventListener('change', ( e ) => {
       updateOutputs( e.target );
     });
+  });
+
+  // Support state toggling
+  toggleState( toggle.checked, form );
+  toggle.addEventListener('change', ( e ) => {
+    toggleState( e.target.checked, form );
   });
 }
 
