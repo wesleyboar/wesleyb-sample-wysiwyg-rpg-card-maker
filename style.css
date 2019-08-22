@@ -77,6 +77,11 @@ fieldset + fieldset legend {
 .c-card[data-value="water"] { background-color: lightblue; }
 .c-card[data-value="air"]   { background-color: lightyellow; }
 .c-card[data-value="fire"]  { background-color: indianred }
+/* Make space for card options */
+.c-card--opts-count-1 {
+  /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
+  margin-top: calc( (1.5 * 1.8rem) + 0.5em ); /* line-height × font-size + space */
+}
 
 .c-card__name,
 .c-card__figure,
@@ -111,7 +116,7 @@ fieldset + fieldset legend {
 .c-card__desc {
   margin: 0.5rem 0;
   /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
-  height: calc( 1.5 * 1.6rem * 3 ); /* line-height + font-size + "line count" */
+  height: calc( 1.5 * 1.6rem * 3 ); /* line-height × font-size × line count */
 
   font-size: 1.6rem;
   text-align: center;
