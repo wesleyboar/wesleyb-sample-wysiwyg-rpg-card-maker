@@ -1,37 +1,46 @@
-Welcome to Glitch
-=================
+# WES - Sample WYSIWYG RPG Card Maker
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+## Introduction
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+This is a small sample project by Wesley B for a potential employer.
 
-Find out more [about Glitch](https://glitch.com/about).
+It is intentionally limited in complexity, but maintains clarity and accessibility.
 
+The service [Glitch][glitch] is used for hosting.
 
-Your Project
-------------
+## Developer Rules
 
-### ← README.md
+- Use [PEP-0350][pep0350] codetags to prefix applicable comments.
+- Use [ITCSS][itcss] organization for styles.
+- Use [BEM][bem] naming format for classnames.
+
+## Files & Directories
+
+### `README.md`
 
 That's this file, where you can tell people what your cool website does and how you built it.
 
-### ← index.html
+### `index.html`
 
-Where you'll write the content of your website. 
+The website content is an introduction, a form, and reference to the [Glitch][glitch] service.
 
-### ← style.css
+### `style.css`
 
-CSS files add styling rules to your content.
+The styles have [ITCSS][itcss] organization and [BEM][bem] classnames.
 
-### ← script.js
+### `script.js`
 
-If you're feeling fancy you can add interactivity to your site with JavaScript.
+The following interactivity of the site is provided with JavaScript:
 
-### ← assets
+- automatically-updating output
+- card preview toggle
 
-Drag in `assets`, like images or music, to add them to your project
+### `assets`
 
-Made by [Glitch](https://glitch.com/)
--------------------
+Glitch allows dragging into `assets` (CDN-managed library) any relevant images, music , etc.
 
-\ ゜o゜)ノ
+[itcss]: https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/
+[bem]: http://getbem.com/naming/
+
+[glitch]: https://glitch.com/about
+[pep0350]: https://www.python.org/dev/peps/pep-0350/

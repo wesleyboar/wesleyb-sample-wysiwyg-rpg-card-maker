@@ -99,10 +99,10 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 /* FAQ: I would use SVG, but https://icons8.com wants my money */
 /* RFE: Use 2x and 4x resolution as necessary (skipping for prototype) */
 /* RFE: I could be efficient if `attr()` was available for all properties… */
-.c-card__figure[data-value="hat"] { background-image: url("/assets/icon/hat.png"); }
-.c-card__figure[data-value="glove"] { background-image: url("/assets/icon/glove.png"); }
-.c-card__figure[data-value="boot"] { background-image: url("/assets/icon/boot.png"); }
-.c-card__figure[data-value="mask"] { background-image: url("/assets/icon/mask.png"); }
+.c-card__figure[data-value="hat"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fhat.png?v=1566530255300"); }
+.c-card__figure[data-value="glove"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fglove.png?v=1566530251563"); }
+.c-card__figure[data-value="boot"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fboot.png?v=1566530218139"); }
+.c-card__figure[data-value="mask"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fmask.png?v=1566530258770"); }
 
 .c-card__desc {
   margin: 0.5rem 0;
