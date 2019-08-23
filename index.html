@@ -86,9 +86,12 @@
       </fieldset>
 
       <fieldset id="card-opts" class="c-card--opts-list js-immune">
-        <label title="Approximate final state of card">
-          <input name="card_preview" type="checkbox" /><span>Preview Card</span>
-        </label>
+        <button role="presentation none" class="c-card__opt-toggle"
+                type="button" tabindex="-1">
+          <input id="card-preview-toggle" name="card_preview" type="checkbox" tabindex="0" />
+          <label for="card-preview-toggle"
+                 title="Approximate final state of card">Preview Card</label>
+        </button>
       </fieldset>
     </form>
 

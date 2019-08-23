@@ -9,7 +9,7 @@ html {
 }
 
 body,
-input, select, textarea {
+input, select, textarea, button {
   color: #333333;
   font: 1.8rem/1.5 "Georgia", Times, serif;
 }
@@ -35,12 +35,11 @@ header * { margin: 0; }
 label {
   display: block;
 }
-/* FAQ: The `[for]` prevents decorator on labels that inclosed checkboxes */
-/* HACK: The use of `[for]` assumes markup structure */
-label[for]::after {
+label::after {
   content: ":";
   margin-left: 0.05em;
 }
+input[type="checkbox"] + label::after { display: none; }
 
 fieldset { padding: 0; margin: 0; border: none; }
 legend {
@@ -68,11 +67,6 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 .c-card[data-value="water"] { background-color: lightblue; }
 .c-card[data-value="air"]   { background-color: lightyellow; }
 .c-card[data-value="fire"]  { background-color: indianred }
-/* Make space for card options */
-.c-card--opts-count-1 {
-  /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
-  margin-top: calc( (1.5 * 1.8rem) + 0.5em ); /* line-height × font-size + space */
-}
 
 .c-card__name,
 .c-card__figure,
@@ -106,19 +100,13 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 
 .c-card__desc {
   margin: 0.5rem 0;
-  /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
-  height: calc( 1.5 * 1.6rem * 3 ); /* line-height × font-size × line count */
+  /* FAQ: Avoiding `var` and `calc` to reduce prototype complexity */
+  /* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
+  height: 74px; /* line-height * font-size * line count (3) */
   resize: none;
 
   font-size: 1.6rem;
   text-align: center;
-}
-
-/* Distinguish options from entry fields */
-.c-card--opts-list {
-  position: absolute;
-  bottom: 100%;
-  right: 0;
 }
 
 .c-card__attr-list {
@@ -156,12 +144,31 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 .c-card__attr-key::after { margin-right: 0.25em; }
 
 .c-card__attr-value { flex-grow: 1; text-align: left; }
-// FAQ: Add positive sign for positive values (negative values already have sign)
+/* FAQ: Add positive sign for positive values (negative values already have sign) */
 .c-card__attr-value.is-positive::before { content: "+"; }
 
 .c-card__attr-input {
   width: 100%;
 }
+
+/* Components: Card: Options */
+
+/* Move card options to above card */
+.c-card--opts-count-1 {
+  /* FAQ: Avoiding `var` to reduce prototype complexity */
+  /* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
+  margin-top: calc( 31px + 0.5em ); /* computed height + vert. margin */
+}
+.c-card--opts-list {
+  width: 100%;
+  position: absolute; /* !!!: Is this causing child form elements to be "un-tab-able"? */
+  bottom: 100%;
+  left: 0;
+
+  text-align: center;
+}
+.c-card__opt-toggle { margin: 0.25em 0; }
+.c-card__opt-toggle > * { display: inline-block; vertical-align: middle; }
 
 /* Trumps (ITCSS) */
 /* Trumps: Scope: Card Preview */
@@ -174,4 +181,4 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 .s-card-preview input,
 .s-card-preview textarea { border: none; background: transparent; }
 
-.s-card-preview textarea { scroll: none; }
+.s-card-preview textarea { overflow: hidden; }
