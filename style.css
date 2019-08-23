@@ -10,7 +10,7 @@ html {
 
 body,
 input, select, textarea, button {
-  color: #333333;
+  color: black;
   font: 1.8rem/1.5 "Georgia", Times, serif;
 }
 /* FAQ: Styling `<select>` elements it outside the scope of the prototype */
