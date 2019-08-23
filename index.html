@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Styles -->
     <link rel="stylesheet" href="/style.css">
-
     <!-- Scripts -->
     <script src="/script.js" type="module" defer></script>
   </head>
@@ -57,8 +55,11 @@
         </select>
       </fieldset>
 
-      <fieldset id="card-attr" class="c-card__attr-list">
-        <legend>Card Attributes</legend>
+      <!-- FAQ: Can not use `<fieldset>` with `display: flex` -->
+      <!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 -->
+      <section id="card-attr" class="c-card__attr-list"
+               role="group" aria-labelledby="card-attr-list-title">
+	      <span id="card-attr-list-title" class="_legend">Card Attributes</span>
 
         <div class="c-card__attr">
           <label for="card-attr-power" class="c-card__attr-key"
@@ -83,7 +84,7 @@
                  type="range" min="-3" max="3" step="1" value="1" />
           <output for="card-attr-defense" class="c-card__attr-value">?</output>
         </div>
-      </fieldset>
+      </section>
 
       <fieldset id="card-opts" class="c-card--opts-list js-immune">
         <button role="presentation none" class="c-card__opt-toggle"
@@ -94,9 +95,5 @@
         </button>
       </fieldset>
     </form>
-
-    <!-- FAQ: "Glitch" button code (no markup manipulation) -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
   </body>
 </html>
