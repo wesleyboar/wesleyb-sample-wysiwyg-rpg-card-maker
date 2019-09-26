@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>WYSIWYG Card Maker</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="index.css">
+
+		<!-- Scripts -->
+		<script src="scripts/card.js" type="module" defer></script>
+		<!-- <script src="scripts/polyfill/card.js" type="module" defer></script> -->
+	</head>
+	<body id="page--index">
+		<header>
+			<h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Card Maker</h1>
+			<p>Fake card. Fake game. Real fun.</p>
+		</header>
+
+		<p>Create a custom card for an imaginary trading card game.</p>
+
+		<main id="card--polyfill">
+			<card-element id="card"></card-element>
+		</main>
+
+		<!-- Scripts: React -->
+		<!-- NOTE: When deploying, use processer and `import` instead. -->
+		<!-- NOTE: When time allows, test using `webcomponents-loader.js` instead. -->
+		<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="scripts/polyfill/card.js" type="module"></script>
+		<!-- Scripts: Load JSON (syncronous) -->
+		<!-- NOTE: When deploying, use processor and `import`, instead. -->
+		<script>
+			function getJSONSync( url ) {
+				const r = new XMLHttpRequest(); r.open('GET', url, false); r.send();
+				return (r.status === 200) ? JSON.parse( r.responseText ) : undefined;
+			};
+		</script>
+
+		<template id="card-template">
+			<style>
+			p {
+				color: white;
+				background-color: #666;
+				padding: 5px;
+			}
+			</style>
+			<p>My paragraph</p>
+		</template>
+	</body>
+</html>
