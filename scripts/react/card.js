@@ -16,6 +16,8 @@ function Card() {
 	const [speed, setSpeed] = useState(defaultValues.attribute.speed);
 	const [defense, setDefense] = useState(defaultValues.attribute.defense);
 
+	/* FAQ: Can not use `<fieldset>` with `display: flex` */
+	/* SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 */
 	return (
 		<form id="card" className="c-card c-card--opts-count-1"
 			data-output-for="card-ident-element" data-value="">
@@ -54,9 +56,10 @@ function Card() {
 				</select>
 			</fieldset>
 
-			<fieldset id="card-attr" className="c-card__attr-list">
+			<section id="card-attr" className="c-card__attr-list"
+					role="group" aria-labelledby="card-attr-list-title">
 				<legend>Card Attributes</legend>
-		
+
 				<div className="c-card__attr">
 					<label htmlFor="card-attr-power" className="c-card__attr-key"
 						title="How many units stronger or weaker">Power</label>
@@ -80,12 +83,15 @@ function Card() {
 						type="range" min="-3" max="3" step="1" defaultValue={defense} />
 					<output htmlFor="card-attr-defense" className="c-card__attr-value">?</output>
 				</div>
-			</fieldset>
+			</section>
 
 			<fieldset id="card-opts" className="c-card--opts-list js-immune">
-				<label title="Approximate final state of card">
-					<input name="card_preview" type="checkbox" /><span>Preview Card</span>
-				</label>
+				<button role="presentation none" class="c-card__opt-toggle"
+						type="button" tabindex="-1">
+				<input id="card-preview-toggle" name="card_preview" type="checkbox" tabindex="0" />
+				<label for="card-preview-toggle"
+						title="Approximate final state of card">Preview Card</label>
+				</button>
 			</fieldset>
 		</form>
 	);
