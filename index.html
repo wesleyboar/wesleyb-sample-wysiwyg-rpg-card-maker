@@ -1,99 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>WYSIWYG Card Maker</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Styles -->
-    <link rel="stylesheet" href="index.css">
-    <!-- Scripts -->
-    <script src="index.js" type="module" defer></script>
-  </head>
-  <body>
-    <header>
-      <h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Card Maker</h1>
-      <p>Fake card. Fake game. Real fun.</p>
-    </header>
+	<head>
+		<title>WYSIWYG Card Maker</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <p>Create a custom card for an imaginary trading card game.</p>
+		<!-- Styles -->
+		<link rel="stylesheet" href="index.css">
 
-    <form id="card" class="c-card c-card--opts-count-1"
-          data-output-for="card-ident-element" data-value="">
-      <fieldset id="card-ident">
-        <legend>Card Identity</legend>
+		<!-- Scripts -->
+		<script src="scripts/card.js" type="module" defer></script>
+		<script src="scripts/native/card.js" type="module" defer></script>
+	</head>
+	<body>
+		<header>
+			<h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Card Maker</h1>
+			<p>Fake card. Fake game. Real fun.</p>
+		</header>
 
-        <label for="card-ident-name"
-               title="The name of the enchanted item">Name</label>
-        <input id="card-ident-name" class="c-card__name"
-               type="text" value="Bob's Hat" />
+		<p>Create a custom card for an imaginary trading card game.</p>
 
-        <label for="card-ident-form"
-               title="The common form of the enchanted item">Form</label>
-        <select id="card-ident-form" class="c-card__metadata">
-          <optgroup label="Clothing">
-            <option name="ident_form_boot" value="boot">Boot</option>
-            <option name="ident_form_hat" value="hat" selected>Hat</option>
-            <option name="ident_form_glove" value="glove">Glove</option>
-            <option name="ident_form_mask" value="mask">Mask</option>
-          </optgroup>
-        </select>
-        <output for="card-ident-form" class="c-card__figure"
-                data-value=""></output>
+		<form id="card" class="c-card c-card--opts-count-1"
+					data-output-for="card-ident-element" data-value="">
+			<fieldset id="card-ident">
+				<legend>Card Identity</legend>
 
-        <label for="card-ident-desc"
-               title="A description of the enchanted item">Description</label>
-        <textarea id="card-ident-desc" class="c-card__desc">Bob's finest article of clothing doing what it does best.</textarea>
+				<label for="card-ident-name"
+							 title="The name of the enchanted item">Name</label>
+				<input id="card-ident-name" class="c-card__name"
+							 type="text" value="Bob's Hat" />
 
-        <label for="card-ident-element"
-               title="The elemental power of the enchanted item">Element</label>
-        <select id="card-ident-element" class="c-card__metadata">
-          <option name="ident_element_earth" value="earth" selected>Earth</option>
-          <option name="ident_element_wind" value="water">Water</option>
-          <option name="ident_element_air" value="air">Air</option>
-          <option name="ident_element_fire" value="fire">Fire</option>
-        </select>
-      </fieldset>
+				<label for="card-ident-form"
+							 title="The common form of the enchanted item">Form</label>
+				<select id="card-ident-form" class="c-card__metadata">
+					<optgroup label="Clothing">
+						<option name="ident_form_boot" value="boot">Boot</option>
+						<option name="ident_form_hat" value="hat" selected>Hat</option>
+						<option name="ident_form_glove" value="glove">Glove</option>
+						<option name="ident_form_mask" value="mask">Mask</option>
+					</optgroup>
+				</select>
+				<output for="card-ident-form" class="c-card__figure"
+								data-value=""></output>
 
-      <!-- FAQ: Can not use `<fieldset>` with `display: flex` -->
-      <!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 -->
-      <section id="card-attr" class="c-card__attr-list"
-               role="group" aria-labelledby="card-attr-list-title">
-	      <span id="card-attr-list-title" class="_legend">Card Attributes</span>
+				<label for="card-ident-desc"
+							 title="A description of the enchanted item">Description</label>
+				<textarea id="card-ident-desc" class="c-card__desc">Bob's finest article of clothing doing what it does best.</textarea>
 
-        <div class="c-card__attr">
-          <label for="card-attr-power" class="c-card__attr-key"
-                 title="How many units stronger or weaker">Power</label>
-          <input id="card-attr-power" class="c-card__attr-input"
-                 type="range" min="-3" max="3" step="1" value="1" />
-          <output for="card-attr-power" class="c-card__attr-value">?</output>
-        </div>
+				<label for="card-ident-element"
+							 title="The elemental power of the enchanted item">Element</label>
+				<select id="card-ident-element" class="c-card__metadata">
+					<option name="ident_element_earth" value="earth" selected>Earth</option>
+					<option name="ident_element_wind" value="water">Water</option>
+					<option name="ident_element_air" value="air">Air</option>
+					<option name="ident_element_fire" value="fire">Fire</option>
+				</select>
+			</fieldset>
 
-        <div class="c-card__attr">
-          <label for="card-attr-speed" class="c-card__attr-key"
-                 title="How many units faster or slower">Speed</label>
-          <input id="card-attr-speed" class="c-card__attr-input"
-                 type="range" min="-3" max="3" step="1" value="-1" />
-          <output for="card-attr-speed" class="c-card__attr-value">?</output>
-        </div>
+			<!-- FAQ: Can not use `<fieldset>` with `display: flex` -->
+			<!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 -->
+			<section id="card-attr" class="c-card__attr-list"
+							 role="group" aria-labelledby="card-attr-list-title">
+				<span id="card-attr-list-title" class="_legend">Card Attributes</span>
 
-        <div class="c-card__attr">
-          <label for="card-attr-defense" class="c-card__attr-key"
-                 title="How many units less or more vulnerable">Defense</label>
-          <input id="card-attr-defense" class="c-card__attr-input"
-                 type="range" min="-3" max="3" step="1" value="1" />
-          <output for="card-attr-defense" class="c-card__attr-value">?</output>
-        </div>
-      </section>
+				<div class="c-card__attr">
+					<label for="card-attr-power" class="c-card__attr-key"
+								 title="How many units stronger or weaker">Power</label>
+					<input id="card-attr-power" class="c-card__attr-input"
+								 type="range" min="-3" max="3" step="1" value="1" />
+					<output for="card-attr-power" class="c-card__attr-value">?</output>
+				</div>
 
-      <fieldset id="card-opts" class="c-card--opts-list js-immune">
-        <button role="presentation none" class="c-card__opt-toggle"
-                type="button" tabindex="-1">
-          <input id="card-preview-toggle" name="card_preview" type="checkbox" tabindex="0" />
-          <label for="card-preview-toggle"
-                 title="Approximate final state of card">Preview Card</label>
-        </button>
-      </fieldset>
-    </form>
-  </body>
+				<div class="c-card__attr">
+					<label for="card-attr-speed" class="c-card__attr-key"
+								 title="How many units faster or slower">Speed</label>
+					<input id="card-attr-speed" class="c-card__attr-input"
+								 type="range" min="-3" max="3" step="1" value="-1" />
+					<output for="card-attr-speed" class="c-card__attr-value">?</output>
+				</div>
+
+				<div class="c-card__attr">
+					<label for="card-attr-defense" class="c-card__attr-key"
+								 title="How many units less or more vulnerable">Defense</label>
+					<input id="card-attr-defense" class="c-card__attr-input"
+								 type="range" min="-3" max="3" step="1" value="1" />
+					<output for="card-attr-defense" class="c-card__attr-value">?</output>
+				</div>
+			</section>
+
+			<fieldset id="card-opts" class="c-card--opts-list js-immune">
+				<button role="presentation none" class="c-card__opt-toggle"
+								type="button" tabindex="-1">
+					<input id="card-preview-toggle" name="card_preview" type="checkbox" tabindex="0" />
+					<label for="card-preview-toggle"
+								 title="Approximate final state of card">Preview Card</label>
+				</button>
+			</fieldset>
+		</form>
+	</body>
 </html>

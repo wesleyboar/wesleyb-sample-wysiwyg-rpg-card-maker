@@ -1,3 +1,5 @@
+// TODO: Export logic for external scripts
+
 /** Classes for the CSS */
 const CLASSNAMES = {
   neg: 'is-negative',
@@ -92,4 +94,8 @@ function init() {
   });
 }
 
-init();
+// export {
+//   init as initDynamicBehaviourForCard
+// };
+
+window.initDynamicBehaviourForCard = init;
