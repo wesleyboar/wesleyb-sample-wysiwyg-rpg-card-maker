@@ -9,8 +9,8 @@ html {
 }
 
 body,
-input, select, textarea {
-  color: #333333;
+input, select, textarea, button {
+  color: black;
   font: 1.8rem/1.5 "Georgia", Times, serif;
 }
 /* FAQ: Styling `<select>` elements it outside the scope of the prototype */
@@ -35,22 +35,23 @@ header * { margin: 0; }
 label {
   display: block;
 }
-/* FAQ: The `[for]` prevents decorator on labels that inclosed checkboxes */
-/* HACK: The use of `[for]` assumes markup structure */
-label[for]::after {
+label::after {
   content: ":";
   margin-left: 0.05em;
 }
+input[type="checkbox"] + label::after { display: none; }
 
 fieldset { padding: 0; margin: 0; border: none; }
-legend {
-  padding: 0;
+legend,
+._legend {
   width: 100%;
 
   font-weight: bold;
   text-align: center;
 }
-fieldset + fieldset legend { margin: 0.5em 0; }
+/* FAQ: Using `padding`, because `margin` is ineffectual on Chrome 76 and Safari 12 */
+fieldset + fieldset legend,
+fieldset + [role="group"] ._legend { padding: 0.5em 0; }
 
 /* Components (ITCSS) */
 /* Components: Card */
@@ -68,11 +69,6 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 .c-card[data-value="water"] { background-color: lightblue; }
 .c-card[data-value="air"]   { background-color: lightyellow; }
 .c-card[data-value="fire"]  { background-color: indianred }
-/* Make space for card options */
-.c-card--opts-count-1 {
-  /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
-  margin-top: calc( (1.5 * 1.8rem) + 0.5em ); /* line-height × font-size + space */
-}
 
 .c-card__name,
 .c-card__figure,
@@ -99,26 +95,20 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 /* FAQ: I would use SVG, but https://icons8.com wants my money */
 /* RFE: Use 2x and 4x resolution as necessary (skipping for prototype) */
 /* RFE: I could be efficient if `attr()` was available for all properties… */
-.c-card__figure[data-value="hat"] { background-image: url("/assets/icon/hat.png"); }
-.c-card__figure[data-value="glove"] { background-image: url("/assets/icon/glove.png"); }
-.c-card__figure[data-value="boot"] { background-image: url("/assets/icon/boot.png"); }
-.c-card__figure[data-value="mask"] { background-image: url("/assets/icon/mask.png"); }
+.c-card__figure[data-value="hat"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fhat.png?v=1566530255300"); }
+.c-card__figure[data-value="glove"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fglove.png?v=1566530251563"); }
+.c-card__figure[data-value="boot"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fboot.png?v=1566530218139"); }
+.c-card__figure[data-value="mask"] { background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fmask.png?v=1566530258770"); }
 
 .c-card__desc {
   margin: 0.5rem 0;
-  /* FAQ: Avoiding `calc` and `var` to reduce protype complexity */
-  height: calc( 1.5 * 1.6rem * 3 ); /* line-height × font-size × line count */
+  /* FAQ: Avoiding `var` and `calc` to reduce prototype complexity */
+  /* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
+  height: 74px; /* line-height * font-size * line count (3) */
   resize: none;
 
   font-size: 1.6rem;
   text-align: center;
-}
-
-/* Distinguish options from entry fields */
-.c-card--opts-list {
-  position: absolute;
-  bottom: 100%;
-  right: 0;
 }
 
 .c-card__attr-list {
@@ -129,6 +119,7 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 /* HACK: Prevent stretch of dangling attribute by adding invisible final one */
 .c-card__attr-list::after {
   flex-grow: 3; /* that of `…-key` + that of `…-value` */
+  flex-basis: 50%;
 }
 .c-card__attr-list::after { content: ""; }
 
@@ -137,7 +128,6 @@ fieldset + fieldset legend { margin: 0.5em 0; }
   flex-direction: row;
   flex-wrap: wrap;
 }
-.c-card__attr,
 .c-card__attr-key,
 .c-card__attr-value {
   flex-basis: 0;
@@ -146,22 +136,36 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 .c-card__attr .c-card__attr-key   { order: 1; }
 .c-card__attr .c-card__attr-value { order: 2; }
 .c-card__attr .c-card__attr-input { order: 3; }
-/* Force wrap after two pairs */
-.c-card__attr-value:nth-child(4n),
-.c-card__attr:nth-of-type(2n) {
-  break-after: always;
-}
 
 .c-card__attr-key { flex-grow: 2; text-align: right; }
 .c-card__attr-key::after { margin-right: 0.25em; }
 
 .c-card__attr-value { flex-grow: 1; text-align: left; }
-// FAQ: Add positive sign for positive values (negative values already have sign)
+/* FAQ: Add positive sign for positive values (negative values already have sign) */
 .c-card__attr-value.is-positive::before { content: "+"; }
 
 .c-card__attr-input {
   width: 100%;
 }
+
+/* Components: Card: Options */
+
+/* Move card options to above card */
+.c-card--opts-count-1 {
+  /* FAQ: Avoiding `var` to reduce prototype complexity */
+  /* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
+  margin-top: calc( 31px + 0.5em ); /* computed height + vert. margin */
+}
+.c-card--opts-list {
+  width: 100%;
+  position: absolute; /* WARN: Causes child form elements to need `tabindex="-1"` */
+  bottom: 100%;
+  left: 0;
+
+  text-align: center;
+}
+.c-card__opt-toggle { margin: 0.25em 0; }
+.c-card__opt-toggle > * { display: inline-block; vertical-align: middle; }
 
 /* Trumps (ITCSS) */
 /* Trumps: Scope: Card Preview */
@@ -169,9 +173,10 @@ fieldset + fieldset legend { margin: 0.5em 0; }
 .s-card-preview #card-ident label,
 .s-card-preview #card-attr input,
 .s-card-preview select,
-.s-card-preview legend   { display: none; }
+.s-card-preview legend,
+.s-card-preview ._legend { display: none; }
 
 .s-card-preview input,
 .s-card-preview textarea { border: none; background: transparent; }
 
-.s-card-preview textarea { scroll: none; }
+.s-card-preview textarea { overflow: hidden; }

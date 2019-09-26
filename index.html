@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Styles -->
     <link rel="stylesheet" href="index.css">
-
     <!-- Scripts -->
     <script src="index.js" type="module" defer></script>
   </head>
@@ -57,8 +55,11 @@
         </select>
       </fieldset>
 
-      <fieldset id="card-attr" class="c-card__attr-list">
-        <legend>Card Attributes</legend>
+      <!-- FAQ: Can not use `<fieldset>` with `display: flex` -->
+      <!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 -->
+      <section id="card-attr" class="c-card__attr-list"
+               role="group" aria-labelledby="card-attr-list-title">
+	      <span id="card-attr-list-title" class="_legend">Card Attributes</span>
 
         <div class="c-card__attr">
           <label for="card-attr-power" class="c-card__attr-key"
@@ -83,12 +84,15 @@
                  type="range" min="-3" max="3" step="1" value="1" />
           <output for="card-attr-defense" class="c-card__attr-value">?</output>
         </div>
-      </fieldset>
+      </section>
 
       <fieldset id="card-opts" class="c-card--opts-list js-immune">
-        <label title="Approximate final state of card">
-          <input name="card_preview" type="checkbox" /><span>Preview Card</span>
-        </label>
+        <button role="presentation none" class="c-card__opt-toggle"
+                type="button" tabindex="-1">
+          <input id="card-preview-toggle" name="card_preview" type="checkbox" tabindex="0" />
+          <label for="card-preview-toggle"
+                 title="Approximate final state of card">Preview Card</label>
+        </button>
       </fieldset>
     </form>
   </body>
