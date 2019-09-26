@@ -95,7 +95,7 @@ function init() {
 }
 
 // export {
-//   initDynamicBehaviourForCard as init
+//   init as initDynamicBehaviourForCard
 // };
 
 window.initDynamicBehaviourForCard = init;
