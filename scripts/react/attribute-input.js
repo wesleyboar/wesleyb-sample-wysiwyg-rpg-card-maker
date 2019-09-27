@@ -1,4 +1,5 @@
 // TODO: Migrate `../card.js` manipulation of `output` value to here
+// TODO: Propogate class name(s) from parent component
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
