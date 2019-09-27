@@ -1,0 +1,25 @@
+#
+# Compiled Assets
+# These directories contain the compilations of source files
+#
+
+# Final location for compiled files (root)
+# /dist
+
+#
+# Node (NPM)
+# SEE: ./bin/shared/deps.sh
+# SEE: https://docs.npmjs.com/
+#
+
+# SEE: https://docs.npmjs.com/getting-started/installing-npm-packages-locally
+node_modules
+npm-debug.log
+
+#
+# Operating System Files
+#
+
+# Generated
+.DS_Store
+.vscode
