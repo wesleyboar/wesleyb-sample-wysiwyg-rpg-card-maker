@@ -2,7 +2,8 @@
 	"identity": {
 		"name": "Bob's Hat",
 		"form": "hat",
-		"desc": "Bob's finest article of clothing doing what it does best."
+		"desc": "Bob's finest article of clothing doing what it does best.",
+		"element": "water"
 	},
 	"attribute": {
 		"power": 1,

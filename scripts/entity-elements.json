@@ -1,0 +1,18 @@
+[
+	{
+		"value": "earth",
+		"label": "Earth"
+	},
+	{
+		"value": "water",
+		"label": "Water"
+	},
+	{
+		"value": "air",
+		"label": "Air"
+	},
+	{
+		"value": "fire",
+		"label": "Fire"
+	}
+]
