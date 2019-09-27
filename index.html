@@ -98,5 +98,14 @@
 				</button>
 			</fieldset>
 		</form>
+
+		<!-- Scripts: Load JSON (syncronous) -->
+		<!-- NOTE: When deploying, use processor and `import`, instead. -->
+		<script>
+			function getJSONSync( url ) {
+				const r = new XMLHttpRequest(); r.open('GET', url, false); r.send();
+				return (r.status === 200) ? JSON.parse( r.responseText ) : undefined;
+			};
+		</script>
 	</body>
 </html>
