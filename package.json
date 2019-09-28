@@ -1,0 +1,11 @@
+{
+  "name": "wesleyb-sample-wysiwyg-rpg-card-maker",
+  "version": "1.0.0",
+  "description": "Prototype interface to edit card for a generic RPG trading card game ",
+  "author": "wesleyb@pm.me",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wesleyboar/wesleyb-sample-wysiwyg-rpg-card-maker.git"
+  }
+}
