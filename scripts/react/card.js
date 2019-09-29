@@ -26,7 +26,12 @@ const CLASSNAMES = {
 function Card( props ) {
 	const { identity, attribute } = props;
 	const [ shouldPreview, setShouldPreview ] = useState( false );
+	const [ element, setElement ] = useState( identity.element );
 	const [ previewClassName, setPreviewClassName ] = useState('');
+
+	function handleIsActiveChange( isActive ) {
+		setShouldPreview( isActive );
+	}
 
 	useEffect(() => {
 		setPreviewClassName( ( shouldPreview ) ? CLASSNAMES.isPreview : '' );
@@ -34,7 +39,7 @@ function Card( props ) {
 
 	return (
 		<form id="card" className={"c-card c-card--opts-count-1 " + previewClassName}
-			data-output-for="card-ident-element" data-value="">
+			data-output-for="card-ident-element" data-value={element}>
 			<fieldset id="card-ident" disabled={shouldPreview}>
 				<legend>Card Identity</legend>
 
@@ -52,7 +57,8 @@ function Card( props ) {
 
 				<ElementInput id="card-ident-element" label="Element"
 					desc="The elemental power of the enchanted item"
-					value={identity.element} />
+					value={element}
+					onChange={ value => setElement( value ) } />
 			</fieldset>
 
 			<section id="card-attr" className={"c-card__attr-list" + previewClassName}
@@ -82,7 +88,7 @@ function Card( props ) {
 				<Toggle id="card-preview-toggle" label="Preview Card"
 					desc="Preview approximate final state of card"
 					isActive={shouldPreview}
-					onIsActiveChange={ isActive => setShouldPreview( isActive ) } />
+					onIsActiveChange={handleIsActiveChange} />
 			</fieldset>
 		</form>
 	);
@@ -92,6 +98,3 @@ ReactDOM.render(
 	<Card {...defaultValues} />,
 	document.getElementById('card--react')
 );
-
-// TODO: Let React manage `init`
-initDynamicBehaviourForCard();

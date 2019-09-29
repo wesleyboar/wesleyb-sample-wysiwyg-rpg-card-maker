@@ -1,9 +1,8 @@
-// TODO: Migrate `../card.js` manipulation of `output` value to here
 // TODO: Propogate class name(s) from parent component
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
-const useState = React.useState;
+const { useState } = React;
 
 /**
  * A form/kind/shape input field as a select dropdown
@@ -15,14 +14,19 @@ const useState = React.useState;
  * @param {OptionGroupList} props.shapes - The available form choices
  */
 function ShapeInput( props ) {
-	const { id, label, desc, value, shapes: shapeSetList } = props;
+	const { id, label, desc, shapes: shapeSetList } = props;
+	const [ value, setValue ] = useState( props.value );
+
+	function handleChange( e ) {
+		setValue( e.target.value );
+	}
 
 	return (
 		<React.Fragment>
 			<label htmlFor={id}
 				title={desc}>{label}</label>
 			<select id={id} className="c-card__metadata"
-				defaultValue={value}>
+				value={value} onChange={handleChange}>
 				{shapeSetList.map( ( shapeSet, i ) =>
 					<optgroup key={i}
 						label={shapeSet.label}>
@@ -35,7 +39,7 @@ function ShapeInput( props ) {
 				)}
 			</select>
 			<output htmlFor={id} className="c-card__figure"
-				data-value=""></output>
+				data-value={value}></output>
 		</React.Fragment>
 	);
 }

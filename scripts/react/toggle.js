@@ -1,11 +1,14 @@
 // TODO: Propogate class name(s) from parent component
+// TODO: Rename:
+//				- from `onIsActiveChange` to `onChange`
+//				- from `isActive` to `isOn`
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
-const useState = React.useState;
+const { useState} = React;
 
 /**
- * This callback is displayed as part of the Requester class.
+ * Called when toggle is toggled
  * @callback Toggle~onIsActiveChange
  * @param {Boolean} isActive - Whether toggle is on/active
  */
@@ -22,8 +25,8 @@ const useState = React.useState;
 function Toggle( props ) {
 	const { id, label, desc, isActive, onIsActiveChange } = props;
 
-	function handleChange( event ) {
-		onIsActiveChange( event.target.checked );
+	function handleChange( e ) {
+		onIsActiveChange( e.target.checked );
 	}
 
 	return (

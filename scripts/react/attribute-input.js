@@ -1,4 +1,3 @@
-// TODO: Migrate `../card.js` manipulation of `output` value to here
 // TODO: Propogate class name(s) from parent component
 
 // NOTE: If processing, use `import`
@@ -17,9 +16,15 @@ const useState = React.useState;
  * @param {Number} [props.step] - Value increment
  */
 function AttributeInput( props ) {
-	const [ value, setValue ] = useState( props.value );
 	const { id, label, desc, ...inputAttrs } = props;
+	const [ value, setValue ] = useState( props.value );
+
+	// FAQ: The value prop must not be passed directly
 	delete inputAttrs.value;
+
+	function handleChange( e ) {
+		setValue( e.target.value );
+	}
 
 	return (
 		<div className="c-card__attr">
@@ -29,9 +34,9 @@ function AttributeInput( props ) {
 			<input id={id}
 				className="c-card__attr-input"
 				type="range" {...inputAttrs}
-				defaultValue={value} />
+				value={value} onChange={handleChange} />
 			<output htmlFor={id}
-				className="c-card__attr-value">?</output>
+				className="c-card__attr-value">{value}</output>
 		</div>
 	);
 }
