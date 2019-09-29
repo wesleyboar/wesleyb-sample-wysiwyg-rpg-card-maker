@@ -5,26 +5,28 @@
 const CLASSNAMES = {
   neg: 'is-negative',
   pos: 'is-positive',
-  disabled: 's-card-preview', // WARN: Overloaded property to simplify code
-  immune: 'js-immune'
+  // TODO: Delete when functionality is migrated out for all project #1 branches
+  // disabled: 's-card-preview', // WARN: Overloaded property to simplify code
+  // immune: 'js-immune'
 }
 
-/** Toggle state of form (disabled or enabled i.e. preview or not)
- * @parameter {Boolean} shouldDisable
- * @parameter {HTMLFormElement} form
- */
-function toggleState( shouldDisable, form ) {
-  const fieldsets = [ ...form.getElementsByTagName('fieldset') ];
-  // SEE: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Methods
-  const classlistAction = ( shouldDisable ) ? 'add' : 'remove';
+// TODO: Delete when functionality is migrated out for all project #1 branches
+// /** Toggle state of form (disabled or enabled i.e. preview or not)
+//  * @parameter {Boolean} shouldDisable
+//  * @parameter {HTMLFormElement} form
+//  */
+// function toggleState( shouldDisable, form ) {
+//   const fieldsets = [ ...form.getElementsByTagName('fieldset') ];
+//   // SEE: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Methods
+//   const classlistAction = ( shouldDisable ) ? 'add' : 'remove';
 
-  document.body.classList[ classlistAction ]( CLASSNAMES.disabled );
+//   document.body.classList[ classlistAction ]( CLASSNAMES.disabled );
 
-  fieldsets.forEach( fieldset => {
-    const isImmune = fieldset.classList.contains( CLASSNAMES.immune );
-    fieldset.disabled = ( shouldDisable && ! isImmune );
-  });
-}
+//   fieldsets.forEach( fieldset => {
+//     const isImmune = fieldset.classList.contains( CLASSNAMES.immune );
+//     fieldset.disabled = ( shouldDisable && ! isImmune );
+//   });
+// }
 
 /** Assign classname(s) based on value
  * @parameter {Number|String} value
@@ -88,11 +90,12 @@ function init() {
     });
   });
 
-  // Support state toggling
-  toggleState( toggle.checked, form );
-  toggle.addEventListener('change', ( e ) => {
-    toggleState( e.target.checked, form );
-  });
+  // TODO: Delete when functionality is migrated out for all project #1 branches
+  // // Support state toggling
+  // toggleState( toggle.checked, form );
+  // toggle.addEventListener('change', ( e ) => {
+  //   toggleState( e.target.checked, form );
+  // });
 }
 
 // export {

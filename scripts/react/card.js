@@ -1,7 +1,4 @@
 // TODO: Propogate class names to child components
-// TODO: Encapsulate logic for:
-//       - disable `fieldset`
-//       - immunize `fieldset` against disabling
 // TODO: Create `Field` component (that should default to `div`, but can be any tag)
 // TODO: Create `FieldSet` component (that should default to `fieldset`, but can be any tag)
 // FAQ: Can not use `<fieldset>` with `display: flex`
@@ -11,9 +8,14 @@
 // import React, { useState } from 'react';
 // import * as defaultValues from '../default-values.json';
 // import * as itemShapes from '../item-shapes.json';
-const useState = React.useState;
+const { useState, useEffect } = React;
 const defaultValues = getJSONSync('scripts/default-values.json');
 const itemShapes = getJSONSync('scripts/item-shapes.json');
+
+/** Classes for the CSS */
+const CLASSNAMES = {
+  isPreview: 's-card-preview'
+}
 
 /**
  * The identity of an RPG entity
@@ -39,11 +41,17 @@ const itemShapes = getJSONSync('scripts/item-shapes.json');
  */
 function Card( props ) {
 	const { identity, attribute } = props;
+	const [ shouldPreview, setShouldPreview ] = useState( false );
+	const [ previewClassName, setPreviewClassName ] = useState('');
+
+	useEffect(() => {
+		setPreviewClassName( ( shouldPreview ) ? CLASSNAMES.isPreview : '' );
+	}, [ shouldPreview ]);
 
 	return (
-		<form id="card" className="c-card c-card--opts-count-1"
+		<form id="card" className={"c-card c-card--opts-count-1 " + previewClassName}
 			data-output-for="card-ident-element" data-value="">
-			<fieldset id="card-ident">
+			<fieldset id="card-ident" disabled={shouldPreview}>
 				<legend>Card Identity</legend>
 
 				<NameInput id="card-ident-name" label="Name"
@@ -63,8 +71,8 @@ function Card( props ) {
 					value={identity.element} />
 			</fieldset>
 
-			<section id="card-attr" className="c-card__attr-list"
-				role="group" aria-labelledby="card-attr-list-title">
+			<section id="card-attr" className={"c-card__attr-list" + previewClassName}
+				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}>
 				<legend>Card Attributes</legend>
 
 				<div className="c-card__attr">
@@ -86,9 +94,11 @@ function Card( props ) {
 				</div>
 			</section>
 
-			<fieldset id="card-opts" className="c-card--opts-list js-immune">
+			<fieldset id="card-opts" className="c-card--opts-list">
 				<Toggle id="card-preview-toggle" label="Preview Card"
-					desc="Preview approximate final state of card" />
+					desc="Preview approximate final state of card"
+					isActive={shouldPreview}
+					onIsActiveChange={ isActive => setShouldPreview( isActive ) } />
 			</fieldset>
 		</form>
 	);
