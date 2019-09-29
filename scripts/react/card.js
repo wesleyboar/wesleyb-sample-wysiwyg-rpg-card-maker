@@ -87,8 +87,8 @@ function Card( props ) {
 			<fieldset id="card-opts" className="c-card--opts-list">
 				<Toggle id="card-preview-toggle" label="Preview Card"
 					desc="Preview approximate final state of card"
-					isActive={shouldPreview}
-					onIsActiveChange={handleIsActiveChange} />
+					isOn={shouldPreview}
+					onChange={handleIsActiveChange} />
 			</fieldset>
 		</form>
 	);

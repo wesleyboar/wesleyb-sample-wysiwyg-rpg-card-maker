@@ -1,7 +1,4 @@
 // TODO: Propogate class name(s) from parent component
-// TODO: Rename:
-//				- from `onIsActiveChange` to `onChange`
-//				- from `isActive` to `isOn`
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
@@ -9,8 +6,8 @@ const { useState} = React;
 
 /**
  * Called when toggle is toggled
- * @callback Toggle~onIsActiveChange
- * @param {Boolean} isActive - Whether toggle is on/active
+ * @callback Toggle~onChange
+ * @param {Boolean} isOn - Whether toggle is on/active
  */
 
 /**
@@ -19,14 +16,14 @@ const { useState} = React;
  * @param {String} props.id - Field identifier
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
- * @param {Boolean} props.isActive - Whether toggle is on/active
- * @param {Toggle~onIsActiveChange} props.onIsActiveChange - Callback on state change
+ * @param {Boolean} props.isOn - Whether toggle is on/active
+ * @param {Toggle~onChange} props.onChange - Callback on state change
  */
 function Toggle( props ) {
-	const { id, label, desc, isActive, onIsActiveChange } = props;
+	const { id, label, desc, isOn, onChange } = props;
 
 	function handleChange( e ) {
-		onIsActiveChange( e.target.checked );
+		onChange( e.target.checked );
 	}
 
 	return (
@@ -34,7 +31,7 @@ function Toggle( props ) {
 			type="button" tabIndex="-1">
 			<input id={id} name="card_preview"
 				type="checkbox" tabIndex="0"
-				checked={isActive} onChange={handleChange} />
+				checked={isOn} onChange={handleChange} />
 			<label htmlFor={id}
 				title={desc}>{label}</label>
 		</button>
