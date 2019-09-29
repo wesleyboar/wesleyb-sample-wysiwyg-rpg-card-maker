@@ -12,7 +12,7 @@ const { useState, useEffect } = React;
 const defaultValues = getJSONSync('scripts/default-values.json');
 const itemShapes = getJSONSync('scripts/item-shapes.json');
 
-/** Classes for the CSS */
+/** Dynamically-applied CSS class names */
 const CLASSNAMES = {
   isPreview: 's-card-preview'
 }
