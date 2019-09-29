@@ -63,7 +63,7 @@ function Card( props ) {
 
 			<section id="card-attr" className={"c-card__attr-list " + previewClassName}
 				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}>
-				<span id="card-attr-list-title" class="_legend">Card Attributes</span>
+				<span id="card-attr-list-title" className="_legend">Card Attributes</span>
 
 				<div className="c-card__attr">
 					<AttributeInput id="card-attr-power" label="Power"

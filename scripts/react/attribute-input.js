@@ -1,9 +1,16 @@
-// TODO: Migrate pos/neg class feature from `scripts/card.js` to here
 // TODO: Propogate class name(s) from parent component
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
 const useState = React.useState;
+
+/** Dynamically-applied CSS class names */
+/* TODO: Get rid of `_2`… */
+/* NOTE: The `type="text/babel"` does not have the isolation effect of `type="module"` */
+const CLASSNAMES_2 = {
+  neg: 'is-negative',
+  pos: 'is-positive'
+}
 
 /**
  * An attribute input field as a range
@@ -19,6 +26,7 @@ const useState = React.useState;
 function AttributeInput( props ) {
 	const { id, label, desc, ...inputAttrs } = props;
 	const [ value, setValue ] = useState( props.value );
+	const [ signClassName, setSignClassName ] = useState('');
 
 	// FAQ: The value prop must not be passed directly
 	delete inputAttrs.value;
@@ -26,6 +34,10 @@ function AttributeInput( props ) {
 	function handleChange( e ) {
 		setValue( e.target.value );
 	}
+
+	useEffect(() => {
+		setSignClassName( ( value > 0 ) ? CLASSNAMES_2.pos : CLASSNAMES_2.neg );
+	}, [ value ]);
 
 	return (
 		<React.Fragment>
@@ -37,7 +49,7 @@ function AttributeInput( props ) {
 				type="range" {...inputAttrs}
 				value={value} onChange={handleChange} />
 			<output htmlFor={id}
-				className="c-card__attr-value">{value}</output>
+				className={"c-card__attr-value " + signClassName}>{value}</output>
 		</React.Fragment>
 	);
 }
