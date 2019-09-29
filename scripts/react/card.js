@@ -61,9 +61,9 @@ function Card( props ) {
 					onChange={ value => setElement( value ) } />
 			</fieldset>
 
-			<section id="card-attr" className={"c-card__attr-list" + previewClassName}
+			<section id="card-attr" className={"c-card__attr-list " + previewClassName}
 				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}>
-				<legend>Card Attributes</legend>
+				<span id="card-attr-list-title" class="_legend">Card Attributes</span>
 
 				<div className="c-card__attr">
 					<AttributeInput id="card-attr-power" label="Power"

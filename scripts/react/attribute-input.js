@@ -27,7 +27,7 @@ function AttributeInput( props ) {
 	}
 
 	return (
-		<div className="c-card__attr">
+		<React.Fragment>
 			<label htmlFor={id}
 				className="c-card__attr-key"
 				title={desc}>{label}</label>
@@ -37,6 +37,6 @@ function AttributeInput( props ) {
 				value={value} onChange={handleChange} />
 			<output htmlFor={id}
 				className="c-card__attr-value">{value}</output>
-		</div>
+		</React.Fragment>
 	);
 }
