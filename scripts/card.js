@@ -1,6 +1,3 @@
-// TODO: Export functions for external scripts (able to code share betwen libraries)
-// TODO: Migrate logic to external scripts (unable to code share between libraries)
-
 /** Classes for the CSS */
 const CLASSNAMES = {
   neg: 'is-negative',

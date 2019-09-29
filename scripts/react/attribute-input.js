@@ -1,3 +1,4 @@
+// TODO: Migrate pos/neg class feature from `scripts/card.js` to here
 // TODO: Propogate class name(s) from parent component
 
 // NOTE: If processing, use `import`
