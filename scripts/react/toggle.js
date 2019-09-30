@@ -1,7 +1,7 @@
-// TODO: Make `onChange` optional, even if used currently
-
 // NOTE: If processing, use `import`
+// import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
+const { useState, useEffect } = window.React;
 const PropTypes = window.PropTypes;
 
 /**
@@ -13,23 +13,28 @@ const PropTypes = window.PropTypes;
 /**
  * A toggle widget that should cause side effect(s)
  * @param {Object} props
- * @param {Boolean} props.isOn - Whether toggle is on/active
  * @param {String} props.id - HTML `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
- * @param {Toggle~onChange} props.onChange - Callback on state change
+ * @param {Boolean} [props.isOn] - Whether toggle is on/active
+ * @param {Toggle~onChange} [props.onChange] - Callback on state change
  */
 function Toggle( props ) {
-	const { id, label, desc, isOn, onChange, name, ...fieldAttrs } = props;
+	const { id, label, desc, onChange, isOn: initialState, ...fieldAttrs } = props;
+	const [ isOn, setIsOn ] = useState( initialState );
 
+	// FAQ: We can manage change internally and externally
 	function handleChange( e ) {
-		onChange( e.target.checked );
+		setIsOn( e.target.checked );
 	}
+	useEffect(() => {
+		if ( onChange ) onChange( isOn );
+	}, [ isOn ]);
 
 	return (
 		<button role="presentation none" {...fieldAttrs}
 			type="button" tabIndex="-1">
-			<input id={id} name={name}
+			<input id={id} {...fieldAttrs}
 				type="checkbox" tabIndex="0"
 				checked={isOn} onChange={handleChange} />
 			<label htmlFor={id}
@@ -38,9 +43,10 @@ function Toggle( props ) {
 	);
 }
 Toggle.propTypes = {
-	isOn: PropTypes.bool.isRequired,
 	id: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
 	desc: PropTypes.string.isRequired,
-	onChange: PropTypes.func.isRequired,
+	
+	isOn: PropTypes.bool,
+	onChange: PropTypes.func,
 }

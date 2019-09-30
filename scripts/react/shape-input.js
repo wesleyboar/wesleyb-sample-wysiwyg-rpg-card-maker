@@ -1,14 +1,19 @@
 // TODO: Consider running `setValue` on load
 // TODO: Remove ineffectual `name` attribute
-// TODO: Support optional `onChange`, even if unused currently
 
 // NOTE: If processing, use `import`
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 // import CustomTypes from './custom-types.js';
-const { useState } = window.React;
+const { useState, useEffect } = window.React;
 const PropTypes = window.PropTypes;
 const CustomTypes = window.CustomTypes;
+
+/**
+ * Called when input/field value changes
+ * @callback ShapeInput~onChange
+ * @param {String} value - Field value i.e. the shape
+ */
 
 /**
  * A form/kind/shape input field as a select dropdown
@@ -22,17 +27,21 @@ const CustomTypes = window.CustomTypes;
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {String} [props.outputClassName] - The `className` for the `output`
  * @param {String} [props.optionNamePrefix] - A prefix for the `name` of `option` tags
+ * @param {ShapeInput~onChange} [props.onChange] - Callback on value change
  */
 function ShapeInput( props ) {
-	const { id, label, desc, shapes: shapeSetList, placeholder, labelClassName, outputClassName, optionNamePrefix, ...fieldAttrs } = props;
-	const [ value, setValue ] = useState( props.value );
+	const { id, label, desc, shapes: shapeSetList, placeholder, labelClassName, outputClassName, optionNamePrefix, onChange, value: initialValue, ...fieldAttrs } = props;
+	const [ value, setValue ] = useState( initialValue );
 
-	let placeholderMarkup = '';
-
+	// FAQ: We can manage change internally and externally
 	function handleChange( e ) {
 		setValue( e.target.value );
 	}
+	useEffect(() => {
+		if ( onChange ) onChange( value );
+	}, [ value ]);
 
+	let placeholderMarkup = '';
 	if ( placeholder ) {
 		placeholderMarkup = (
 			<option name={optionNamePrefix + "undefined"} hidden>{placeholder}</option>
@@ -67,10 +76,11 @@ ShapeInput.propTypes = {
 	label: PropTypes.string.isRequired,
 	desc: PropTypes.string.isRequired,
 	shapes: CustomTypes.OptionGroupList.isRequired,
-	
+
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
 	labelClassName: PropTypes.string,
 	outputClassName: PropTypes.string,
 	optionNamePrefix: PropTypes.string,
+	onChange: PropTypes.func,
 }
