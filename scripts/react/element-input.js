@@ -1,4 +1,5 @@
 // TODO: Propogate class name(s) from parent component
+// TODO: Consider using `defaultProps`, not `props.elements || allElements`
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
