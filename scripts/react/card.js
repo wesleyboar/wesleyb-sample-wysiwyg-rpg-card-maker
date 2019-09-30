@@ -60,8 +60,10 @@ function Card( props ) {
 			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}
 			{/* SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 */}
 			<section id="card-attr" className={"c-card__attr-list " + previewClassName}
-				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}>
-				<span id="card-attr-list-title" className="_legend">Card Attributes</span>
+				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}
+				data-replaced-tag="fieldset">
+				<span id="card-attr-list-title" className="_legend"
+					data-replaced-tag="legend">Card Attributes</span>
 
 				<div className="c-card__attr">
 					<AttributeInput id="card-attr-power" label="Power"
