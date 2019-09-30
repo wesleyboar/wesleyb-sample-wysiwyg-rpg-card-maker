@@ -35,7 +35,6 @@ function ElementInput( props ) {
 	const { id, label, desc, placeholder, labelClassName, optionNamePrefix, onChange, value: initialValue, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
-
 	// FAQ: We can manage change internally and externally
 	function handleChange( e ) {
 		setValue( e.target.value );
