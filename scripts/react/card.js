@@ -29,7 +29,7 @@ function Card( props ) {
 	const [ element, setElement ] = useState( identity.element );
 	const [ previewClassName, setPreviewClassName ] = useState('');
 
-	function handleIsActiveChange( isActive ) {
+	function handlePreviewToggleChange( isActive ) {
 		setShouldPreview( isActive );
 	}
 
@@ -72,7 +72,7 @@ function Card( props ) {
 					optionNamePrefix="ident_element_"
 					placeholder="Choose an element"
 					value={element}
-					onChange={ value => setElement( value ) } />
+					onChange={ value => setElement( value )} />
 			</fieldset>
 
 			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}
@@ -121,7 +121,7 @@ function Card( props ) {
 					className="c-card__opt-toggle"
 					name="card_preview"
 					isOn={shouldPreview}
-					onChange={handleIsActiveChange} />
+					onChange={handlePreviewToggleChange} />
 			</fieldset>
 		</form>
 	);
