@@ -5,9 +5,11 @@
 const useState = React.useState;
 
 /** Dynamically-applied CSS class names */
-/* TODO: Get rid of `_2`… */
+/* TODO: Get rid of `_AI`… */
 /* NOTE: The `type="text/babel"` does not have the isolation effect of `type="module"` */
-const CLASSNAMES_2 = {
+/* WARN: No hackless solution exists on the Internet, yet; but, babel has a PR… */
+/* SEE: https://github.com/babel/babel/pull/8410 */
+const CLASSNAMES_AI = {
   neg: 'is-negative',
   pos: 'is-positive'
 }
@@ -36,7 +38,7 @@ function AttributeInput( props ) {
 	}
 
 	useEffect(() => {
-		setSignClassName( ( value > 0 ) ? CLASSNAMES_2.pos : CLASSNAMES_2.neg );
+		setSignClassName( ( value > 0 ) ? CLASSNAMES_AI.pos : CLASSNAMES_AI.neg );
 	}, [ value ]);
 
 	return (
