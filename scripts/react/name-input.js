@@ -1,16 +1,15 @@
 // NOTE: If processing, use `import`
-// import React, { useState } from 'react';
-// import * as defaultValues from '../entity-elements.json';
-const useState = React.useState;
+// import PropTypes from 'prop-types';
+const PropTypes = window.PropTypes;
 
 // NOTE: The code of `NameInput` and `DescInput` are very similar, but the features may diverge; so, await further similarity before merging.
 /**
  * A static name input field
  * @param {Object} props
- * @param {String} props.value - Field value i.e. the name
  * @param {String} props.id - HTML `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
+ * @param {String} [props.value] - Field value i.e. the name
  * @param {String} [props.labelClassName] - The `className` for the `label`
  */
 function NameInput( props ) {
@@ -25,4 +24,12 @@ function NameInput( props ) {
 				type="text" defaultValue={value} />
 		</React.Fragment>
 	);
+}
+NameInput.propTypes = {
+	id: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired,
+	desc: PropTypes.string.isRequired,
+	
+	value: PropTypes.string,
+	labelClassName: PropTypes.string,
 }

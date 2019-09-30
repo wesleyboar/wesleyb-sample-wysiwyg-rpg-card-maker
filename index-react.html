@@ -11,6 +11,7 @@
 
 		<!-- Scripts -->
 		<script src="scripts/card.js" type="module" defer></script>
+		<script src="scripts/react/custom-types.js" type="text/babel" defer></script>
 		<script src="scripts/react/name-input.js" type="text/babel" defer></script>
 		<script src="scripts/react/desc-input.js" type="text/babel" defer></script>
 		<script src="scripts/react/shape-input.js" type="text/babel" defer></script>
@@ -29,21 +30,29 @@
 
 		<main id="card--react"></main>
 
-		<!-- Scripts: React -->
-		<!-- NOTE: When deploying, replace `development.js` with `production.min.js`. -->
-		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-		<!-- Scripts: Babel (for JSX) -->
-		<!-- NOTE: When deploying, use JSX processor, instead. -->
-		<!-- SEE: https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project -->
-		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-		<!-- Scripts: Load JSON (syncronous) -->
-		<!-- NOTE: When deploying, use processor and `import`, instead. -->
-		<script>
-			function getJSONSync( url ) {
-				const r = new XMLHttpRequest(); r.open('GET', url, false); r.send();
-				return (r.status === 200) ? JSON.parse( r.responseText ) : undefined;
-			};
-		</script>
+		<div id="development-scripts">
+			<!-- Scripts: React -->
+			<!-- NOTE: When deploying, use process and `import`, instead. -->
+			<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+			<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+			<!-- Scripts: Babel (for JSX) -->
+			<!-- NOTE: When deploying, use JSX processor, instead. -->
+			<!-- SEE: https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project -->
+			<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+			<!-- Scripts: Load JSON (syncronous) -->
+			<!-- NOTE: When deploying, use processor and `import`, instead. -->
+			<script>
+				function getJSONSync( url ) {
+					const r = new XMLHttpRequest(); r.open('GET', url, false); r.send();
+					return (r.status === 200) ? JSON.parse( r.responseText ) : undefined;
+				};
+			</script>
+
+			<!-- Scripts: PropTypes (for React) -->
+			<!-- NOTE: When deploying, use process and `import`, instead. -->
+			<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+		</div>
 	</body>
 </html>

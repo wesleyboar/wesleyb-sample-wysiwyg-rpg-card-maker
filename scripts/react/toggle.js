@@ -1,6 +1,8 @@
+// TODO: Make `onChange` optional, even if used currently
+
 // NOTE: If processing, use `import`
-// import React, { useState } from 'react';
-const { useState} = React;
+// import PropTypes from 'prop-types';
+const PropTypes = window.PropTypes;
 
 /**
  * Called when toggle is toggled
@@ -11,10 +13,10 @@ const { useState} = React;
 /**
  * A toggle widget that should cause side effect(s)
  * @param {Object} props
+ * @param {Boolean} props.isOn - Whether toggle is on/active
  * @param {String} props.id - HTML `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
- * @param {Boolean} props.isOn - Whether toggle is on/active
  * @param {Toggle~onChange} props.onChange - Callback on state change
  */
 function Toggle( props ) {
@@ -34,4 +36,11 @@ function Toggle( props ) {
 				title={desc}>{label}</label>
 		</button>
 	);
+}
+Toggle.propTypes = {
+	isOn: PropTypes.bool.isRequired,
+	id: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired,
+	desc: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
 }

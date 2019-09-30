@@ -1,10 +1,16 @@
+// TODO: Consider using `defaultProps`, not `identity = {}, attributes= {}`
+
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
+// import ReactDom from 'react';
+// import CustomTypes from './custom-types.js';
 // import * as defaultValues from '../default-values.json';
 // import * as itemShapes from '../item-shapes.json';
-const { useState, useEffect } = React;
-const defaultValues = getJSONSync('scripts/default-values.json');
-const itemShapes = getJSONSync('scripts/item-shapes.json');
+const { useState, useEffect } = window.React;
+const ReactDOM = window.ReactDOM;
+const CustomTypes = window.CustomTypes;
+const defaultValues = window.getJSONSync('scripts/default-values.json');
+const itemShapes = window.getJSONSync('scripts/item-shapes.json');
 
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
@@ -14,11 +20,11 @@ const CLASSNAMES = {
 /**
  * A customizable RPG card for an item
  * @param {Object} props
- * @param {IdentityProps} props.identity
- * @param {AttributeProps} props.attribute
+ * @param {IdentityProps} [props.identity] - Properties that identify the entity
+ * @param {AttributesProps} [props.attributes] - Properties of the entity's effect
  */
 function Card( props ) {
-	const { identity, attribute } = props;
+	const { identity = {}, attributes= {}} = props;
 	const [ shouldPreview, setShouldPreview ] = useState( false );
 	const [ element, setElement ] = useState( identity.element );
 	const [ previewClassName, setPreviewClassName ] = useState('');
@@ -49,7 +55,9 @@ function Card( props ) {
 					className="c-card__metadata"
 					outputClassName="c-card__figure"
 					optionNamePrefix="ident_shape_"
-					value={identity.shape} shapes={itemShapes} />
+					value={identity.shape} shapes={itemShapes}
+					placeholder="Choose a shape"
+					required />
 
 				<DescInput id="card-ident-desc"
 					label="Description"
@@ -62,6 +70,7 @@ function Card( props ) {
 					desc="The elemental power of the enchanted item"
 					className="c-card__metadata"
 					optionNamePrefix="ident_element_"
+					placeholder="Choose an element"
 					value={element}
 					onChange={ value => setElement( value ) } />
 			</fieldset>
@@ -76,9 +85,9 @@ function Card( props ) {
 
 				<div className="c-card__attr">
 					<AttributeInput id="card-attr-power"
-					label="Power"
+						label="Power"
 						desc="How many units stronger or weaker"
-						min="-3" max="3" step="1" value={attribute.power}
+						min={-3} max={3} step={1} value={attributes.power}
 						className="c-card__attr-input"
 						labelClassName="c-card__attr-key"
 						outputClassName="c-card__attr-value" />
@@ -86,9 +95,9 @@ function Card( props ) {
 
 				<div className="c-card__attr">
 					<AttributeInput id="card-attr-speed"
-					label="Speed"
+						label="Speed"
 						desc="How many units faster or slower"
-						min="-3" max="3" step="1" value={attribute.speed}
+						min={-3} max={3} step={1} value={attributes.speed}
 						className="c-card__attr-input"
 						labelClassName="c-card__attr-key"
 						outputClassName="c-card__attr-value" />
@@ -96,9 +105,9 @@ function Card( props ) {
 
 				<div className="c-card__attr">
 					<AttributeInput id="card-attr-defense"
-					label="Defense"
+						label="Defense"
 						desc="How many units less or more vulnerable"
-						min="-3" max="3" step="1" value={attribute.defense}
+						min={-3} max={3} step={1} value={attributes.defense}
 						className="c-card__attr-input"
 						labelClassName="c-card__attr-key"
 						outputClassName="c-card__attr-value" />
@@ -116,6 +125,10 @@ function Card( props ) {
 			</fieldset>
 		</form>
 	);
+}
+Card.propTypes = {
+	identity: CustomTypes.IdentityProps,
+	attributes: CustomTypes.AttributeProps,
 }
 
 ReactDOM.render(
