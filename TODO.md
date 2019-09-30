@@ -1,2 +1,2 @@
-- Create test cases for each component.
+- TODO: Create test cases for each component.
   - See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)
