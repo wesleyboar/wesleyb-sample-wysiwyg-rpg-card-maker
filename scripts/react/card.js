@@ -1,5 +1,3 @@
-// TODO: Propogate class names to child components
-
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
 // import * as defaultValues from '../default-values.json';
@@ -39,20 +37,31 @@ function Card( props ) {
 			<fieldset id="card-ident" disabled={shouldPreview}>
 				<legend>Card Identity</legend>
 
-				<NameInput id="card-ident-name" label="Name"
+				<NameInput id="card-ident-name"
+					label="Name"
 					desc="The name of the enchanted item"
+					className="c-card__name"
 					value={identity.name} />
 
-				<ShapeInput id="card-ident-shape" label="Form"
+				<ShapeInput id="card-ident-shape"
+					label="Form"
 					desc="The common form of the enchanted item"
+					className="c-card__metadata"
+					outputClassName="c-card__figure"
+					optionNamePrefix="ident_shape_"
 					value={identity.shape} shapes={itemShapes} />
 
-				<DescInput id="card-ident-desc" label="Name"
+				<DescInput id="card-ident-desc"
+					label="Description"
 					desc="A description of the enchanted item"
+					className="c-card__desc"
 					value={identity.desc} />
 
-				<ElementInput id="card-ident-element" label="Element"
+				<ElementInput id="card-ident-element"
+					label="Element"
 					desc="The elemental power of the enchanted item"
+					className="c-card__metadata"
+					optionNamePrefix="ident_element_"
 					value={element}
 					onChange={ value => setElement( value ) } />
 			</fieldset>
@@ -66,27 +75,42 @@ function Card( props ) {
 					data-replaced-tag="legend">Card Attributes</span>
 
 				<div className="c-card__attr">
-					<AttributeInput id="card-attr-power" label="Power"
+					<AttributeInput id="card-attr-power"
+					label="Power"
 						desc="How many units stronger or weaker"
-						min="-3" max="3" step="1" value={attribute.power} />
+						min="-3" max="3" step="1" value={attribute.power}
+						className="c-card__attr-input"
+						labelClassName="c-card__attr-key"
+						outputClassName="c-card__attr-value" />
 				</div>
 
 				<div className="c-card__attr">
-					<AttributeInput id="card-attr-speed" label="Speed"
+					<AttributeInput id="card-attr-speed"
+					label="Speed"
 						desc="How many units faster or slower"
-						min="-3" max="3" step="1" value={attribute.speed} />
+						min="-3" max="3" step="1" value={attribute.speed}
+						className="c-card__attr-input"
+						labelClassName="c-card__attr-key"
+						outputClassName="c-card__attr-value" />
 				</div>
 
 				<div className="c-card__attr">
-					<AttributeInput id="card-attr-defense" label="Defense"
+					<AttributeInput id="card-attr-defense"
+					label="Defense"
 						desc="How many units less or more vulnerable"
-						min="-3" max="3" step="1" value={attribute.defense} />
+						min="-3" max="3" step="1" value={attribute.defense}
+						className="c-card__attr-input"
+						labelClassName="c-card__attr-key"
+						outputClassName="c-card__attr-value" />
 				</div>
 			</section>
 
 			<fieldset id="card-opts" className="c-card--opts-list">
-				<Toggle id="card-preview-toggle" label="Preview Card"
+				<Toggle id="card-preview-toggle"
+					label="Preview Card"
 					desc="Preview approximate final state of card"
+					className="c-card__opt-toggle"
+					name="card_preview"
 					isOn={shouldPreview}
 					onChange={handleIsActiveChange} />
 			</fieldset>

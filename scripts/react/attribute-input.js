@@ -1,5 +1,3 @@
-// TODO: Propogate class name(s) from parent component
-
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
 const useState = React.useState;
@@ -18,20 +16,22 @@ const CLASSNAMES_AI = {
  * An attribute input field as a range
  * @param {Object} props
  * @param {String} props.value - Field value
- * @param {String} props.id - Field identifier
+ * @param {String} props.id - HTML `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {Number} props.min - Value minimum
  * @param {Number} props.max - Value maximum
  * @param {Number} [props.step] - Value increment
+ * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.outputClassName] - The `className` for the `output`
  */
 function AttributeInput( props ) {
-	const { id, label, desc, ...inputAttrs } = props;
+	const { id, label, desc, labelClassName, outputClassName, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( props.value );
 	const [ signClassName, setSignClassName ] = useState('');
 
 	// FAQ: The value prop must not be passed directly
-	delete inputAttrs.value;
+	delete fieldAttrs.value;
 
 	function handleChange( e ) {
 		setValue( e.target.value );
@@ -44,14 +44,13 @@ function AttributeInput( props ) {
 	return (
 		<React.Fragment>
 			<label htmlFor={id}
-				className="c-card__attr-key"
+				className={labelClassName}
 				title={desc}>{label}</label>
 			<input id={id}
-				className="c-card__attr-input"
-				type="range" {...inputAttrs}
+				type="range" {...fieldAttrs}
 				value={value} onChange={handleChange} />
 			<output htmlFor={id}
-				className={"c-card__attr-value " + signClassName}>{value}</output>
+				className={outputClassName + " " + signClassName}>{value}</output>
 		</React.Fragment>
 	);
 }
