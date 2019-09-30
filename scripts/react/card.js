@@ -1,8 +1,4 @@
 // TODO: Propogate class names to child components
-// TODO: Create `Field` component (that should default to `div`, but can be any tag)
-// TODO: Create `FieldSet` component (that should default to `fieldset`, but can be any tag)
-// FAQ: Can not use `<fieldset>` with `display: flex`
-// SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
@@ -61,6 +57,8 @@ function Card( props ) {
 					onChange={ value => setElement( value ) } />
 			</fieldset>
 
+			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}
+			{/* SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 */}
 			<section id="card-attr" className={"c-card__attr-list " + previewClassName}
 				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}>
 				<span id="card-attr-list-title" className="_legend">Card Attributes</span>
