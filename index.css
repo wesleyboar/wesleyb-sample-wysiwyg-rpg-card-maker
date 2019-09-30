@@ -43,7 +43,7 @@ input[type="checkbox"] + label::after { display: none; }
 
 fieldset { padding: 0; margin: 0; border: none; }
 legend,
-._legend {
+[data-replaced-tag="legend"] {
   width: 100%;
 
   font-weight: bold;
@@ -51,7 +51,7 @@ legend,
 }
 /* FAQ: Using `padding`, because `margin` is ineffectual on Chrome 76 and Safari 12 */
 fieldset + fieldset legend,
-fieldset + [role="group"] ._legend { padding: 0.5em 0; }
+fieldset + [data-replaced-tag="fieldset"] [data-replaced-tag="legend"] { padding: 0.5em 0; }
 
 /* Components (ITCSS) */
 /* Components: Card */
@@ -174,7 +174,7 @@ fieldset + [role="group"] ._legend { padding: 0.5em 0; }
 .s-card-preview #card-attr input,
 .s-card-preview select,
 .s-card-preview legend,
-.s-card-preview ._legend { display: none; }
+.s-card-preview [data-replaced-tag="legend"] { display: none; }
 
 .s-card-preview input,
 .s-card-preview textarea { border: none; background: transparent; }
