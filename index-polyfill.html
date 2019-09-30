@@ -80,8 +80,10 @@
 				<!-- FAQ: Can not use `<fieldset>` with `display: flex` -->
 				<!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 -->
 				<section id="card-attr" class="c-card__attr-list"
-								role="group" aria-labelledby="card-attr-list-title">
-					<span id="card-attr-list-title" class="_legend">Card Attributes</span>
+								role="group" aria-labelledby="card-attr-list-title"
+								data-replaced-tag="fieldset">
+					<span id="card-attr-list-title" class="_legend"
+							data-replaced-tag="legend">Card Attributes</span>
 
 					<div class="c-card__attr">
 						<label for="card-attr-power" class="c-card__attr-key"
