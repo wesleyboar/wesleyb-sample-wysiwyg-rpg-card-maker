@@ -1,10 +1,9 @@
-// TODO: Consider combining `NameInput` and `DescInput` into `TextInput`
-
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
 // import * as defaultValues from '../entity-elements.json';
 const useState = React.useState;
 
+// NOTE: The code of `NameInput` and `DescInput` are very similar, but the features may diverge; so, await further similarity before merging.
 /**
  * A static name input field
  * @param {Object} props
