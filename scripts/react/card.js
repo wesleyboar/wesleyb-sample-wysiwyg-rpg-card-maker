@@ -38,7 +38,8 @@ function Card( props ) {
 	}, [ shouldPreview ]);
 
 	return (
-		<form id="card" className={"c-card c-card--opts-count-1 " + previewClassName}
+		<form {...markupAttrs}
+			className={"c-card c-card--opts-count-1 " + previewClassName}
 			data-output-for="card-ident-element" data-value={element}>
 			<fieldset id="card-ident" disabled={shouldPreview}>
 				<legend>Card Identity</legend>
@@ -130,6 +131,6 @@ Card.propTypes = {
 }
 
 ReactDOM.render(
-	<Card {...defaultValues} />,
+	<Card id="card" {...defaultValues} />,
 	document.getElementById('card--react')
 );
