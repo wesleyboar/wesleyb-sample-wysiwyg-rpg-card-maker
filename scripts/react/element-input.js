@@ -6,10 +6,11 @@
 // import PropTypes from 'prop-types';
 // import CustomTypes from './custom-types.js';
 // import * as allElements from '../elements.json';
-const { useState, useEffect } = window.React;
+const { useState, useEffect } = window.React, React = window.React;
 const PropTypes = window.PropTypes;
 const CustomTypes = window.CustomTypes;
 const allElements = window.getJSONSync('scripts/elements.json');
+const { Select } = window;
 
 /**
  * Called when input/field value changes
@@ -24,14 +25,15 @@ const allElements = window.getJSONSync('scripts/elements.json');
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the element
- * @param {OptionList} [props.elements=allElements] - The available element choices
+ * @param {OptionList|OptionGroupList} [props.elements=allElements] - The available element choices
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
+ * @return {React.Component}
  */
 function ElementInput( props ) {
-	const { id, label, desc, value: initialValue, elements = allElements, placeholder, labelClassName, onChange, ...markupAttrs } = props;
+	const { id, label, desc, value: initialValue, elements: options = allElements, labelClassName, onChange, ...jsxAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -41,29 +43,13 @@ function ElementInput( props ) {
 	useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
-	// FAQ: The default DOM value for `select` element that is unknown to React
-	useEffect(() => {
-		if ( ! value ) setValue( document.getElementById( id ).value );
-	});
-
-	let placeholderMarkup = '';
-	if ( placeholder ) {
-		placeholderMarkup = (
-			<option hidden>{placeholder}</option>
-		);
-	}
 
 	return (
 		<React.Fragment>
 			<label htmlFor={id} className={labelClassName}
 				title={desc}>{label}</label>
-			<select id={id} {...markupAttrs}
-				value={value} onChange={handleChange}>
-				{placeholderMarkup}
-				{elements.map( ( element, i ) =>
-					<option key={i} value={element.value}>{element.label || element.value}</option>
-				)}
-			</select>
+			<Select id={id} options={options} value={value}
+				onChange={handleChange} {...jsxAttrs} />
 		</React.Fragment>
 	);
 }
@@ -74,7 +60,7 @@ ElementInput.propTypes = {
 
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
-	elements: CustomTypes.OptionList,
+	elements: CustomTypes.Options,
 	labelClassName: PropTypes.string,
 	onChange: PropTypes.func,
 }

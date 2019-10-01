@@ -11,7 +11,6 @@ CustomTypes.Option = PropTypes.exact({
 	label: PropTypes.string,
 	value: PropTypes.string.isRequired,
 });
-
 /** @type {OptionList} */
 CustomTypes.OptionList = PropTypes.arrayOf( CustomTypes.Option );
 
@@ -20,9 +19,14 @@ CustomTypes.OptionGroup = PropTypes.exact({
 	label: PropTypes.string,
 	options: CustomTypes.OptionList.isRequired,
 });
-
 /** @type {OptionGroupList} */
 CustomTypes.OptionGroupList = PropTypes.arrayOf( CustomTypes.OptionGroup );
+
+/** @type {OptionList|OptionGroupList} */
+CustomTypes.Options = PropTypes.oneOfType([
+	CustomTypes.OptionList,
+	CustomTypes.OptionGroupList,
+]);
 
 /* Card Properties */
 
