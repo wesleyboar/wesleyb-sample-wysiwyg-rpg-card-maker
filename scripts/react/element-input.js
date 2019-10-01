@@ -1,5 +1,5 @@
 // TODO: Have `ShapeInput` and `ElementInput` share new `Select` component
-// TODO: Use `nanoid` for unique IDs for JSX attribute `key`
+// TODO: Use `nanoid` for unique IDs for JSX attribute `key`—requires processing
 
 // NOTE: If processing, use `import`
 // import React, { useState, useEffect } from 'react';
