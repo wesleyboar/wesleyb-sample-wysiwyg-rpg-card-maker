@@ -1,7 +1,7 @@
 // NOTE: If processing, use `import`
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
-const { useState, useEffect } = window.React;
+const { useState, useEffect } = window.React, React = window.React;
 const PropTypes = window.PropTypes;
 
 /** Dynamically-applied CSS class names */
@@ -34,6 +34,7 @@ const CLASSNAMES_AI = {
  * @param {String} [props.outputClassName] - The `className` for the `output`
  * @param {AttributeInput~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
+ * @return {React.Component}
  */
 function AttributeInput( props ) {
 	const { id, label, desc, value: initialValue = 0, labelClassName, outputClassName, onChange, ...markupAttrs } = props;

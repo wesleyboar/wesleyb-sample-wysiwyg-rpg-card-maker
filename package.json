@@ -7,5 +7,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/wesleyboar/wesleyb-sample-wysiwyg-rpg-card-maker.git"
+  },
+  "peerDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-plugin-react": "^7.15.0"
   }
 }

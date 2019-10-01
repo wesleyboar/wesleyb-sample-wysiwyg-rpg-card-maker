@@ -1,14 +1,15 @@
 // NOTE: If processing, use `import`
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import ReactDom from 'react';
 // import CustomTypes from './custom-types.js';
 // import * as defaultValues from '../default-values.json';
 // import * as itemShapes from '../item-shapes.json';
-const { useState, useEffect } = window.React;
+const { useState, useEffect } = window.React, React = window.React;
 const ReactDOM = window.ReactDOM;
 const CustomTypes = window.CustomTypes;
 const defaultValues = window.getJSONSync('scripts/default-values.json');
 const itemShapes = window.getJSONSync('scripts/item-shapes.json');
+const { NameInput, ShapeInput, DescInput, ElementInput, AttributeInput, Toggle } = window;
 
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
@@ -21,6 +22,7 @@ const CLASSNAMES = {
  * @param {IdentityProps} [props.identity] - Properties that identify the entity
  * @param {AttributesProps} [props.attributes] - Properties of the entity's effect
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the root element
+ * @return {React.Component}
  */
 function Card( props ) {
 	const { identity = {}, attributes= {}, ...markupAttrs } = props;

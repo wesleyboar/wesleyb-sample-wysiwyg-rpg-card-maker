@@ -1,7 +1,7 @@
 // NOTE: If processing, use `import`
 // import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
-const { useState, useEffect } = window.React;
+const { useState, useEffect } = window.React, React = window.React;
 const PropTypes = window.PropTypes;
 
 /**
@@ -19,6 +19,7 @@ const PropTypes = window.PropTypes;
  * @param {Boolean} [props.isOn] - Whether toggle is on/active
  * @param {Toggle~onChange} [props.onChange] - Callback on state change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
+ * @return {React.Component}
  */
 function Toggle( props ) {
 	const { id, label, desc, onChange, isOn: initialState, ...markupAttrs } = props;
