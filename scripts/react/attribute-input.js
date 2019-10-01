@@ -17,6 +17,12 @@ const CLASSNAMES_AI = {
 }
 
 /**
+ * Called when input/field value changes
+ * @callback AttributeInput~onChange
+ * @param {String} value - Field value
+ */
+
+/**
  * An attribute input field as a range
  * @param {Object} props
  * @param {String} props.id - HTML `id` attribute for field
@@ -28,20 +34,18 @@ const CLASSNAMES_AI = {
  * @param {String} [props.value=0] - Field value
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {String} [props.outputClassName] - The `className` for the `output`
+ * @param {AttributeInput~onChange} [props.onChange] - Callback on value change
  */
 function AttributeInput( props ) {
-	const { id, label, desc, labelClassName, outputClassName, ...fieldAttrs } = props;
-	const [ value, setValue ] = useState( props.value || 0 );
+	const { id, label, desc, value: initialValue, labelClassName, outputClassName, onChange, ...fieldAttrs } = props;
+	const [ value, setValue ] = useState( initialValue || 0 );
 	const [ signClassName, setSignClassName ] = useState('');
-
-	// FAQ: The value prop must not be passed directly
-	delete fieldAttrs.value;
 
 	function handleChange( e ) {
 		setValue( e.target.value );
 	}
-
 	useEffect(() => {
+		if ( onChange ) onChange( value );
 		setSignClassName( ( value > 0 ) ? CLASSNAMES_AI.pos : CLASSNAMES_AI.neg );
 	}, [ value ]);
 
@@ -64,9 +68,10 @@ AttributeInput.propTypes = {
 	desc: PropTypes.string.isRequired,
 	min: PropTypes.number.isRequired,
 	max: PropTypes.number.isRequired,
-	
+
 	step: PropTypes.number,
 	value: PropTypes.number,
 	labelClassName: PropTypes.string,
 	outputClassName: PropTypes.string,
+	onChange: PropTypes.func,
 }
