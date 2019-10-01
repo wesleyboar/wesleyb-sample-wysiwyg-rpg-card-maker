@@ -18,7 +18,7 @@ const CustomTypes = window.CustomTypes;
 /**
  * A form/kind/shape input field as a select dropdown
  * @param {Object} props
- * @param {String} props.id - HTML `id` attribute for field
+ * @param {String} props.id - Markup `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {OptionGroupList} props.shapes - The available form choices

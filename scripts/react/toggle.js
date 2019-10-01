@@ -13,7 +13,7 @@ const PropTypes = window.PropTypes;
 /**
  * A toggle widget that should cause side effect(s)
  * @param {Object} props
- * @param {String} props.id - HTML `id` attribute for field
+ * @param {String} props.id - Markup `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {Boolean} [props.isOn] - Whether toggle is on/active

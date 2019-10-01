@@ -20,7 +20,7 @@ const allElements = window.getJSONSync('scripts/elements.json');
 /**
  * An element input field as a select dropdown
  * @param {Object} props
- * @param {String} props.id - HTML `id` attribute for field
+ * @param {String} props.id - Markup `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the element
