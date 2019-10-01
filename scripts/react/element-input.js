@@ -1,5 +1,5 @@
-// TODO: Consider running `setValue` on load
 // TODO: Consider using `defaultProps`, not `props.elements || allElements`
+// TODO: Have `ShapeInput` and `ElementInput` share new `Select` component
 
 // NOTE: If processing, use `import`
 // import React, { useState, useEffect } from 'react';
@@ -42,6 +42,10 @@ function ElementInput( props ) {
 	useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
+	// FAQ: The default DOM value for select element that is unknown to React
+	useEffect(() => {
+		if ( ! value ) setValue( document.getElementById( id ).value );
+	});
 
 	let placeholderMarkup = '';
 	if ( placeholder ) {
