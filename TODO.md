@@ -1,2 +1,4 @@
+- TODO: Implement processing.
+  - This will require using `import` and `export` instead of relying on `window`.
 - TODO: Create test cases for each component.
   - See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)

@@ -5,7 +5,7 @@ const { useState, useEffect } = window.React, React = window.React;
 const PropTypes = window.PropTypes;
 
 /** Dynamically-applied CSS class names */
-/* TODO: Get rid of `_AI`… */
+/* TODO: Get rid of `_AI`…—requires processing */
 /* NOTE: The `type="text/babel"` does not have the isolation effect of `type="module"` */
 /* WARN: No hackless solution exists on the Internet, yet; but, babel has a PR… */
 /* SEE: https://github.com/babel/babel/pull/8410 */
