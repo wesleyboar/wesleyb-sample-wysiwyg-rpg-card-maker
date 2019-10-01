@@ -55,7 +55,6 @@ function Card( props ) {
 					desc="The common form of the enchanted item"
 					className="c-card__metadata"
 					outputClassName="c-card__figure"
-					optionNamePrefix="ident_shape_"
 					value={identity.shape} shapes={itemShapes}
 					placeholder="Choose a shape"
 					required />
@@ -70,7 +69,6 @@ function Card( props ) {
 					label="Element"
 					desc="The elemental power of the enchanted item"
 					className="c-card__metadata"
-					optionNamePrefix="ident_element_"
 					placeholder="Choose an element"
 					value={element}
 					onChange={ value => setElement( value )} />

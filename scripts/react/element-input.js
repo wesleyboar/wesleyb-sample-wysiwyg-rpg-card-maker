@@ -27,12 +27,11 @@ const allElements = window.getJSONSync('scripts/elements.json');
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {OptionList} [props.elements=allElements] - The available element choices
  * @param {String} [props.labelClassName] - The `className` for the `label`
- * @param {String} [props.optionNamePrefix] - A prefix for the `name` of `option` tags
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
  */
 function ElementInput( props ) {
 	const elements = props.elements || allElements;
-	const { id, label, desc, placeholder, labelClassName, optionNamePrefix, onChange, value: initialValue, ...fieldAttrs } = props;
+	const { id, label, desc, placeholder, labelClassName, onChange, value: initialValue, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -50,7 +49,7 @@ function ElementInput( props ) {
 	let placeholderMarkup = '';
 	if ( placeholder ) {
 		placeholderMarkup = (
-			<option name={optionNamePrefix + "undefined"} hidden>{placeholder}</option>
+			<option hidden>{placeholder}</option>
 		);
 	}
 
@@ -62,9 +61,7 @@ function ElementInput( props ) {
 				value={value} onChange={handleChange}>
 				{placeholderMarkup}
 				{elements.map( ( element, i ) =>
-					<option key={i}
-						name={optionNamePrefix + element.value}
-						value={element.value}>{element.label || element.value}</option>
+					<option key={i} value={element.value}>{element.label || element.value}</option>
 				)}
 			</select>
 		</React.Fragment>
@@ -79,6 +76,5 @@ ElementInput.propTypes = {
 	placeholder: PropTypes.string,
 	elements: CustomTypes.OptionList,
 	labelClassName: PropTypes.string,
-	optionNamePrefix: PropTypes.string,
 	onChange: PropTypes.func,
 }

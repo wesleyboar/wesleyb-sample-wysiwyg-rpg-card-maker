@@ -1,4 +1,3 @@
-// TODO: Remove ineffectual `name` attribute
 // TODO: Have `ShapeInput` and `ElementInput` share new `Select` component
 
 // NOTE: If processing, use `import`
@@ -26,11 +25,10 @@ const CustomTypes = window.CustomTypes;
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {String} [props.outputClassName] - The `className` for the `output`
- * @param {String} [props.optionNamePrefix] - A prefix for the `name` of `option` tags
  * @param {ShapeInput~onChange} [props.onChange] - Callback on value change
  */
 function ShapeInput( props ) {
-	const { id, label, desc, shapes: shapeSetList, placeholder, labelClassName, outputClassName, optionNamePrefix, onChange, value: initialValue, ...fieldAttrs } = props;
+	const { id, label, desc, shapes: shapeSetList, placeholder, labelClassName, outputClassName, onChange, value: initialValue, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -48,7 +46,7 @@ function ShapeInput( props ) {
 	let placeholderMarkup = '';
 	if ( placeholder ) {
 		placeholderMarkup = (
-			<option name={optionNamePrefix + "undefined"} hidden>{placeholder}</option>
+			<option hidden>{placeholder}</option>
 		);
 	}
 
@@ -63,9 +61,7 @@ function ShapeInput( props ) {
 					<optgroup key={i}
 						label={shapeSet.label}>
 						{shapeSet.options.map( ( shape, j ) =>
-							<option key={j}
-								name={optionNamePrefix + shape.value}
-								value={shape.value}>{shape.label || shape.value}</option>
+							<option key={j} value={shape.value}>{shape.label || shape.value}</option>
 						)}
 					</optgroup>
 				)}
@@ -85,6 +81,5 @@ ShapeInput.propTypes = {
 	placeholder: PropTypes.string,
 	labelClassName: PropTypes.string,
 	outputClassName: PropTypes.string,
-	optionNamePrefix: PropTypes.string,
 	onChange: PropTypes.func,
 }
