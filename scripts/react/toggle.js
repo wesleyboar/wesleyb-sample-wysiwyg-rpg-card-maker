@@ -18,6 +18,7 @@ const PropTypes = window.PropTypes;
  * @param {String} props.desc - Field description
  * @param {Boolean} [props.isOn] - Whether toggle is on/active
  * @param {Toggle~onChange} [props.onChange] - Callback on state change
+ * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  */
 function Toggle( props ) {
 	const { id, label, desc, onChange, isOn: initialState, ...markupAttrs } = props;

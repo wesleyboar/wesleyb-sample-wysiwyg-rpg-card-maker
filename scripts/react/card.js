@@ -1,5 +1,3 @@
-// TODO: Document, for all components, {...markupAttrs} properties
-
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
 // import ReactDom from 'react';
@@ -22,6 +20,7 @@ const CLASSNAMES = {
  * @param {Object} props
  * @param {IdentityProps} [props.identity] - Properties that identify the entity
  * @param {AttributesProps} [props.attributes] - Properties of the entity's effect
+ * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the root element
  */
 function Card( props ) {
 	const { identity = {}, attributes= {}, ...markupAttrs } = props;

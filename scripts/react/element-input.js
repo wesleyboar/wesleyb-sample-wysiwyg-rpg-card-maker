@@ -28,6 +28,7 @@ const allElements = window.getJSONSync('scripts/elements.json');
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
+ * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  */
 function ElementInput( props ) {
 	const { id, label, desc, value: initialValue, elements = allElements, placeholder, labelClassName, onChange, ...markupAttrs } = props;

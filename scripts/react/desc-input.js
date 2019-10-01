@@ -11,6 +11,7 @@ const PropTypes = window.PropTypes;
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the description
  * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  */
 function DescInput( props ) {
 	const { id, label, desc, value, labelClassName, ...markupAttrs } = props;

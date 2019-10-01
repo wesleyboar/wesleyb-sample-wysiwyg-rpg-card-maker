@@ -27,6 +27,7 @@ const CustomTypes = window.CustomTypes;
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {String} [props.outputClassName] - The `className` for the `output`
  * @param {ShapeInput~onChange} [props.onChange] - Callback on value change
+ * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  */
 function ShapeInput( props ) {
 	const { id, label, desc, shapes: shapeSetList, value: initialValue, placeholder, labelClassName, outputClassName, onChange, ...markupAttrs } = props;
