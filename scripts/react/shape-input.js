@@ -29,7 +29,7 @@ const CustomTypes = window.CustomTypes;
  * @param {ShapeInput~onChange} [props.onChange] - Callback on value change
  */
 function ShapeInput( props ) {
-	const { id, label, desc, shapes: shapeSetList, value: initialValue, placeholder, labelClassName, outputClassName, onChange, ...fieldAttrs } = props;
+	const { id, label, desc, shapes: shapeSetList, value: initialValue, placeholder, labelClassName, outputClassName, onChange, ...markupAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -55,7 +55,7 @@ function ShapeInput( props ) {
 		<React.Fragment>
 			<label htmlFor={id} className={labelClassName}
 				title={desc}>{label}</label>
-			<select id={id} {...fieldAttrs}
+			<select id={id} {...markupAttrs}
 				value={value} onChange={handleChange}>
 				{placeholderMarkup}
 				{shapeSetList.map( ( shapeSet, i ) =>

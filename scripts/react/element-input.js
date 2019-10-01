@@ -30,7 +30,7 @@ const allElements = window.getJSONSync('scripts/elements.json');
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
  */
 function ElementInput( props ) {
-	const { id, label, desc, value: initialValue, elements = allElements, placeholder, labelClassName, onChange, ...fieldAttrs } = props;
+	const { id, label, desc, value: initialValue, elements = allElements, placeholder, labelClassName, onChange, ...markupAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -56,7 +56,7 @@ function ElementInput( props ) {
 		<React.Fragment>
 			<label htmlFor={id} className={labelClassName}
 				title={desc}>{label}</label>
-			<select id={id} {...fieldAttrs}
+			<select id={id} {...markupAttrs}
 				value={value} onChange={handleChange}>
 				{placeholderMarkup}
 				{elements.map( ( element, i ) =>

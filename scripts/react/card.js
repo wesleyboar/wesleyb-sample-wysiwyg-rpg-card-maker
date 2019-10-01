@@ -1,4 +1,4 @@
-// TODO: Document, for all components, {...fieldAttrs} properties
+// TODO: Document, for all components, {...markupAttrs} properties
 
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
@@ -24,7 +24,7 @@ const CLASSNAMES = {
  * @param {AttributesProps} [props.attributes] - Properties of the entity's effect
  */
 function Card( props ) {
-	const { identity = {}, attributes= {}} = props;
+	const { identity = {}, attributes= {}, ...markupAttrs } = props;
 	const [ shouldPreview, setShouldPreview ] = useState( false );
 	const [ element, setElement ] = useState( identity.element );
 	const [ previewClassName, setPreviewClassName ] = useState('');

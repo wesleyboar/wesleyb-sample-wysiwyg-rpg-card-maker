@@ -20,7 +20,7 @@ const PropTypes = window.PropTypes;
  * @param {Toggle~onChange} [props.onChange] - Callback on state change
  */
 function Toggle( props ) {
-	const { id, label, desc, onChange, isOn: initialState, ...fieldAttrs } = props;
+	const { id, label, desc, onChange, isOn: initialState, ...markupAttrs } = props;
 	const [ isOn, setIsOn ] = useState( initialState );
 
 	// FAQ: We can manage change internally and externally
@@ -32,9 +32,9 @@ function Toggle( props ) {
 	}, [ isOn ]);
 
 	return (
-		<button role="presentation none" {...fieldAttrs}
+		<button role="presentation none" {...markupAttrs}
 			type="button" tabIndex="-1">
-			<input id={id} {...fieldAttrs}
+			<input id={id} {...markupAttrs}
 				type="checkbox" tabIndex="0"
 				checked={isOn} onChange={handleChange} />
 			<label htmlFor={id}

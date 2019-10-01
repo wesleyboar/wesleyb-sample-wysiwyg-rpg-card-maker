@@ -13,14 +13,14 @@ const PropTypes = window.PropTypes;
  * @param {String} [props.labelClassName] - The `className` for the `label`
  */
 function NameInput( props ) {
-	const { id, label, desc, value, labelClassName, ...fieldAttrs } = props;
+	const { id, label, desc, value, labelClassName, ...markupAttrs } = props;
 
 	return (
 		<React.Fragment>
 			<label htmlFor={id}
 				title={desc}
 				className={labelClassName}>{label}</label>
-			<input id={id} {...fieldAttrs}
+			<input id={id} {...markupAttrs}
 				type="text" defaultValue={value} />
 		</React.Fragment>
 	);

@@ -35,7 +35,7 @@ const CLASSNAMES_AI = {
  * @param {AttributeInput~onChange} [props.onChange] - Callback on value change
  */
 function AttributeInput( props ) {
-	const { id, label, desc, value: initialValue = 0, labelClassName, outputClassName, onChange, ...fieldAttrs } = props;
+	const { id, label, desc, value: initialValue = 0, labelClassName, outputClassName, onChange, ...markupAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 	const [ signClassName, setSignClassName ] = useState('');
 
@@ -53,7 +53,7 @@ function AttributeInput( props ) {
 				className={labelClassName}
 				title={desc}>{label}</label>
 			<input id={id}
-				type="range" {...fieldAttrs}
+				type="range" {...markupAttrs}
 				value={value} onChange={handleChange} />
 			<output htmlFor={id}
 				className={outputClassName + " " + signClassName}>{value}</output>
