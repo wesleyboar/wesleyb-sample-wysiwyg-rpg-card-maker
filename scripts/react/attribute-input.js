@@ -1,5 +1,3 @@
-// TODO: Consider using `defaultProps`, not `props.value || 0`
-
 // NOTE: If processing, use `import`
 // import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
@@ -37,8 +35,8 @@ const CLASSNAMES_AI = {
  * @param {AttributeInput~onChange} [props.onChange] - Callback on value change
  */
 function AttributeInput( props ) {
-	const { id, label, desc, value: initialValue, labelClassName, outputClassName, onChange, ...fieldAttrs } = props;
-	const [ value, setValue ] = useState( initialValue || 0 );
+	const { id, label, desc, value: initialValue = 0, labelClassName, outputClassName, onChange, ...fieldAttrs } = props;
+	const [ value, setValue ] = useState( initialValue );
 	const [ signClassName, setSignClassName ] = useState('');
 
 	function handleChange( e ) {

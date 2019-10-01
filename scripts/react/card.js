@@ -1,4 +1,3 @@
-// TODO: Consider using `defaultProps`, not `identity = {}, attributes= {}`
 // TODO: Document, for all components, {...fieldAttrs} properties
 
 // NOTE: If processing, use `import`

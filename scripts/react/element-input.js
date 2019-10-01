@@ -1,4 +1,3 @@
-// TODO: Consider using `defaultProps`, not `props.elements || allElements`
 // TODO: Have `ShapeInput` and `ElementInput` share new `Select` component
 // TODO: Use `nanoid` for unique IDs for JSX attribute `key`
 
@@ -25,14 +24,13 @@ const allElements = window.getJSONSync('scripts/elements.json');
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the element
- * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {OptionList} [props.elements=allElements] - The available element choices
+ * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {String} [props.labelClassName] - The `className` for the `label`
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
  */
 function ElementInput( props ) {
-	const elements = props.elements || allElements;
-	const { id, label, desc, value: initialValue, placeholder, labelClassName, onChange, ...fieldAttrs } = props;
+	const { id, label, desc, value: initialValue, elements = allElements, placeholder, labelClassName, onChange, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
