@@ -28,7 +28,7 @@ const CustomTypes = window.CustomTypes;
  * @param {ShapeInput~onChange} [props.onChange] - Callback on value change
  */
 function ShapeInput( props ) {
-	const { id, label, desc, shapes: shapeSetList, placeholder, labelClassName, outputClassName, onChange, value: initialValue, ...fieldAttrs } = props;
+	const { id, label, desc, shapes: shapeSetList, value: initialValue, placeholder, labelClassName, outputClassName, onChange, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -38,7 +38,7 @@ function ShapeInput( props ) {
 	useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
-	// FAQ: The default DOM value for select element that is unknown to React
+	// FAQ: The default DOM value for `select` element that is unknown to React
 	useEffect(() => {
 		if ( ! value ) setValue( document.getElementById( id ).value );
 	});

@@ -31,7 +31,7 @@ const allElements = window.getJSONSync('scripts/elements.json');
  */
 function ElementInput( props ) {
 	const elements = props.elements || allElements;
-	const { id, label, desc, placeholder, labelClassName, onChange, value: initialValue, ...fieldAttrs } = props;
+	const { id, label, desc, value: initialValue, placeholder, labelClassName, onChange, ...fieldAttrs } = props;
 	const [ value, setValue ] = useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
@@ -41,7 +41,7 @@ function ElementInput( props ) {
 	useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
-	// FAQ: The default DOM value for select element that is unknown to React
+	// FAQ: The default DOM value for `select` element that is unknown to React
 	useEffect(() => {
 		if ( ! value ) setValue( document.getElementById( id ).value );
 	});
