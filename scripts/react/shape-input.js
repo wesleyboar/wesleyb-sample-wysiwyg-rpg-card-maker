@@ -1,5 +1,3 @@
-// TODO: Use `nanoid` for unique IDs for JSX attribute `key`—requires processing
-
 // NOTE: If processing, use `import`
 // import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';

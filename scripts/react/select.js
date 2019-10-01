@@ -1,13 +1,12 @@
-// TODO: Use `nanoid` for unique IDs for JSX attribute `key`—requires processing
-// TODO: Migrate from `key={….id || i}` to `key={…id}` (must split markup)
-
 // NOTE: If processing, use `import`
 // import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 // import CustomTypes from './custom-types.js';
+// import { getkey } from './react-helpers.js';
 const { useState, useEffect } = window.React, React = window.React;
 const PropTypes = window.PropTypes;
 const CustomTypes = window.CustomTypes;
+const { getKey } = window.ReactHelpers;
 
 /**
  * Create markup for options based on given data format
@@ -31,15 +30,18 @@ function getOptionsMarkup( options ) {
  */
 function OptGroupList( props ) {
 	const { options } = props;
+	let key;
 
 	return (
 		<React.Fragment>
-			{options.map( ( group, i ) =>
-				<optgroup key={group.id || group.label + "_" + group.value || i}
-					label={group.label}>
-					<OptionList options={group.options} />
-				</optgroup>
-			)}
+			{options.map( ( group, i ) => {
+				key = getKey( group.id, [ group.label ], i );
+				return (
+					<optgroup label={group.label} key={group.id || key || i}>
+						<OptionList options={group.options} />
+					</optgroup>
+				);
+			})}
 		</React.Fragment>
 	);
 }
@@ -55,13 +57,18 @@ OptGroupList.propTypes = {
  */
 function OptionList( props ) {
 	const { options } = props;
+	let key;
 
 	return (
 		<React.Fragment>
-			{options.map( ( option, j ) =>
-				<option key={option.id || option.label + "_" + option.value || j}
-					value={option.value}>{option.label || option.value}</option>
-			)}
+			{options.map( ( option, i ) => {
+				key = getKey( option.id, [ option.label, option.value ], i );
+				return (
+					<option value={option.value} key={key}>
+						{option.label || option.value}
+					</option>
+				);
+			})}
 		</React.Fragment>
 	);
 }
