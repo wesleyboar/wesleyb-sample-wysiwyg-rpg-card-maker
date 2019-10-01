@@ -1,5 +1,6 @@
 // TODO: Consider using `defaultProps`, not `props.elements || allElements`
 // TODO: Have `ShapeInput` and `ElementInput` share new `Select` component
+// TODO: Use `nanoid` for unique IDs for JSX attribute `key`
 
 // NOTE: If processing, use `import`
 // import React, { useState, useEffect } from 'react';
