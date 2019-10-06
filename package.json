@@ -1,11 +1,39 @@
 {
-  "name": "wesleyb-sample-wysiwyg-rpg-card-maker",
-  "version": "1.0.0",
-  "description": "Prototype interface to edit card for a generic RPG trading card game ",
-  "author": "wesleyb@pm.me",
-  "license": "UNLICENSED",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wesleyboar/wesleyb-sample-wysiwyg-rpg-card-maker.git"
-  }
+	"name": "wesleyb-sample-wysiwyg-rpg-card-maker",
+	"version": "1.0.0",
+	"description": "Prototype interface to edit card for a generic RPG trading card game ",
+	"author": "wesleyb@pm.me",
+	"license": "UNLICENSED",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wesleyboar/wesleyb-sample-wysiwyg-rpg-card-maker.git"
+	},
+	"scripts": {
+		"start": "npm run build && npm run serve",
+		"serve": "npx http-server -p 1234 ./dist",
+		"prebuild": "npm-run-all --parallel clean:*",
+		"build": "shx mkdir -p ./dist && npm-run-all --parallel build:*",
+		"build:public": "shx cp public/* dist/",
+		"build:scripts": "rollup --config rollup.config.js --watch",
+		"build:styles": "postcss src/*.css --config ./ --dir ./dist --base --watch",
+		"clean:build": "shx rm -rf dist/"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.6.2",
+		"@babel/preset-env": "^7.6.2",
+		"cssnano-preset-default": "^4.0.7",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^7.0.18",
+		"postcss-browser-reporter": "^0.6.0",
+		"postcss-cli": "^6.1.3",
+		"postcss-extend-rule": "^3.0.0",
+		"postcss-import": "^12.0.1",
+		"postcss-mixins": "^6.2.2",
+		"postcss-normalize": "^8.0.1",
+		"postcss-preset-env": "^6.7.0",
+		"rollup": "^1.23.1",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"shx": "^0.3.2"
+	}
 }
