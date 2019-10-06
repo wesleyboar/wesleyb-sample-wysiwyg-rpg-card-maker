@@ -1,0 +1,39 @@
+@import-normalize;
+
+/* Every Element */
+
+* { box-sizing: border-box; }
+
+/* Main Root */
+
+html {
+  /* FAQ: Makes `1.0rem` equal `10px` */
+  /* SEE: http://snook.ca/archives/html_and_css/font-size-with-rem */
+  font-size: 62.5%;
+}
+
+/* Sectioning Root */
+/* Forms */
+
+body,
+input, select, textarea, button {
+  color: black;
+  font: 1.8rem/1.5 "Georgia", Times, serif;
+}
+/* FAQ: Styling `<select>` elements is outside the scope of the prototype */
+input, textarea {
+  border: 1px solid black;
+}
+
+/* Pseduo Classes */
+/* Pseudo Elements */
+
+:focus {
+  outline: 3px dotted black;
+  outline-offset: 2px;
+}
+
+::selection {
+  background: gray;
+  text-shadow: none;
+}

@@ -1,60 +1,4 @@
-/* Generics (ITCSS) */
-
-* { box-sizing: border-box; }
-
-html {
-  /* FAQ: Makes `1.0rem` equal `10px` */
-  /* SEE: http://snook.ca/archives/html_and_css/font-size-with-rem */
-  font-size: 62.5%;
-}
-
-body,
-input, select, textarea, button {
-  color: black;
-  font: 1.8rem/1.5 "Georgia", Times, serif;
-}
-/* FAQ: Styling `<select>` elements it outside the scope of the prototype */
-input, textarea {
-  border: 1px solid black;
-}
-
-:focus {
-  outline: 3px dotted black;
-  outline-offset: 2px;
-}
-
-/* Elements (ITCSS) */
-
-/* Elements: Content Sectioning */
-
-header * { margin: 0; }
-
-/* Elements: Forms */
-
-/* RFE: For non-pointer devices (via media query), show `[title]` attributes as content */
-label {
-  display: block;
-}
-label::after {
-  content: ":";
-  margin-left: 0.05em;
-}
-input[type="checkbox"] + label::after { display: none; }
-
-fieldset { padding: 0; margin: 0; border: none; }
-legend,
-[data-replaced-tag="legend"] {
-  width: 100%;
-
-  font-weight: bold;
-  text-align: center;
-}
-/* FAQ: Using `padding`, because `margin` is ineffectual on Chrome 76 and Safari 12 */
-fieldset + fieldset legend,
-fieldset + [data-replaced-tag="fieldset"] [data-replaced-tag="legend"] { padding: 0.5em 0; }
-
-/* Components (ITCSS) */
-/* Components: Card */
+/* Card */
 
 .c-card {
   width: 25rem;
@@ -148,7 +92,7 @@ fieldset + [data-replaced-tag="fieldset"] [data-replaced-tag="legend"] { padding
   width: 100%;
 }
 
-/* Components: Card: Options */
+/* Card: Options */
 
 /* Move card options to above card */
 .c-card--opts-count-1 {
@@ -166,17 +110,3 @@ fieldset + [data-replaced-tag="fieldset"] [data-replaced-tag="legend"] { padding
 }
 .c-card__opt-toggle { margin: 0.25em 0; }
 .c-card__opt-toggle > * { display: inline-block; vertical-align: middle; }
-
-/* Trumps (ITCSS) */
-/* Trumps: Scope: Card Preview */
-
-.s-card-preview #card-ident label,
-.s-card-preview #card-attr input,
-.s-card-preview select,
-.s-card-preview legend,
-.s-card-preview [data-replaced-tag="legend"] { display: none; }
-
-.s-card-preview input,
-.s-card-preview textarea { border: none; background: transparent; }
-
-.s-card-preview textarea { overflow: hidden; }
