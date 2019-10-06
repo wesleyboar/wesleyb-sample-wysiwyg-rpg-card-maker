@@ -1,0 +1,19 @@
+/* Scope */
+/* Scope: Card Preview */
+
+.s-card-preview #card-ident label,
+.s-card-preview #card-attr input,
+.s-card-preview select,
+.s-card-preview legend,
+.s-card-preview [data-replaced-tag="legend"] { display: none; }
+
+.s-card-preview input,
+.s-card-preview textarea { border: none; background: transparent; }
+
+.s-card-preview textarea { overflow: hidden; }
+
+/* Utility */
+
+
+/* Hack */
+

@@ -2,11 +2,11 @@
 // import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 // import CustomTypes from './custom-types.js';
-// import * as allElements from '../elements.json';
+// import * as allElements from '../src/_shared/elements.json';
 const { useState, useEffect } = window.React, React = window.React;
 const PropTypes = window.PropTypes;
 const CustomTypes = window.CustomTypes;
-const allElements = window.getJSONSync('scripts/elements.json');
+const allElements = window.getJSONSync('../src/_shared/elements.json');
 const { Select } = window;
 
 /**

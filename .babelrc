@@ -1,0 +1,6 @@
+// SEE: https://rollupjs.org/guide/en/#babel
+{
+	"presets": [
+		["@babel/env", {"modules": false }]
+	]
+}

@@ -92,8 +92,4 @@ function init() {
   });
 }
 
-// export {
-//   init as initDynamicBehaviourForCard
-// };
-
-window.initDynamicBehaviourForCard = init;
+export default init;
