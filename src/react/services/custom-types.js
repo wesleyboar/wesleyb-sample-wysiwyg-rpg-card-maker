@@ -1,6 +1,4 @@
-// NOTE: If processing, use `import`
-// import PropTypes from 'prop-types';
-const PropTypes = window.PropTypes;
+import PropTypes from 'prop-types';
 
 const CustomTypes = {};
 
@@ -44,3 +42,5 @@ CustomTypes.AttributeProps = PropTypes.exact({
 	speed: PropTypes.number,
 	defense: PropTypes.number,
 });
+
+export default CustomTypes;

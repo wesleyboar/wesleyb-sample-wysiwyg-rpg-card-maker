@@ -1,8 +1,5 @@
-// NOTE: If processing, use `import`
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-const { useState, useEffect } = window.React, React = window.React;
-const PropTypes = window.PropTypes;
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Called when toggle is toggled
@@ -23,13 +20,13 @@ const PropTypes = window.PropTypes;
  */
 function Toggle( props ) {
 	const { id, label, desc, onChange, isOn: initialState, ...markupAttrs } = props;
-	const [ isOn, setIsOn ] = useState( initialState );
+	const [ isOn, setIsOn ] = React.useState( initialState );
 
 	// FAQ: We can manage change internally and externally
 	function handleChange( e ) {
 		setIsOn( e.target.checked );
 	}
-	useEffect(() => {
+	React.useEffect(() => {
 		if ( onChange ) onChange( isOn );
 	}, [ isOn ]);
 
@@ -52,3 +49,5 @@ Toggle.propTypes = {
 	isOn: PropTypes.bool,
 	onChange: PropTypes.func,
 }
+
+export default Toggle;

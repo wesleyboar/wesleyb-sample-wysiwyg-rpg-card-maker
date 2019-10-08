@@ -1,8 +1,5 @@
-// NOTE: If processing, use `import`
-// import React from 'react';
-// import PropTypes from 'prop-types';
-const React = window.React;
-const PropTypes = window.PropTypes;
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // NOTE: The code of `NameInput` and `DescInput` are very similar, but the features may diverge; so, await further similarity before merging.
 /**
@@ -37,3 +34,5 @@ DescInput.propTypes = {
 	value: PropTypes.string,
 	labelClassName: PropTypes.string,
 }
+
+export default DescInput;

@@ -1,12 +1,11 @@
-// NOTE: If processing, use `import`
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-// import CustomTypes from './custom-types.js';
-// import { getkey } from './react-helpers.js';
-const { useState, useEffect } = window.React, React = window.React;
-const PropTypes = window.PropTypes;
-const CustomTypes = window.CustomTypes;
-const { getKey } = window.ReactHelpers;
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// Data
+import CustomTypes from '../services/custom-types.js';
+
+// Services
+import { getKey } from '../../_shared/scripts/react-helpers.js';
 
 /**
  * Create markup for options based on given data format
@@ -18,7 +17,7 @@ function getOptionsMarkup( options ) {
 	const isLikeOptionList = ( testOption.value != undefined);
 	const isLikeOptionGroupList = ( testOption.options != undefined);
 
-	if ( isLikeOptionGroupList ) return <OptGroupList options={options} />;
+	if ( isLikeOptionGroupList ) return <OptionGroupList options={options} />;
 	else if ( isLikeOptionList ) return <OptionList options={options} />;
 }
 
@@ -28,7 +27,7 @@ function getOptionsMarkup( options ) {
  * @param {OptionGroupList} props.options - A list of available option groups
  * @return {React.Component}
  */
-function OptGroupList( props ) {
+function OptionGroupList( props ) {
 	const { options } = props;
 	let key;
 
@@ -45,7 +44,7 @@ function OptGroupList( props ) {
 		</React.Fragment>
 	);
 }
-OptGroupList.propTypes = {
+OptionGroupList.propTypes = {
 	options: CustomTypes.OptionGroupList.isRequired,
 }
 
@@ -88,11 +87,11 @@ OptionList.propTypes = {
  */
 function Select( props ) {
 	const { id, options, value: initialValue, placeholder, ...markupAttrs } = props;
-	const [ value, setValue ] = useState( initialValue );
+	const [ value, setValue ] = React.useState( initialValue );
 	const optionsMarkup = getOptionsMarkup( options );
 
 	// FAQ: The default DOM value for `select` element that is unknown to React
-	useEffect(() => {
+	React.useEffect(() => {
 		if ( ! value ) setValue( document.getElementById( id ).value );
 	});
 
@@ -117,3 +116,9 @@ Select.propTypes = {
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
 }
+
+export default Select;
+export {
+	OptionGroupList,
+	OptionList
+};

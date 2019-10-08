@@ -1,13 +1,12 @@
-// NOTE: If processing, use `import`
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-// import CustomTypes from './custom-types.js';
-// import * as allElements from '../src/_shared/elements.json';
-const { useState, useEffect } = window.React, React = window.React;
-const PropTypes = window.PropTypes;
-const CustomTypes = window.CustomTypes;
-const allElements = window.getJSONSync('../src/_shared/elements.json');
-const { Select } = window;
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// Components
+import Select from './Select.js';
+
+// Data
+import CustomTypes from '../services/custom-types.js';
+import allElements from '../../_shared/elements.json';
 
 /**
  * Called when input/field value changes
@@ -31,13 +30,13 @@ const { Select } = window;
  */
 function ElementInput( props ) {
 	const { id, label, desc, value: initialValue, elements: options = allElements, labelClassName, onChange, ...jsxAttrs } = props;
-	const [ value, setValue ] = useState( initialValue );
+	const [ value, setValue ] = React.useState( initialValue );
 
 	// FAQ: We can manage change internally and externally
 	function handleChange( e ) {
 		setValue( e.target.value );
 	}
-	useEffect(() => {
+	React.useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
 
@@ -61,3 +60,5 @@ ElementInput.propTypes = {
 	labelClassName: PropTypes.string,
 	onChange: PropTypes.func,
 }
+
+export default ElementInput;

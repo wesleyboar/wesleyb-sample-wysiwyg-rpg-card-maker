@@ -6,12 +6,8 @@
  * @param {String} [separator="-"] - The character to place between alternatives
  * @return {String}
  */
-function getKey( id, alternatives, index, separator = '-' ) {
+export function getKey( id, alternatives, index, separator = '-' ) {
 	let alternative = alternatives.filter( alt => alt ).join( separator );
 
 	return id || alternative || index;
 }
-
-window.ReactHelpers = {
-	getKey
-};

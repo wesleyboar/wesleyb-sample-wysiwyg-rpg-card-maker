@@ -1,15 +1,8 @@
-// NOTE: If processing, use `import`
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-const { useState, useEffect } = window.React, React = window.React;
-const PropTypes = window.PropTypes;
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /** Dynamically-applied CSS class names */
-/* TODO: Get rid of `_AI`…—requires processing */
-/* NOTE: The `type="text/babel"` does not have the isolation effect of `type="module"` */
-/* WARN: No hackless solution exists on the Internet, yet; but, babel has a PR… */
-/* SEE: https://github.com/babel/babel/pull/8410 */
-const CLASSNAMES_AI = {
+const CLASSNAMES = {
   neg: 'is-negative',
   pos: 'is-positive'
 }
@@ -38,15 +31,15 @@ const CLASSNAMES_AI = {
  */
 function AttributeInput( props ) {
 	const { id, label, desc, value: initialValue = 0, labelClassName, outputClassName, onChange, ...markupAttrs } = props;
-	const [ value, setValue ] = useState( initialValue );
-	const [ signClassName, setSignClassName ] = useState('');
+	const [ value, setValue ] = React.useState( initialValue );
+	const [ signClassName, setSignClassName ] = React.useState('');
 
 	function handleChange( e ) {
 		setValue( e.target.value );
 	}
-	useEffect(() => {
+	React.useEffect(() => {
 		if ( onChange ) onChange( value );
-		setSignClassName( ( value > 0 ) ? CLASSNAMES_AI.pos : CLASSNAMES_AI.neg );
+		setSignClassName( ( value > 0 ) ? CLASSNAMES.pos : CLASSNAMES.neg );
 	}, [ value ]);
 
 	return (
@@ -75,3 +68,5 @@ AttributeInput.propTypes = {
 	outputClassName: PropTypes.string,
 	onChange: PropTypes.func,
 }
+
+export default AttributeInput;

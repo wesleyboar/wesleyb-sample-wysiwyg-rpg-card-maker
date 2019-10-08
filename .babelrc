@@ -1,6 +1,14 @@
 // SEE: https://rollupjs.org/guide/en/#babel
 {
+	"plugins": [
+		["transform-inline-environment-variables", {
+			"include": [
+				"NODE_ENV"
+			]
+		}]
+	],
 	"presets": [
-		["@babel/env", {"modules": false }]
+		["@babel/env", {"modules": false }],
+		["@babel/preset-react", {"modules": false }]
 	]
 }

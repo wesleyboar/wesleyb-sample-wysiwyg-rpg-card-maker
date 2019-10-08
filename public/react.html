@@ -5,51 +5,11 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../dist/index.css">
-		<script src="../src/react/react-helpers.js" type="text/babel" defer></script>
-		<script src="../src/react/custom-types.js" type="text/babel" defer></script>
-		<script src="../src/react/select.js" type="text/babel" defer></script>
-		<script src="../src/react/name-input.js" type="text/babel" defer></script>
-		<script src="../src/react/desc-input.js" type="text/babel" defer></script>
-		<script src="../src/react/shape-input.js" type="text/babel" defer></script>
-		<script src="../src/react/element-input.js" type="text/babel" defer></script>
-		<script src="../src/react/attribute-input.js" type="text/babel" defer></script>
-		<script src="../src/react/toggle.js" type="text/babel" defer></script>
-		<script src="../src/react/index.js" type="text/babel" defer></script>
+		<link rel="stylesheet" href="index.css">
+		<script type="module" src="react/index.mjs"></script>
+		<script nomodule defer src="react/index.js"></script>
 	</head>
 	<body id="page--index">
-		<header>
-			<h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Card Maker</h1>
-			<p>Fake card. Fake game. Real fun.</p>
-		</header>
-
-		<p>Create a custom card for an imaginary trading card game.</p>
-
-		<main id="card--react"></main>
-
-		<div id="development-scripts">
-			<!-- Scripts: React -->
-			<!-- NOTE: When deploying, use process and `import`, instead. -->
-			<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-			<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-			<!-- Scripts: Babel (for JSX) -->
-			<!-- NOTE: When deploying, use JSX processor, instead. -->
-			<!-- SEE: https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project -->
-			<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-
-			<!-- Scripts: Load JSON (syncronous) -->
-			<!-- NOTE: When deploying, use processor and `import`, instead. -->
-			<script>
-				function getJSONSync( url ) {
-					const r = new XMLHttpRequest(); r.open('GET', url, false); r.send();
-					return (r.status === 200) ? JSON.parse( r.responseText ) : undefined;
-				};
-			</script>
-
-			<!-- Scripts: PropTypes (for React) -->
-			<!-- NOTE: When deploying, use process and `import`, instead. -->
-			<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
-		</div>
+		<main id="root">Loading …</main>
 	</body>
 </html>
