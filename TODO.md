@@ -1,3 +1,4 @@
+- TODO: Migrate component styles to React components.
 - TODO: Split project into packages:
   - parent `package.json` (shared code)
   - children `package.json`'s (app-specific code)

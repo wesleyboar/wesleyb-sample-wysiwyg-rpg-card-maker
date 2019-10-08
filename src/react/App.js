@@ -1,3 +1,5 @@
+// TODO: Make `Header` and `Introduction` components
+
 import React from 'react';
 import defaultValues from '../_shared/default-values.json';
 
