@@ -1,4 +1,4 @@
-// SEE: 
+// TODO: Isolate this to be used only for the `react` app
 
 import nodeResolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
@@ -14,8 +14,8 @@ const bundles = {};
 const options = {};
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
+// SEE: https://reactjs.org/docs/optimizing-performance.html#rollup
 options.plugins = [
-	// SEE: https://reactjs.org/docs/optimizing-performance.html#rollup
 	nodeResolve(),
 	replace({
 		'process.env.NODE_ENV': JSON.stringify( NODE_ENV )
@@ -54,6 +54,7 @@ bundles.index = {
 			sourcemap: true
 		},
 	],
+	// RFC: Should I load React & Friends as external scripts instead of bundled?
 	// external: ['react', 'react-dom', 'prop-types'],
 	plugins: options.plugins,
 }
