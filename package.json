@@ -1,7 +1,7 @@
 {
 	"name": "wesleyb-sample-wysiwyg-rpg-card-maker",
 	"version": "1.0.0",
-	"description": "Prototype interface to edit card for a generic RPG trading card game ",
+	"description": "Prototype interface to edit card for a generic RPG trading card game",
 	"author": "wesleyb@pm.me",
 	"license": "UNLICENSED",
 	"repository": {
@@ -12,17 +12,40 @@
 		"start": "npm run build && npm run serve",
 		"serve": "npx http-server -p 1234 ./dist",
 		"prebuild": "npm-run-all --parallel clean:*",
-		"build": "shx mkdir -p ./dist && npm-run-all --parallel build:*",
+		"build": "npm-run-all --parallel build:*",
+		"prebuild:public": "shx mkdir -p ./dist",
 		"build:public": "shx cp public/* dist/",
-		"build:scripts": "rollup --config rollup.config.js --watch",
-		"build:styles": "postcss src/*.css --config ./ --dir ./dist --base --watch",
-		"clean:build": "shx rm -rf dist/"
+		"build:scripts": "rollup --config rollup.config.js",
+		"build:styles": "postcss src/*.css --config ./ --dir ./dist --base",
+		"clean:build": "shx rm -rf dist/",
+		"watch": "npm-run-all --parallel watch:*",
+		"watch:build": "npm-run-all --parallel watch:build:*",
+		"watch:build:public": "npm-watch build:public",
+		"watch:build:scripts": "npm-run-all \"build:scripts -- --watch\"",
+		"watch:build:styles": "npm-run-all \"build:styles -- --watch\""
+	},
+	"watch": {
+		"build:public": {
+			"patterns": [
+				"public/*"
+			],
+			"extensions": [
+				"*"
+			]
+		}
+	},
+	"dependencies": {
+		"react": "^16.10.2",
+		"react-dom": "^16.10.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.6.2",
 		"@babel/preset-env": "^7.6.2",
-		"cssnano-preset-default": "^4.0.7",
+		"@babel/preset-react": "^7.0.0",
+		"babel-plugin-transform-inline-environment-variables": "^0.4.3",
+		"cssnano": "^4.1.10",
 		"npm-run-all": "^4.1.5",
+		"npm-watch": "^0.6.0",
 		"postcss": "^7.0.18",
 		"postcss-browser-reporter": "^0.6.0",
 		"postcss-cli": "^6.1.3",
@@ -31,9 +54,18 @@
 		"postcss-mixins": "^6.2.2",
 		"postcss-normalize": "^8.0.1",
 		"postcss-preset-env": "^6.7.0",
+		"prop-types": "^15.7.2",
 		"rollup": "^1.23.1",
 		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-json": "^4.0.0",
 		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-terser": "^5.1.2",
 		"shx": "^0.3.2"
+	},
+	"peerDependencies": {
+		"eslint": "^6.5.1",
+		"eslint-plugin-react": "^7.15.0"
 	}
 }
