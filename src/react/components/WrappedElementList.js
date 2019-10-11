@@ -1,3 +1,4 @@
+// TODO: Use `React.Children.map( children, … )`, not `children.map( … )`
 import React from 'react';
 import PropTypes from 'prop-types';
 
