@@ -32,6 +32,9 @@ function Card( props ) {
 	const [ element, setElement ] = React.useState( identity.element );
 	const [ previewClassName, setPreviewClassName ] = React.useState('');
 
+	function handleElementChange( value ) {
+		setElement( value );
+	}
 	function handlePreviewToggleChange( isActive ) {
 		setShouldPreview( isActive );
 	}
@@ -74,7 +77,7 @@ function Card( props ) {
 					className="c-card__metadata"
 					placeholder="Choose an element"
 					value={element}
-					onChange={ value => setElement( value )} />
+					onChange={handleElementChange} />
 			</fieldset>
 
 			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}

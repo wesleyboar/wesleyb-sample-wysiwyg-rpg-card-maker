@@ -29,13 +29,14 @@ import CustomTypes from '../services/custom-types.js';
  * @return {React.Component}
  */
 function ShapeInput( props ) {
-	const { id, label, desc, shapes: options, value: initialValue, labelClassName, outputClassName, onChange, ...jsxAttrs } = props;
+	const { id, label, desc, shapes: options, value: initialValue, labelClassName, outputClassName, onChange, ...jsxProps } = props;
 	const [ value, setValue ] = React.useState( initialValue );
 
-	// FAQ: We can manage change internally and externally
-	function handleChange( e ) {
-		setValue( e.target.value );
+	// We must handle value change internally
+	function handleChange( value ) {
+		setValue( value );
 	}
+	// We must allow consumer to handle value change
 	React.useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
@@ -45,7 +46,7 @@ function ShapeInput( props ) {
 			<label htmlFor={id} className={labelClassName}
 				title={desc}>{label}</label>
 			<Select id={id} options={options} value={value}
-				onChange={handleChange} {...jsxAttrs} />
+				onChange={handleChange} {...jsxProps} />
 			<output htmlFor={id} className={outputClassName}
 				data-value={value}></output>
 		</React.Fragment>

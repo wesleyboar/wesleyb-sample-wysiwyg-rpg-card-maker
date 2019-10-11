@@ -91,24 +91,38 @@ OptionList.propTypes = {
 };
 
 /**
+ * Called when input/field value changes
+ * @callback Select~onChange
+ * @param {String} value - Field value i.e. the element
+ */
+
+/**
  * A select dropdown field
  * @param {Object} props
  * @param {String} props.id - Markup `id` attribute for field
  * @param {OptionList|OptionGroupList} props.options - The available options
  * @param {String} [props.value] - Field value i.e. the form/kind/shape
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
+ * @param {Select~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the select element
  * @return {React.Component}
  */
 function Select( props ) {
-	const { id, options, value: initialValue, placeholder, ...markupAttrs } = props;
+	const { id, options, value: initialValue, placeholder, onChange, ...markupAttrs } = props;
 	const [ value, setValue ] = React.useState( initialValue );
 	const optionsMarkup = getOptionsMarkup( options );
 
+	// We must handle value change internally
+	function handleChange( e ) {
+		setValue( e.target.value );
+	}
+	// We must allow consumer to handle value change
 	React.useEffect(() => {
-		// FAQ: The default DOM value for `select` element that is unknown to React
+		if ( onChange ) onChange( value );
+
+		// FAQ: React must be coerced to respect default DOM value
 		if ( ! value ) setValue( document.getElementById( id ).value );
-	});
+	}, [ value ]);
 
 	let placeholderMarkup;
 	if ( placeholder ) {
@@ -118,7 +132,8 @@ function Select( props ) {
 	}
 
 	return (
-		<select id={id} value={value} {...markupAttrs}>
+		<select id={id} value={value}
+			onChange={handleChange} {...markupAttrs}>
 			{placeholderMarkup}
 			{optionsMarkup}
 		</select>
@@ -130,6 +145,7 @@ Select.propTypes = {
 
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
+	onChange: PropTypes.func,
 };
 
 export default Select;
