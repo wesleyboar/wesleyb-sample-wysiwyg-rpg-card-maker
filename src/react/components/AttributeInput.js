@@ -31,7 +31,7 @@ const defaultTagName = 'div';
  * @param {Number} props.max - Value maximum
  * @param {Number} [props.step] - Value increment
  * @param {String} [props.value=0] - Field value
- * @param {String} [props.tagName] - The markup tag in which to wrap the attribute
+ * @param {String} [props.tagName=React.Fragment||"div"] - The markup tag in which to wrap the attribute
  * @param {String} [props.className] - The `className` for the markup tag in which to wrap the attribute
  * @param {String} [props.fieldClassName] - The `className` for the input field
  * @param {String} [props.labelClassName] - The `className` for the `label`
