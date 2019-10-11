@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Styles
+import './AttributeInput.css';
+
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
   neg: 'is-negative',

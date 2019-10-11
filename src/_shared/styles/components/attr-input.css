@@ -1,0 +1,21 @@
+.c-attr-input {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.c-attr-input__key,
+.c-attr-input__value {
+  flex-basis: 0;
+}
+/* Move input to end of box */
+.c-attr-input__key   { order: 1; }
+.c-attr-input__value { order: 2; }
+.c-attr-input__field { order: 3; }
+
+.c-attr-input__key { flex-grow: 2; text-align: right; }
+.c-attr-input__value { flex-grow: 1; text-align: left; }
+
+.c-attr-input__key::after { margin-right: 0.25em; }
+/* FAQ: Add positive sign for positive values (negative values already have sign) */
+.c-attr-input__value.is-positive::before { content: "+"; }
+.c-attr-input__field { width: 100%; }
