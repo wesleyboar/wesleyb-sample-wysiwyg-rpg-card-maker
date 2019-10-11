@@ -1,4 +1,3 @@
-// TODO: Use `React.Children.map( children, … )`, not `children.map( … )`
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -23,7 +22,7 @@ function ElementList( props ) {
 
 	return (
 		<React.Fragment>
-			{elements.map(( element, i ) => {
+			{React.Children.map( elements, ( element, i ) => {
 				id = element.props.id;
 				key = idService.create( id, [], i );
 				// FAQ: Element props take priority
