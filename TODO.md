@@ -1,3 +1,8 @@
 - TODO: Migrate component styles to React components.
 - TODO: Create test cases for each component.
   - See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)
+- TODO: Test tree-shaking for React (i.e. a third-party CommonJS library):
+  - SEE: https://github.com/rollup/rollup-plugin-commonjs
+  - SEE: https://stackoverflow.com/questions/46575721/rollup-with-commonjs-import-and-exports-with-treeshaking
+  - SEE: https://stackoverflow.com/questions/48341175/how-does-webpack-bundler-resolves-named-import
+  - If it works, then use `{ thingFromReact }` isntead of `React` when importing.
