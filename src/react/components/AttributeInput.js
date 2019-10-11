@@ -19,7 +19,7 @@ const CLASSNAMES = {
 /**
  * An attribute input field as a range
  *
- * _If `tagName` is provided, then attribute markup has a wrapper._
+ * - If `tagName` is provided, then attribute markup has a wrapper.
  * @param {Object} props
  * @param {String} props.id - Markup `id` attribute for field
  * @param {String} props.label - Field name for humans
