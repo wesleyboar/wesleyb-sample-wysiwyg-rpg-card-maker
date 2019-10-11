@@ -16,14 +16,14 @@ const defaultTagName = 'div';
  * Create markup for children
  * @param {Array.<React.Element>} children - A list of children
  * @param {Boolean} shouldWrap - Whether to create a wrapper for child
- * @param {Object} [extraProps] - Extra `props` to give each element
+ * @param {Object} [jsxProps] - Extra `props` to give each element
  * @return {Array.<React.Element>}
  */
-function getChildrenMarkup( children, shouldWrap, extraProps ) {
+function getChildrenMarkup( children, shouldWrap, jsxProps ) {
 	if ( shouldWrap )
-		return <WrappedElementList elements={children} {...extraProps} />;
+		return <WrappedElementList elements={children} {...jsxProps} />;
 	else
-		return <ElementList elements={children} {...extraProps} />;
+		return <ElementList elements={children} {...jsxProps} />;
 }
 
 /**
