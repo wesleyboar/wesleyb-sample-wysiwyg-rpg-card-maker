@@ -105,8 +105,8 @@ function Select( props ) {
 	const [ value, setValue ] = React.useState( initialValue );
 	const optionsMarkup = getOptionsMarkup( options );
 
-	// FAQ: The default DOM value for `select` element that is unknown to React
 	React.useEffect(() => {
+		// FAQ: The default DOM value for `select` element that is unknown to React
 		if ( ! value ) setValue( document.getElementById( id ).value );
 	});
 
