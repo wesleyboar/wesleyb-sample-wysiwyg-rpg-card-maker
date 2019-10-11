@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import CustomTypes from '../services/custom-types.js';
 
 // Services
-import { getKey } from '../../_shared/scripts/react-helpers.js';
+import * as idService from '../../_shared/services/id.js';
 
 /**
  * Create markup for options based on given data format
- * @param {OptionList|OptionGroupList} options A list of option objects
- * @return {React.Element}
+ * @param {OptionList|OptionGroupList} options - A list of option objects
+ * @return {Array.<React.Element>}
  */
 function getOptionsMarkup( options ) {
 	const testOption = options[ 0 ];
@@ -22,22 +22,28 @@ function getOptionsMarkup( options ) {
 }
 
 /**
- * Options (grouped) for a select dropdown field
+ * List of <optgroup>'s for a <select> dropdown field
  * @param {Object} props
  * @param {OptionGroupList} props.options - A list of available option groups
  * @return {React.Component}
  */
 function OptionGroupList( props ) {
 	const { options } = props;
+
+	let identifiers = [];
 	let key;
 
 	return (
 		<React.Fragment>
-			{options.map( ( group, i ) => {
-				key = getKey( group.id, [ group.label ], i );
+			{options.map(( group, i ) => {
+				identifiers = [ group.label ];
+				key = idService.create( group.id, identifiers, i );
+
+				// NOTE: Too noisy and its okay to have no ID
+				// idService.warn( group.id, `optgroup[label="${group.label}"]` );
 				return (
-					<optgroup label={group.label} key={group.id || key || i}>
-						<OptionList options={group.options} />
+					<optgroup key={key} label={group.label} data-key={key}>
+						<OptionList options={group.options} groupLabel={group.label} />
 					</optgroup>
 				);
 			})}
@@ -46,24 +52,31 @@ function OptionGroupList( props ) {
 }
 OptionGroupList.propTypes = {
 	options: CustomTypes.OptionGroupList.isRequired,
-}
+};
 
 /**
- * Options (not grouped) for a select dropdown field
+ * List of <option>'s for a <select> dropdown field
  * @param {Object} props
  * @param {OptionList} props.options - A list of available options
+ * @param {OptionList} [props.groupLabel] - The label of the parent <optgroup>
  * @return {React.Component}
  */
 function OptionList( props ) {
-	const { options } = props;
+	const { options, groupLabel } = props;
+
+	let identifiers = [];
 	let key;
 
 	return (
 		<React.Fragment>
-			{options.map( ( option, i ) => {
-				key = getKey( option.id, [ option.label, option.value ], i );
+			{options.map(( option, i ) => {
+				identifiers = [ groupLabel, option.label, option.value ];
+				key = idService.create( option.id, identifiers, i );
+
+				// NOTE: Too noisy and its okay to have no ID
+				// idService.warn( option.id, `option[value="${option.value}"]` );
 				return (
-					<option value={option.value} key={key}>
+					<option key={key} value={option.value} data-key={key}>
 						{option.label || option.value}
 					</option>
 				);
@@ -73,7 +86,9 @@ function OptionList( props ) {
 }
 OptionList.propTypes = {
 	options: CustomTypes.OptionList.isRequired,
-}
+
+	groupLabel: PropTypes.string,
+};
 
 /**
  * A select dropdown field
@@ -115,7 +130,7 @@ Select.propTypes = {
 
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
-}
+};
 
 export default Select;
 export {
