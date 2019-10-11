@@ -5,6 +5,7 @@ import NameInput from './NameInput';
 import ShapeInput from './ShapeInput';
 import DescInput from './DescInput';
 import ElementInput from './ElementInput';
+import Gallery from './Gallery';
 import AttributeInput from './AttributeInput';
 import Toggle from './Toggle';
 
@@ -43,7 +44,7 @@ function Card( props ) {
 		<form {...markupAttrs}
 			className={"c-card c-card--opts-count-1 " + previewClassName}
 			data-output-for="card-ident-element" data-value={element}>
-			<fieldset id="card-ident" disabled={shouldPreview}>
+			<fieldset disabled={shouldPreview} id="card-ident">
 				<legend>Card Identity</legend>
 
 				<NameInput id="card-ident-name"
@@ -78,41 +79,41 @@ function Card( props ) {
 
 			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}
 			{/* SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 */}
-			<section id="card-attr" className={"c-card__attr-list " + previewClassName}
-				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}
+			<section disabled={shouldPreview} id="card-attr"
+				role="group" aria-labelledby="card-attr-list-title"
 				data-replaced-tag="fieldset">
 				<span id="card-attr-list-title"
 					data-replaced-tag="legend">Card Attributes</span>
 
-				<div className="c-card__attr">
+				<Gallery tagName="ul" className="c-gallery"
+					childTagName="li" childClassName="c-gallery__item">
 					<AttributeInput id="card-attr-power"
 						label="Power"
 						desc="How many units stronger or weaker"
 						min={-3} max={3} step={1} value={attributes.power}
-						className="c-card__attr-input"
-						labelClassName="c-card__attr-key"
-						outputClassName="c-card__attr-value" />
-				</div>
+						className="c-attr-input"
+						fieldClassName="c-attr-input__field"
+						labelClassName="c-attr-input__key"
+						outputClassName="c-attr-input__value" />
 
-				<div className="c-card__attr">
 					<AttributeInput id="card-attr-speed"
 						label="Speed"
 						desc="How many units faster or slower"
 						min={-3} max={3} step={1} value={attributes.speed}
-						className="c-card__attr-input"
-						labelClassName="c-card__attr-key"
-						outputClassName="c-card__attr-value" />
-				</div>
+						className="c-attr-input"
+						fieldClassName="c-attr-input__field"
+						labelClassName="c-attr-input__key"
+						outputClassName="c-attr-input__value" />
 
-				<div className="c-card__attr">
 					<AttributeInput id="card-attr-defense"
 						label="Defense"
 						desc="How many units less or more vulnerable"
 						min={-3} max={3} step={1} value={attributes.defense}
-						className="c-card__attr-input"
-						labelClassName="c-card__attr-key"
-						outputClassName="c-card__attr-value" />
-				</div>
+						className="c-attr-input"
+						fieldClassName="c-attr-input__field"
+						labelClassName="c-attr-input__key"
+						outputClassName="c-attr-input__value" />
+				</Gallery>
 			</section>
 
 			<fieldset id="card-opts" className="c-card--opts-list">
