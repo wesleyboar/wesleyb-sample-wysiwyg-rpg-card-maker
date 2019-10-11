@@ -9,9 +9,6 @@ import ElementList from './ElementList';
 // Styles
 import './Gallery.css';
 
-/** The markup tag used if markup is needed but not defined **/
-const defaultTagName = 'div';
-
 /**
  * Create markup for children
  * @param {Array.<React.Element>} children - A list of children
