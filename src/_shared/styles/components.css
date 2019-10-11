@@ -77,9 +77,9 @@
   flex-basis: 0;
 }
 /* Move input to end of box */
-.c-card__attr .c-card__attr-key   { order: 1; }
-.c-card__attr .c-card__attr-value { order: 2; }
-.c-card__attr .c-card__attr-input { order: 3; }
+.c-card__attr-key   { order: 1; }
+.c-card__attr-value { order: 2; }
+.c-card__attr-input { order: 3; }
 
 .c-card__attr-key { flex-grow: 2; text-align: right; }
 .c-card__attr-key::after { margin-right: 0.25em; }
