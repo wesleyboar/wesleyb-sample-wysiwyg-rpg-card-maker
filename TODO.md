@@ -5,4 +5,4 @@
   - SEE: https://github.com/rollup/rollup-plugin-commonjs
   - SEE: https://stackoverflow.com/questions/46575721/rollup-with-commonjs-import-and-exports-with-treeshaking
   - SEE: https://stackoverflow.com/questions/48341175/how-does-webpack-bundler-resolves-named-import
-  - If it works, then use `{ thingFromReact }` isntead of `React` when importing.
+  - If it works, then use `{ thingFromReact }` instead of `React` when importing.
