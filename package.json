@@ -23,8 +23,8 @@
 		"watch": "npm-run-all --parallel watch:*",
 		"watch:build": "npm-run-all --parallel watch:build:*",
 		"watch:build:public": "npm-watch build:public",
-		"watch:build:scripts": "npm-run-all \"build:scripts -- --watch\"",
-		"watch:build:styles": "npm-run-all \"build:styles -- --watch\""
+		"watch:build:scripts": "npm-run-all \"build:scripts:* -- --watch\"",
+		"watch:build:styles": "npm run build:styles -- --watch"
 	},
 	"watch": {
 		"build:public": {

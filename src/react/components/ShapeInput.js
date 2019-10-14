@@ -22,7 +22,7 @@ import CustomTypes from '../services/custom-types.js';
  * @param {OptionList|OptionGroupList} props.shapes - The available form choices
  * @param {String} [props.value] - Field value i.e. the form/kind/shape
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
- * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {String} [props.outputClassName] - The `className` for the `output`
  * @param {ShapeInput~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the description
- * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  * @return {React.Component}
  */

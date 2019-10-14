@@ -45,7 +45,7 @@ function Card( props ) {
 
 	return (
 		<form {...markupAttrs}
-			className={"c-card c-card--opts-count-1 " + previewClassName}
+			className={"c-card c-card--options-count-1 " + previewClassName}
 			data-output-for="card-ident-element" data-value={element}>
 			<fieldset disabled={shouldPreview} id="card-ident">
 				<legend>Card Identity</legend>
@@ -119,11 +119,13 @@ function Card( props ) {
 				</Gallery>
 			</section>
 
-			<fieldset id="card-opts" className="c-card--opts-list">
-				<Toggle id="card-preview-toggle"
+			<fieldset id="card-opts" className="c-card__options">
+				<Toggle id="card-toggle-preview"
 					label="Preview Card"
 					desc="Preview approximate final state of card"
-					className="c-card__opt-toggle"
+					className="c-toggle"
+					fieldClassName="c-option__field"
+					labelClassName="c-option__label"
 					name="card_preview"
 					isOn={shouldPreview}
 					onChange={handlePreviewToggleChange} />

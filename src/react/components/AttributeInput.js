@@ -31,7 +31,7 @@ const CLASSNAMES = {
  * @param {String} [props.tagName=React.Fragment] - The markup tag in which to wrap the attribute
  * @param {String} [props.className] - The `className` for the markup tag in which to wrap the attribute (requires `tagName`)
  * @param {String} [props.fieldClassName] - The `className` for the input field
- * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {String} [props.outputClassName] - The `className` for the `output`
  * @param {AttributeInput~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element

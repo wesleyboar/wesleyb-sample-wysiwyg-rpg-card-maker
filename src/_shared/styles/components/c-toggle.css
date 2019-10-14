@@ -1,0 +1,15 @@
+:root {
+	--c-toggle-margin--vert: 0.25em;
+	--c-toggle-margin--horz: 0;
+	/* Manually-calculated height */
+	--c-toggle-height: 3.1rem;
+}
+.c-toggle {
+	margin: var(--c-toggle-margin--vert) var(--c-toggle-margin--horz);
+}
+.c-toggle > * {
+	display: inline-block;
+	vertical-align: middle;
+	/* FAQ: Prevent unexplained `.c-toggle` height */
+	line-height: 1;
+}

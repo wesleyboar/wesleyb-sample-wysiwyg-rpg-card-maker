@@ -23,7 +23,7 @@ import allElements from '../../_shared/elements.json';
  * @param {String} [props.value] - Field value i.e. the element
  * @param {OptionList|OptionGroupList} [props.elements=allElements] - The available element choices
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
- * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  * @return {React.Component}

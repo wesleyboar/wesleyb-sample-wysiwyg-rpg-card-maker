@@ -1,0 +1,5 @@
+@import "../../_shared/styles/components/c-toggle.css";
+
+.c-card {
+  --option-height: calc( var(--c-toggle-height) + var(--c-toggle-margin--vert) );
+}

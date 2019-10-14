@@ -1,9 +1,22 @@
 @import "./components/c-gallery.css";
 @import "./components/c-attr-input.css";
+@import "./components/c-toggle.css";
+
+/* Intro */
+
+.c-intro {
+  padding: 1em 0;
+  margin: 0;
+}
 
 /* Card */
 
 .c-card {
+  /* TODO: Master CSS variables, selector-scoped and `:root`-scoped */
+  /* WARN: This is a guess; define when known */
+  /* SEE: `components/c-toggle` */
+  --option-height: 4rem;
+
   width: 25rem;
   min-height: 35rem;
   padding: 1rem;
@@ -61,12 +74,10 @@
 /* Card: Options */
 
 /* Move card options to above card */
-.c-card--opts-count-1 {
-  /* FAQ: Avoiding `var` to reduce prototype complexity */
-  /* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
-  margin-top: calc( 31px + 0.5em ); /* computed height + vert. margin */
-}
-.c-card--opts-list {
+.c-card--options-count-1 { margin-top: var(--c-card-option-height) }
+.c-card--options-count-2 { margin-top: calc( var(--c-card-option-height) * 2 ) }
+.c-card--options-count-3 { margin-top: calc( var(--c-card-option-height) * 3 ) }
+.c-card__options {
   width: 100%;
   position: absolute; /* WARN: Causes child form elements to need `tabindex="-1"` */
   bottom: 100%;
@@ -74,5 +85,3 @@
 
   text-align: center;
 }
-.c-card__opt-toggle { margin: 0.25em 0; }
-.c-card__opt-toggle > * { display: inline-block; vertical-align: middle; }
