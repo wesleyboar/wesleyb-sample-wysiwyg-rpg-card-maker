@@ -56,35 +56,37 @@
 
 			<!-- FAQ: Can not use `<fieldset>` with `display: flex` -->
 			<!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 -->
-			<section id="card-attr" class="c-card__attr-list"
+			<section id="card-attr"
 							 role="group" aria-labelledby="card-attr-list-title"
 							 data-replaced-tag="fieldset">
 				<span id="card-attr-list-title"
 							data-replaced-tag="legend">Card Attributes</span>
 
-				<div class="c-card__attr">
-					<label for="card-attr-power" class="c-card__attr-key"
-								 title="How many units stronger or weaker">Power</label>
-					<input id="card-attr-power" class="c-card__attr-input"
-								 type="range" min="-3" max="3" step="1" value="1" />
-					<output for="card-attr-power" class="c-card__attr-value">?</output>
-				</div>
+				<ul class="c-gallery">
+					<li class="c-gallery__item c-attr-input">
+						<label for="card-attr-power" class="c-attr-input__key"
+									title="How many units stronger or weaker">Power</label>
+						<input id="card-attr-power" class="c-attr-input__field"
+									type="range" min="-3" max="3" step="1" value="1" />
+						<output for="card-attr-power" class="c-attr-input__value">?</output>
+					</li>
 
-				<div class="c-card__attr">
-					<label for="card-attr-speed" class="c-card__attr-key"
-								 title="How many units faster or slower">Speed</label>
-					<input id="card-attr-speed" class="c-card__attr-input"
-								 type="range" min="-3" max="3" step="1" value="-1" />
-					<output for="card-attr-speed" class="c-card__attr-value">?</output>
-				</div>
+					<li class="c-gallery__item c-attr-input">
+						<label for="card-attr-speed" class="c-attr-input__key"
+									title="How many units faster or slower">Speed</label>
+						<input id="card-attr-speed" class="c-attr-input__field"
+									type="range" min="-3" max="3" step="1" value="-1" />
+						<output for="card-attr-speed" class="c-attr-input__value">?</output>
+					</div>
 
-				<div class="c-card__attr">
-					<label for="card-attr-defense" class="c-card__attr-key"
-								 title="How many units less or more vulnerable">Defense</label>
-					<input id="card-attr-defense" class="c-card__attr-input"
-								 type="range" min="-3" max="3" step="1" value="1" />
-					<output for="card-attr-defense" class="c-card__attr-value">?</output>
-				</div>
+					<li class="c-gallery__item c-attr-input">
+						<label for="card-attr-defense" class="c-attr-input__key"
+									title="How many units less or more vulnerable">Defense</label>
+						<input id="card-attr-defense" class="c-attr-input__field"
+									type="range" min="-3" max="3" step="1" value="1" />
+						<output for="card-attr-defense" class="c-attr-input__value">?</output>
+					</li>
+				</ul>
 			</section>
 
 			<fieldset id="card-opts" class="c-card--opts-list js-immune">

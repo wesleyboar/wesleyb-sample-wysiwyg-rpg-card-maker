@@ -1,3 +1,6 @@
+@import "./components/c-gallery.css";
+@import "./components/c-attr-input.css";
+
 /* Card */
 
 .c-card {
@@ -53,43 +56,6 @@
 
   font-size: 1.6rem;
   text-align: center;
-}
-
-.c-card__attr-list {
-  display: flex;
-  flex-flow: row wrap;
-}
-.c-card__attr,
-/* HACK: Prevent stretch of dangling attribute by adding invisible final one */
-.c-card__attr-list::after {
-  flex-grow: 3; /* that of `…-key` + that of `…-value` */
-  flex-basis: 50%;
-}
-.c-card__attr-list::after { content: ""; }
-
-.c-card__attr {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.c-card__attr-key,
-.c-card__attr-value {
-  flex-basis: 0;
-}
-/* Move input to end of box */
-.c-card__attr-key   { order: 1; }
-.c-card__attr-value { order: 2; }
-.c-card__attr-input { order: 3; }
-
-.c-card__attr-key { flex-grow: 2; text-align: right; }
-.c-card__attr-key::after { margin-right: 0.25em; }
-
-.c-card__attr-value { flex-grow: 1; text-align: left; }
-/* FAQ: Add positive sign for positive values (negative values already have sign) */
-.c-card__attr-value.is-positive::before { content: "+"; }
-
-.c-card__attr-input {
-  width: 100%;
 }
 
 /* Card: Options */
