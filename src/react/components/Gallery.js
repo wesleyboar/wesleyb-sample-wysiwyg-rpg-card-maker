@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Styles
+import './Gallery.css';
+
 // Components
 import WrappedElementList from './WrappedElementList';
 import ElementList from './ElementList';
-
-// Styles
-import './Gallery.css';
 
 /**
  * Create markup for children
