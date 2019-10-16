@@ -1,11 +1,11 @@
-:root {
-	--c-toggle-margin--vert: 0.25em;
-	--c-toggle-margin--horz: 0;
-	/* Manually-calculated height */
-	--c-toggle-height: 3.1rem;
-}
 .c-toggle {
-	margin: var(--c-toggle-margin--vert) var(--c-toggle-margin--horz);
+	--margin--vert: 0.25rem;
+	--margin--horz: 0;
+	--border-width: 0.1rem;
+
+	margin-block: var(--margin--vert);
+	margin-inline: var(--margin--horz);
+	border-width: var(--border-width);
 }
 .c-toggle > * {
 	display: inline-block;

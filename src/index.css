@@ -2,9 +2,11 @@
 /* Do not `@import "./_shared/styles/settings.css";` */
 /* Do not `@import "./_shared/styles/tools.css";` */
 
-/* FAQ: Because this is a small project, each layer may use just one file */
+/* Because this is a small project, each layer may use just one file */
+
 @import "./_shared/styles/generics.css";
 /* @import "./_shared/styles/objects.css"; */
 @import "./_shared/styles/elements.css";
-@import "./_shared/styles/components.css";
+/* FAQ: Component styles are included as needed */
+/* @import "./_shared/styles/components.css"; */
 @import "./_shared/styles/trumps.css";

@@ -1,0 +1,6 @@
+/* IMPORTANT: This file should import all component stylesheets. It must only be used when an implementation does NOT individually include components. */
+
+@import "./_shared/styles/components.css";
+@import "./_shared/styles/components/c-gallery.css";
+@import "./_shared/styles/components/c-attr-input.css";
+@import "./_shared/styles/components/c-toggle.css";

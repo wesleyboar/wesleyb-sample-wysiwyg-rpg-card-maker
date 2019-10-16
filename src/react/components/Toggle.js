@@ -40,8 +40,7 @@ function Toggle( props ) {
 			type="button" tabIndex="-1">
 			<input id={id} className={fieldClassName}
 				type="checkbox" tabIndex="0"
-				checked={isOn} onChange={handleChange}
-				{...markupAttrs} />
+				checked={isOn} onChange={handleChange} />
 			<label htmlFor={id} className={labelClassName}
 				title={desc}>{label}</label>
 		</button>

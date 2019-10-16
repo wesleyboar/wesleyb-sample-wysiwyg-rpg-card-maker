@@ -1,6 +1,4 @@
-@import "./components/c-gallery.css";
-@import "./components/c-attr-input.css";
-@import "./components/c-toggle.css";
+/* TODO: Extract all components into individual files under `components/` directory */
 
 /* Intro */
 
@@ -12,17 +10,16 @@
 /* Card */
 
 .c-card {
-  /* TODO: Master CSS variables, selector-scoped and `:root`-scoped */
-  /* WARN: This is a guess; define when known */
-  /* SEE: `components/c-toggle` */
-  --option-height: 4rem;
+  --border-height: 0.1rem;
+  /* WARN: Manually-calculated height */
+  --option-height: 3.4rem;
 
   width: 25rem;
   min-height: 35rem;
   padding: 1rem;
   position: relative; /* For absolutely-positioned children */
 
-  border: 1px solid black;
+  border: var(--border-height) solid black;
   border-radius: 1rem;
 }
 .c-card[data-value="earth"] { background-color: darkseagreen; }
@@ -74,14 +71,16 @@
 /* Card: Options */
 
 /* Move card options to above card */
-.c-card--options-count-1 { margin-top: var(--c-card-option-height) }
-.c-card--options-count-2 { margin-top: calc( var(--c-card-option-height) * 2 ) }
-.c-card--options-count-3 { margin-top: calc( var(--c-card-option-height) * 3 ) }
+.c-card--options-count-1 { margin-top: var(--option-height) }
+.c-card--options-count-2 { margin-top: calc( var(--option-height) * 2 ) }
+.c-card--options-count-3 { margin-top: calc( var(--option-height) * 3 ) }
 .c-card__options {
   width: 100%;
-  position: absolute; /* WARN: Causes child form elements to need `tabindex="-1"` */
-  bottom: 100%;
+  /* WARN: Causes child form elements to need `tabindex="-1"` */
+  position: absolute;
   left: 0;
+  /* FAQ: The top border affects position */
+  bottom: calc( 100% + var(--border-height) );
 
   text-align: center;
 }
