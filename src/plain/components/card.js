@@ -60,6 +60,7 @@ function updateOutputs( input ) {
   `) ];
 
   outputs.forEach( ( output ) => {
+    // 13: Determine and evaluate type of value
     const value = input.value; // RFE: Format value via a function
     setValue( value, output );
     assignClassFromValue( value, output );

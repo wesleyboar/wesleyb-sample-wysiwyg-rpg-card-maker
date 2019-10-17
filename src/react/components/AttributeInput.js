@@ -48,6 +48,7 @@ function AttributeInput( props ) {
 	}
 	React.useEffect(() => {
 		if ( onChange ) onChange( value );
+    // 13: Determine and evaluate type of value
 		setSignClassName( ( value > 0 ) ? CLASSNAMES.pos : CLASSNAMES.neg );
 	}, [ value ]);
 
