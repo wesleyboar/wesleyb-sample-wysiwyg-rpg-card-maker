@@ -7,6 +7,6 @@
 @import "./_shared/styles/generics.css";
 /* @import "./_shared/styles/objects.css"; */
 @import "./_shared/styles/elements.css";
-/* FAQ: Component styles are included as needed */
+/* FAQ: Component styles are included modularly as needed */
 /* @import "./_shared/styles/components.css"; */
 @import "./_shared/styles/trumps.css";
