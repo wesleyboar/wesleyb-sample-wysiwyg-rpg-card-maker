@@ -34,3 +34,28 @@
  * @prop {String} speed - Entity attribute of fastness/slowness
  * @prop {String} defense - Entity attribute of vulernerability
  */
+
+/**
+ * Enum for {@link MediaData.type} properties
+ * @readonly
+ * @enum {String}
+ */
+export const MEDIA_DATA_TYPE = Object.freeze({
+	IMAGE: 'image',
+	VIDEO: 'video',
+});
+/**
+ * An identifier for media data (like the value of a user selection)
+ * @typedef {Boolean|String|Number} MediaDataIdent
+ */
+/**
+ * Information about a media
+ * @typedef {Object} MediaData
+ * @prop {MediaDataIdent} ident - The identifier for this media data
+ * @prop {MEDIA_DATA_TYPE} type - The type of the media (image, video, etc)
+ * @prop {String} source - A URL to the source of media
+ */
+/**
+ * A list of media data
+ * @typedef {Array.<MediaData>} MediaDataList
+ */

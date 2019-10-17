@@ -3,15 +3,26 @@ import PropTypes from 'prop-types';
 
 // Components
 import Select from './Select.js';
+import MediaOutput from './MediaOutput.js';
 
 // Data
 import CustomTypes from '../services/custom-types.js';
+import shapeMediaDataList from '../../_shared/item-shape-medias.json';
 
 /**
  * Called when input/field value changes
  * @callback ShapeInput~onChange
  * @param {String} value - Field value i.e. the shape
  */
+
+/**
+ * Get media data that matches the given identifier
+ * @param {MediaDataIdent} ident - The identifier of the desired media data
+ * @param {MediaDataList} list - The list of media data
+ */
+function getMediaData( ident, list ) {
+	return list.find( data => data.ident === ident );
+}
 
 /**
  * A form/kind/shape input field as a select dropdown
@@ -31,6 +42,8 @@ import CustomTypes from '../services/custom-types.js';
 function ShapeInput( props ) {
 	const { id, label, desc, shapes: options, value: initialValue, labelClassName, outputClassName, onChange, ...jsxProps } = props;
 	const [ value, setValue ] = React.useState( initialValue );
+	const initialStyle = getMediaData( value, shapeMediaDataList );
+	const [ mediaData, setMediaData ] = React.useState( initialStyle );
 
 	// We must handle value change internally
 	function handleChange( value ) {
@@ -38,6 +51,11 @@ function ShapeInput( props ) {
 	}
 	// We must allow consumer to handle value change
 	React.useEffect(() => {
+		let newMediaData = getMediaData( value, shapeMediaDataList );
+
+		console.debug('ShapeInput', { value, newMediaData });
+
+		setMediaData( newMediaData );
 		if ( onChange ) onChange( value );
 	}, [ value ]);
 
@@ -47,8 +65,8 @@ function ShapeInput( props ) {
 				title={desc}>{label}</label>
 			<Select id={id} options={options} value={value}
 				onChange={handleChange} {...jsxProps} />
-			<output htmlFor={id} className={outputClassName}
-				data-value={value}></output>
+			<MediaOutput htmlFor={id} className={outputClassName}
+				mediaData={mediaData} />
 		</React.Fragment>
 	);
 }

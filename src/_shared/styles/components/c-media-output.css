@@ -1,0 +1,5 @@
+/*! c-media-output */
+
+.c-media-output[data-type="image"] {
+	background: white none center/contain no-repeat;
+}
