@@ -1,12 +1,5 @@
 /* TODO: Extract all components into individual files under `components/` directory */
 
-/* Intro */
-
-.c-intro {
-  padding: 1em 0;
-  margin: 0;
-}
-
 /* Card */
 
 .c-card {

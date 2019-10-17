@@ -1,6 +1,9 @@
 import React from 'react';
 import defaultValues from '../_shared/default-values.json';
 
+// Styles
+import './App.css';
+
 // Components
 import Card from './components/Card.js';
 
