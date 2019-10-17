@@ -1,5 +1,6 @@
 const stylesDir = './src/_shared/styles/';
 
+/* TODO: Ensure `NODE_ENV` is functional; manual tests suggest that it is not */
 module.exports = ({ options, NODE_ENV, file }) => ({
 	// Source maps should obey CLI arg or use these options or not be created
 	map: options.map || ( NODE_ENV !== 'production') ? {
