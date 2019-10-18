@@ -20,9 +20,9 @@ import { joinClassNames } from '../../_shared/services/markup';
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {Boolean} [props.isOn] - Whether toggle is on/active
- * @param {String} [props.className] - The `className` for the markup tag of the root element
- * @param {String} [props.fieldClassName] - The `className` for the input field
- * @param {String} [props.labelClassName] - The `className` for the label text
+ * @param {String} [props.className] - Additional `className` for the markup tag of the root element
+ * @param {String} [props.fieldClassName] - Additional `className` for the input field
+ * @param {String} [props.labelClassName] - Additional `className` for the label text
  * @param {Toggle~onChange} [props.onChange] - Callback on state change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  * @return {React.Component}

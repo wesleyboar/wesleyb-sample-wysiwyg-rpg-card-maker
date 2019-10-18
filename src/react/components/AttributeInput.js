@@ -31,6 +31,7 @@ const CLASSNAMES = {
  * @param {Number} props.max - Value maximum
  * @param {Number} [props.step] - Value increment
  * @param {String} [props.value=0] - Field value
+ * @param {String} [props.key] - React `key` attribute
  * @param {String} [props.tagName=React.Fragment] - The markup tag in which to wrap the attribute
  * @param {String} [props.className] - The `className` for the markup tag in which to wrap the attribute (requires `tagName`)
  * @param {String} [props.fieldClassName] - The `className` for the input field
@@ -41,10 +42,10 @@ const CLASSNAMES = {
  * @return {React.Component}
  */
 function AttributeInput( props ) {
-	const { id, label, desc, value: initialValue = 0, tagName, className, fieldClassName, labelClassName, outputClassName, onChange, ...markupAttrs } = props;
+	const { id, label, desc, value: initialValue = 0, key, tagName: TagName = React.Fragment, className, fieldClassName, labelClassName, outputClassName, onChange, ...markupAttrs } = props;
 	const [ value, setValue ] = React.useState( initialValue );
 	const [ signClassName, setSignClassName ] = React.useState('');
-	const TagName = tagName || React.Fragment;
+	const tagAttrs = {};
 
 	function handleChange( e ) {
 		setValue( e.target.value );
@@ -55,28 +56,27 @@ function AttributeInput( props ) {
 		setSignClassName( ( value > 0 ) ? CLASSNAMES.pos : CLASSNAMES.neg );
 	}, [ value ]);
 
+	// Avoid passing illegal attributes to `React.Fragment`
+	if ( TagName !== React.Fragment && className ) {
+		tagAttrs.className = joinClassNames(['c-attr-input', className]);
+	}
+
 	return (
-		<TagName className={joinClassNames(['c-attr-input', className])}>
+		<TagName key={key} {...tagAttrs}>
 			<label htmlFor={id}
-				className={joinClassNames(['c-attr-input__key', labelClassName])}
+				className={joinClassNames(['c-attr-input__key', labelClassName ])}
 				title={desc}>{label}</label>
 			<input id={id}
-				className={`c-attr-input__field ${fieldClassName}`}
+				className={joinClassNames(['c-attr-input__field', fieldClassName ])}
 				type="range" {...markupAttrs}
 				value={value} onChange={handleChange} />
 			<output htmlFor={id}
-				className={joinClassNames(['c-attr-input__value', outputClassName, signClassName])}>
+				className={joinClassNames(['c-attr-input__value', outputClassName, signClassName ])}>
 				{value}
 			</output>
 		</TagName>
 	);
 }
-AttributeInput.defaultProps = {
-	className: '',
-	fieldClassName: '',
-	labelClassName: '',
-	outputClassName: '',
-};
 AttributeInput.propTypes = {
 	id: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,

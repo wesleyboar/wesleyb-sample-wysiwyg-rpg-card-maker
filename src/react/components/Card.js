@@ -57,27 +57,23 @@ function Card( props ) {
 			<fieldset disabled={shouldPreview} id="card-ident">
 				<legend>Card Identity</legend>
 
-				<NameInput id="card-ident-name"
+				<NameInput id="card-ident-name" className="c-card__name"
 					label="Name" desc="The name of the enchanted item"
-					className="c-card__name"
 					value={identity.name} />
 
-				<ShapeInput id="card-ident-shape"
+				<ShapeInput id="card-ident-shape" className="c-card__metadata"
 					label="Form" desc="The common form of the enchanted item"
-					className="c-card__metadata"
 					outputClassName="c-card__figure"
 					value={identity.shape} shapes={itemShapes}
 					placeholder="Choose a shape"
 					required />
 
-				<DescInput id="card-ident-desc"
+				<DescInput id="card-ident-desc" className="c-card__desc"
 					label="Description" desc="A description of the enchanted item"
-					className="c-card__desc"
 					value={identity.desc} />
 
-				<ElementInput id="card-ident-element"
+				<ElementInput id="card-ident-element" className="c-card__metadata"
 					label="Element" desc="The elemental power of the enchanted item"
-					className="c-card__metadata"
 					placeholder="Choose an element"
 					value={element}
 					onChange={handleElementChange} />
@@ -91,16 +87,16 @@ function Card( props ) {
 				<span id="card-attr-list-title"
 					data-replaced-tag="legend">Card Attributes</span>
 
-				<Gallery tagName="ul" childTagName="li">
-					<AttributeInput id="card-attr-power" className="c-card__attr"
+				<Gallery tagName="ul" childTagName="li" childClassName="c-card__attr">
+					<AttributeInput id="card-attr-power"
 						label="Power" desc="How many units stronger or weaker"
 						min={-3} max={3} step={1} value={attributes.power} />
 
-					<AttributeInput id="card-attr-speed" className="c-card__attr"
+					<AttributeInput id="card-attr-speed"
 						label="Speed" desc="How many units faster or slower"
 						min={-3} max={3} step={1} value={attributes.speed} />
 
-					<AttributeInput id="card-attr-defense" className="c-card__attr"
+					<AttributeInput id="card-attr-defense"
 						label="Defense" desc="How many units less or more vulnerable"
 						min={-3} max={3} step={1} value={attributes.defense} />
 				</Gallery>

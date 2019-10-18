@@ -18,9 +18,8 @@ function DescInput( props ) {
 
 	return (
 		<React.Fragment>
-			<label htmlFor={id}
-				title={desc}
-				className={labelClassName}>{label}</label>
+			<label htmlFor={id} className={labelClassName}
+				title={desc}>{label}</label>
 			<textarea id={id} {...markupAttrs}
 				type="text" defaultValue={value} />
 		</React.Fragment>

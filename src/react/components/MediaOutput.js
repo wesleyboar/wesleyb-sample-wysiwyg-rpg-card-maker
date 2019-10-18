@@ -8,6 +8,9 @@ import './MediaOutput.css';
 import CustomTypes from '../services/custom-types.js';
 import { MEDIA_DATA_TYPE } from '../../_shared/typedef.js';
 
+// Services
+import { joinClassNames } from '../../_shared/services/markup.js';
+
 /**
  * Get JavaScript style object based on given media data
  * @param {MediaData} mediaData - Information about the media
@@ -46,7 +49,9 @@ function MediaOutput( props ) {
 	}, [ mediaData ]);
 
 	return (
-		<output {...markupAttrs} className={`c-media-output ${className}`} data-ident={mediaData.ident} data-type={mediaData.type} style={style}></output>
+		<output style={style} {...markupAttrs}
+			className={joinClassNames(['c-media-output', className ])}
+			data-ident={mediaData.ident} data-type={mediaData.type}></output>
 	);
 }
 MediaOutput.propTypes = {
