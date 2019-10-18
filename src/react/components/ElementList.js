@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Services
 import * as idService from '../../_shared/services/id.js';
+import { joinClassNames } from '../../_shared/services/markup';
 
 /**
  * A generic list of elements
@@ -28,7 +29,7 @@ function ElementList( props ) {
 				// FAQ: Element props take priority
 				tagName = element.props.tagName || props.tagName;
 				// FAQ: Element props must not be overridden
-				className = props.className + ' ' + element.props.className;
+				className = joinClassNames([ props.className, element.props.className ]);
 				idService.warn( id, `${tagName}.${className}`);
 
 				return React.cloneElement( element, { key, tagName, className });

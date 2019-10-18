@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 // Styles
 import './Toggle.css';
 
+// Services
+import { joinClassNames } from '../../_shared/services/markup';
+
 /**
  * Called when toggle is toggled
  * @callback Toggle~onChange
@@ -37,16 +40,24 @@ function Toggle( props ) {
 	}, [ isOn ]);
 
 	return (
-		<button role="presentation none" className={`c-toggle ${className}`}
+		<button role="presentation none"
+			className={joinClassNames(['c-toggle', className])}
 			type="button" tabIndex="-1" {...markupAttrs}>
-			<input id={id} className={`c-toggle__field ${fieldClassName}`}
+			<input id={id}
+				className={joinClassNames(['c-toggle__field', fieldClassName ])}
 				type="checkbox" tabIndex="0"
 				checked={isOn} onChange={handleChange} />
-			<label htmlFor={id} className={`c-toggle__label ${labelClassName}`}
+			<label htmlFor={id}
+				className={joinClassNames(['c-toggle__label', labelClassName ])}
 				title={desc}>{label}</label>
 		</button>
 	);
 }
+Toggle.defaultProps = {
+	className: '',
+	fieldClassName: '',
+	labelClassName: '',
+};
 Toggle.propTypes = {
 	id: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
@@ -54,6 +65,7 @@ Toggle.propTypes = {
 
 	isOn: PropTypes.bool,
 	onChange: PropTypes.func,
+	className: PropTypes.string,
 	fieldClassName: PropTypes.string,
 	labelClassName: PropTypes.string,
 }

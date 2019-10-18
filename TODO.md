@@ -1,5 +1,4 @@
-- TODO: Make components directly add component class names, instead of passing in `className` (but, retain the ability to pass in `classname`).
-  - The `Gallery` component has already been updated ot comply.
+- TODO: Use [`PostHTML` tool](https://github.com/posthtml/posthtml) and [`htmlnano` plugin](https://github.com/posthtml/htmlnano).
 - TODO: Create test cases for each component.
   - See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)
 - TODO: Test tree-shaking for React (i.e. a third-party CommonJS library):

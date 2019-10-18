@@ -49,7 +49,8 @@ function Gallery( props ) {
 	const TagName = tagName || React.Fragment;
 
 	return (
-		<TagName className={`c-gallery ${className}`} {...markupAttrs}>
+		<TagName {...markupAttrs}
+			className={joinClassNames(['c-gallery', className ])}>
 			{childrenMarkup}
 		</TagName>
 	);

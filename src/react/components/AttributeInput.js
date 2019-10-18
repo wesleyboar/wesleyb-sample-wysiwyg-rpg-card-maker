@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 // Styles
 import './AttributeInput.css';
 
+// Services
+import { joinClassNames } from '../../_shared/services/markup';
+
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
   neg: 'is-negative',
@@ -53,19 +56,27 @@ function AttributeInput( props ) {
 	}, [ value ]);
 
 	return (
-		<TagName className={className}>
+		<TagName className={joinClassNames(['c-attr-input', className])}>
 			<label htmlFor={id}
-				className={labelClassName}
+				className={joinClassNames(['c-attr-input__key', labelClassName])}
 				title={desc}>{label}</label>
 			<input id={id}
-				className={fieldClassName}
+				className={`c-attr-input__field ${fieldClassName}`}
 				type="range" {...markupAttrs}
 				value={value} onChange={handleChange} />
 			<output htmlFor={id}
-				className={outputClassName + " " + signClassName}>{value}</output>
+				className={joinClassNames(['c-attr-input__value', outputClassName, signClassName])}>
+				{value}
+			</output>
 		</TagName>
 	);
 }
+AttributeInput.defaultProps = {
+	className: '',
+	fieldClassName: '',
+	labelClassName: '',
+	outputClassName: '',
+};
 AttributeInput.propTypes = {
 	id: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,

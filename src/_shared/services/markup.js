@@ -1,3 +1,4 @@
+/* TODO: Consider `https://github.com/JedWatson/classnames */
 
 /**
  * Join members of class name array with a space, excluding empty elements

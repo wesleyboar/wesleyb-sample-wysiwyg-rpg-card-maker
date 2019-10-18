@@ -16,9 +16,12 @@ import Toggle from './Toggle';
 import CustomTypes from '../services/custom-types.js';
 import itemShapes from '../../_shared/item-shapes.json';
 
+// Services
+import { joinClassNames } from '../../_shared/services/markup';
+
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
-  isPreview: 's-card-preview'
+	isPreview: 's-card-preview'
 }
 
 /**
@@ -48,20 +51,19 @@ function Card( props ) {
 
 	return (
 		<form {...markupAttrs}
-			className={"c-card c-card--options-count-1 " + previewClassName}
+			className={joinClassNames(['c-card', 'c-card--options-count-1', previewClassName ])}
 			data-output-for="card-ident-element" data-element={element}>
+
 			<fieldset disabled={shouldPreview} id="card-ident">
 				<legend>Card Identity</legend>
 
 				<NameInput id="card-ident-name"
-					label="Name"
-					desc="The name of the enchanted item"
+					label="Name" desc="The name of the enchanted item"
 					className="c-card__name"
 					value={identity.name} />
 
 				<ShapeInput id="card-ident-shape"
-					label="Form"
-					desc="The common form of the enchanted item"
+					label="Form" desc="The common form of the enchanted item"
 					className="c-card__metadata"
 					outputClassName="c-card__figure"
 					value={identity.shape} shapes={itemShapes}
@@ -69,14 +71,12 @@ function Card( props ) {
 					required />
 
 				<DescInput id="card-ident-desc"
-					label="Description"
-					desc="A description of the enchanted item"
+					label="Description" desc="A description of the enchanted item"
 					className="c-card__desc"
 					value={identity.desc} />
 
 				<ElementInput id="card-ident-element"
-					label="Element"
-					desc="The elemental power of the enchanted item"
+					label="Element" desc="The elemental power of the enchanted item"
 					className="c-card__metadata"
 					placeholder="Choose an element"
 					value={element}
@@ -92,42 +92,24 @@ function Card( props ) {
 					data-replaced-tag="legend">Card Attributes</span>
 
 				<Gallery tagName="ul" childTagName="li">
-					<AttributeInput id="card-attr-power"
-						label="Power"
-						desc="How many units stronger or weaker"
-						min={-3} max={3} step={1} value={attributes.power}
-						className="c-attr-input"
-						fieldClassName="c-attr-input__field"
-						labelClassName="c-attr-input__key"
-						outputClassName="c-attr-input__value" />
+					<AttributeInput id="card-attr-power" className="c-card__attr"
+						label="Power" desc="How many units stronger or weaker"
+						min={-3} max={3} step={1} value={attributes.power} />
 
-					<AttributeInput id="card-attr-speed"
-						label="Speed"
-						desc="How many units faster or slower"
-						min={-3} max={3} step={1} value={attributes.speed}
-						className="c-attr-input"
-						fieldClassName="c-attr-input__field"
-						labelClassName="c-attr-input__key"
-						outputClassName="c-attr-input__value" />
+					<AttributeInput id="card-attr-speed" className="c-card__attr"
+						label="Speed" desc="How many units faster or slower"
+						min={-3} max={3} step={1} value={attributes.speed} />
 
-					<AttributeInput id="card-attr-defense"
-						label="Defense"
-						desc="How many units less or more vulnerable"
-						min={-3} max={3} step={1} value={attributes.defense}
-						className="c-attr-input"
-						fieldClassName="c-attr-input__field"
-						labelClassName="c-attr-input__key"
-						outputClassName="c-attr-input__value" />
+					<AttributeInput id="card-attr-defense" className="c-card__attr"
+						label="Defense" desc="How many units less or more vulnerable"
+						min={-3} max={3} step={1} value={attributes.defense} />
 				</Gallery>
 			</section>
 
 			<fieldset id="card-opts" className="c-card__options">
-				<Toggle id="card-toggle-preview"
-					label="Preview Card"
-					desc="Preview approximate final state of card"
-					name="card_preview"
-					isOn={shouldPreview}
-					onChange={handlePreviewToggleChange} />
+				<Toggle id="card-toggle-preview" name="card_preview"
+					label="Preview Card" desc="Preview approximate final state of card"
+					isOn={shouldPreview} onChange={handlePreviewToggleChange} />
 			</fieldset>
 		</form>
 	);
