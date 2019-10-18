@@ -42,7 +42,7 @@ function OptionGroupList( props ) {
 				// NOTE: Too noisy and its okay to have no ID
 				// idService.warn( group.id, `optgroup[label="${group.label}"]` );
 				return (
-					<optgroup key={key} label={group.label} data-key={key}>
+					<optgroup key={key} label={group.label}>
 						<OptionList options={group.options} groupLabel={group.label} />
 					</optgroup>
 				);
@@ -76,7 +76,7 @@ function OptionList( props ) {
 				// NOTE: Too noisy and its okay to have no ID
 				// idService.warn( option.id, `option[value="${option.value}"]` );
 				return (
-					<option key={key} value={option.value} data-key={key}>
+					<option key={key} value={option.value}>
 						{option.label || option.value}
 					</option>
 				);
