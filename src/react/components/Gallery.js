@@ -8,6 +8,9 @@ import './Gallery.css';
 import WrappedElementList from './WrappedElementList';
 import ElementList from './ElementList';
 
+// Services
+import { joinClassNames } from '../../_shared/services/markup.js';
+
 /**
  * Create markup for children
  * @param {Array.<React.Element>} children - A list of children
@@ -41,12 +44,12 @@ function Gallery( props ) {
 	const { children, tagName, className, shouldWrapChildren, childTagName, childClassName, ...markupAttrs } = props;
 	const childrenMarkup = getChildrenMarkup( children, shouldWrapChildren, {
 		tagName: childTagName,
-		className: childClassName
+		className: joinClassNames(['c-gallery__item', childClassName ])
 	});
 	const TagName = tagName || React.Fragment;
 
 	return (
-		<TagName className={className} {...markupAttrs}>
+		<TagName className={`c-gallery ${className}`} {...markupAttrs}>
 			{childrenMarkup}
 		</TagName>
 	);

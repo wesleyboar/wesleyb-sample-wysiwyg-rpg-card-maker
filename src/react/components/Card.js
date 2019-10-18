@@ -91,8 +91,7 @@ function Card( props ) {
 				<span id="card-attr-list-title"
 					data-replaced-tag="legend">Card Attributes</span>
 
-				<Gallery tagName="ul" className="c-gallery"
-					childTagName="li" childClassName="c-gallery__item">
+				<Gallery tagName="ul" childTagName="li">
 					<AttributeInput id="card-attr-power"
 						label="Power"
 						desc="How many units stronger or weaker"
