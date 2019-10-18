@@ -53,7 +53,7 @@ function ShapeInput( props ) {
 	React.useEffect(() => {
 		let newMediaData = getMediaData( value, shapeMediaDataList );
 
-		console.debug('ShapeInput', { value, newMediaData });
+		console.info('ShapeInput', { value, newMediaData });
 
 		setMediaData( newMediaData );
 		if ( onChange ) onChange( value );
