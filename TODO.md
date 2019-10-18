@@ -1,4 +1,4 @@
-- TODO: Rename many `props.id` to `props.fieldId`.
+- TODO: Move `_shared/` data files to `_shared/data`.
 - TODO: Use [`PostHTML` tool](https://github.com/posthtml/posthtml) and [`htmlnano` plugin](https://github.com/posthtml/htmlnano).
 - TODO: Create a `useKeyGen` "custom hook" (i.e. function prepended with `use`) to consolidate and make consistent all the key bullshit.
 - TODO: Create test cases for each component.
