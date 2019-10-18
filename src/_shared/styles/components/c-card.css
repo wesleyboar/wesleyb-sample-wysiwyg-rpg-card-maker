@@ -1,9 +1,5 @@
 /*! components */
 
-/* TODO: Extract all components into individual files under `components/` directory */
-
-/* Card */
-
 .c-card {
   --border-height: 0.1rem;
   /* WARN: Manually-calculated height */
@@ -55,12 +51,6 @@
   text-align: center;
 }
 
-/* Card: Options */
-
-/* Move card options to above card */
-.c-card--options-count-1 { margin-top: var(--option-height) }
-.c-card--options-count-2 { margin-top: calc( var(--option-height) * 2 ) }
-.c-card--options-count-3 { margin-top: calc( var(--option-height) * 3 ) }
 .c-card__options {
   width: 100%;
   /* WARN: Causes child form elements to need `tabindex="-1"` */
@@ -71,3 +61,10 @@
 
   text-align: center;
 }
+
+/* Options */
+
+/* Move card options to above card */
+.c-card--options-count-1 { margin-top: var(--option-height) }
+.c-card--options-count-2 { margin-top: calc( var(--option-height) * 2 ) }
+.c-card--options-count-3 { margin-top: calc( var(--option-height) * 3 ) }
