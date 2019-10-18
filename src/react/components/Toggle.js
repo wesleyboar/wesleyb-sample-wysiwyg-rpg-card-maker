@@ -17,6 +17,7 @@ import './Toggle.css';
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {Boolean} [props.isOn] - Whether toggle is on/active
+ * @param {String} [props.className] - The `className` for the markup tag of the root element
  * @param {String} [props.fieldClassName] - The `className` for the input field
  * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {Toggle~onChange} [props.onChange] - Callback on state change
@@ -24,7 +25,7 @@ import './Toggle.css';
  * @return {React.Component}
  */
 function Toggle( props ) {
-	const { id, label, desc, onChange, isOn: initialState, fieldClassName, labelClassName, ...markupAttrs } = props;
+	const { id, label, desc, onChange, isOn: initialState, className, fieldClassName, labelClassName, ...markupAttrs } = props;
 	const [ isOn, setIsOn ] = React.useState( initialState );
 
 	// FAQ: We can manage change internally and externally
@@ -36,12 +37,12 @@ function Toggle( props ) {
 	}, [ isOn ]);
 
 	return (
-		<button role="presentation none" {...markupAttrs}
-			type="button" tabIndex="-1">
-			<input id={id} className={fieldClassName}
+		<button role="presentation none" className={`c-toggle ${className}`}
+			type="button" tabIndex="-1" {...markupAttrs}>
+			<input id={id} className={`c-toggle__field ${fieldClassName}`}
 				type="checkbox" tabIndex="0"
 				checked={isOn} onChange={handleChange} />
-			<label htmlFor={id} className={labelClassName}
+			<label htmlFor={id} className={`c-toggle__label ${labelClassName}`}
 				title={desc}>{label}</label>
 		</button>
 	);

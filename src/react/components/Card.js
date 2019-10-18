@@ -125,9 +125,6 @@ function Card( props ) {
 				<Toggle id="card-toggle-preview"
 					label="Preview Card"
 					desc="Preview approximate final state of card"
-					className="c-toggle c-toggle"
-					fieldClassName="c-toggle__field"
-					labelClassName="c-toggle__label"
 					name="card_preview"
 					isOn={shouldPreview}
 					onChange={handlePreviewToggleChange} />
