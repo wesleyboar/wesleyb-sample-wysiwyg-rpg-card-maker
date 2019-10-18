@@ -20,7 +20,7 @@ function WrappedElementList( props ) {
 	const { elements, tagName: TagName = React.Fragment, className } = props;
 	const tagAttrs = {};
 
-	let id, key;
+	let id, identifiers = [], key;
 
 	// Avoid passing illegal attributes to `React.Fragment`
 	if ( TagName !== React.Fragment && className ) {
@@ -31,8 +31,8 @@ function WrappedElementList( props ) {
 		<React.Fragment>
 			{React.Children.map( elements, ( element, i ) => {
 				id = element.props.key || element.props.id;
-				key = idService.create( id, [], i );
-
+				identifiers = [];
+				key = idService.create( id, identifiers, i );
 				idService.warn( id, `${props.tagName}.${className}`);
 
 				return (

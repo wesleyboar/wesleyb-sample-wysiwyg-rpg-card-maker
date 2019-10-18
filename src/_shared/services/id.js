@@ -11,7 +11,11 @@ export function create( id, identifiers, index, separator = '-' ) {
 	const identifier = identifiers.filter( alt => alt ).join( separator );
 	const generatedId = ( canUseId ) ? id : ( identifier || index );
 
-	if ( ! canUseId ) console.debug(`Using generated ID: ${generatedId}`);
+	if ( ! canUseId ) {
+		console.debug(`Using generated ID: ${generatedId}`);
+	} else {
+		console.debug(`Using provided ID: ${id}`);
+	}
 
 	return generatedId;
 }
@@ -21,7 +25,7 @@ export function create( id, identifiers, index, separator = '-' ) {
  * @param {Object} id - The "id" property that should exist
  * @param {String} identifier - How to identify item to user
  */
-export function warn( id, identifier= "Each item" ) {
+export function warn( id, identifier = 'Each item' ) {
 	const canUseId = canUse( id );
 
 	if ( ! canUseId ) console.warn(`${identifier} unique ID is ${id}`);

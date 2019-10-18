@@ -30,17 +30,17 @@ function getOptionsMarkup( options ) {
 function OptionGroupList( props ) {
 	const { options } = props;
 
-	let identifiers = [];
-	let key;
+	let id, identifiers = [], key;
 
 	return (
 		<React.Fragment>
 			{options.map(( group, i ) => {
+				id = group.id;
 				identifiers = [ group.label ];
-				key = idService.create( group.id, identifiers, i );
-
+				key = idService.create( id, identifiers, i );
 				// NOTE: Too noisy and its okay to have no ID
-				// idService.warn( group.id, `optgroup[label="${group.label}"]` );
+				// idService.warn( id, `optgroup[label="${group.label}"]` );
+
 				return (
 					<optgroup key={key} label={group.label}>
 						<OptionList options={group.options} groupLabel={group.label} />
@@ -64,17 +64,17 @@ OptionGroupList.propTypes = {
 function OptionList( props ) {
 	const { options, groupLabel } = props;
 
-	let identifiers = [];
-	let key;
+	let id, identifiers = [], key;
 
 	return (
 		<React.Fragment>
 			{options.map(( option, i ) => {
+				id = option.id;
 				identifiers = [ groupLabel, option.label, option.value ];
-				key = idService.create( option.id, identifiers, i );
-
+				key = idService.create( id, identifiers, i );
 				// NOTE: Too noisy and its okay to have no ID
-				// idService.warn( option.id, `option[value="${option.value}"]` );
+				// idService.warn( id, `option[value="${option.value}"]` );
+
 				return (
 					<option key={key} value={option.value}>
 						{option.label || option.value}
