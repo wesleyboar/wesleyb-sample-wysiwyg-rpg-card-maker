@@ -1,4 +1,6 @@
+- TODO: Rename many `props.id` to `props.fieldId`.
 - TODO: Use [`PostHTML` tool](https://github.com/posthtml/posthtml) and [`htmlnano` plugin](https://github.com/posthtml/htmlnano).
+- TODO: Create a `useKeyGen` "custom hook" (i.e. function prepended with `use`) to consolidate and make consistent all the key bullshit.
 - TODO: Create test cases for each component.
   - See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)
 - TODO: Test tree-shaking for React (i.e. a third-party CommonJS library):
