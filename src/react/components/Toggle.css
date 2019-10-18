@@ -1,5 +1,7 @@
 @import "../../_shared/styles/components/c-toggle.css";
 
+/*! react:Toggle */
+
 .c-card {
 	--c-toggle-margin--vert: 0.25rem;
 	--c-toggle-margin--horz: 0;
