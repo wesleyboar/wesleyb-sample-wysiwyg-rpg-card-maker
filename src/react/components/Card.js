@@ -49,7 +49,7 @@ function Card( props ) {
 	return (
 		<form {...markupAttrs}
 			className={"c-card c-card--options-count-1 " + previewClassName}
-			data-output-for="card-ident-element" data-value={element}>
+			data-output-for="card-ident-element" data-element={element}>
 			<fieldset disabled={shouldPreview} id="card-ident">
 				<legend>Card Identity</legend>
 

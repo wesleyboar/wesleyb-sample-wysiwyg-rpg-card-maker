@@ -1,3 +1,4 @@
 /* IMPORTANT: This file should import all component stylesheets. It must only be used when an implementation does NOT individually include components. */
 
 @import "./components/c-media-output.css";
+@import "./components/c-card.css";
