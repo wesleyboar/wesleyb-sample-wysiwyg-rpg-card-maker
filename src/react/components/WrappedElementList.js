@@ -30,7 +30,7 @@ function WrappedElementList( props ) {
 	return (
 		<React.Fragment>
 			{React.Children.map( elements, ( element, i ) => {
-				id = element.props.id || element.props.key;
+				id = element.props.key || element.props.id;
 				key = idService.create( id, [], i );
 
 				idService.warn( id, `${props.tagName}.${className}`);

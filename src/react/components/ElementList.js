@@ -16,20 +16,18 @@ import { joinClassNames } from '../../_shared/services/markup';
 function ElementList( props ) {
 	const { elements } = props;
 
-	let id;
-	let key;
-	let tagName;
-	let className;
+	let id, key, tagName, className;
 
 	return (
 		<React.Fragment>
 			{React.Children.map( elements, ( element, i ) => {
-				id = element.props.id;
+				id = element.props.key || element.props.id;
 				key = idService.create( id, [], i );
 				// FAQ: Element props take priority
 				tagName = element.props.tagName || props.tagName;
 				// FAQ: Element props must not be overridden
 				className = joinClassNames([ props.className, element.props.className ]);
+
 				idService.warn( id, `${tagName}.${className}`);
 
 				return React.cloneElement( element, { key, tagName, className });
