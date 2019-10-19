@@ -14,7 +14,7 @@ import Toggle from './Toggle';
 
 // Data
 import CustomTypes from '../services/custom-types.js';
-import itemShapes from '../../_shared/item-shapes.json';
+import itemShapes from '../../_shared/data/shapes--item.json';
 
 // Services
 import { joinClassNames } from '../../_shared/services/markup';

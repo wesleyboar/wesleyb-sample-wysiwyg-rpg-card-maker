@@ -6,7 +6,7 @@ import Select from './Select.js';
 
 // Data
 import CustomTypes from '../services/custom-types.js';
-import allElements from '../../_shared/elements.json';
+import allElements from '../../_shared/data/elements.json';
 
 /**
  * Called when input/field value changes

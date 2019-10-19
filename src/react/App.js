@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultValues from '../_shared/default-values.json';
+import defaultValues from '../_shared/data/example/card--item.json';
 
 // Styles
 import './App.css';
