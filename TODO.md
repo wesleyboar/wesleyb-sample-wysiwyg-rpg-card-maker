@@ -1,4 +1,3 @@
-- TODO: Move `_shared/` data files to `_shared/data`.
 - TODO: Use [`PostHTML` tool](https://github.com/posthtml/posthtml) and [`htmlnano` plugin](https://github.com/posthtml/htmlnano).
 - TODO: How to simplify or abstract the overhead of `idService.create`? Once solved, how to use…
 	- `useKeyGen` "custom hook"

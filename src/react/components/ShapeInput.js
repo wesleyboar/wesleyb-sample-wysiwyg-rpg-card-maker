@@ -7,7 +7,7 @@ import MediaOutput from './MediaOutput.js';
 
 // Data
 import CustomTypes from '../services/custom-types.js';
-import shapeMediaDataList from '../../_shared/item-shape-medias.json';
+import shapeMediaDataList from '../../_shared/data/media/shapes--item.json';
 
 /**
  * Called when input/field value changes
