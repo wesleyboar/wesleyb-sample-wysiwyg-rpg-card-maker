@@ -1,17 +1,17 @@
 /*! c-card */
 
 .c-card {
-  --border-height: 0.1rem;
-  /* WARN: Manually-calculated height */
-  --option-height: 3.4rem;
+	--border-height: 0.1rem;
+	/* WARN: Manually-calculated height */
+	--option-height: 3.4rem;
 
-  width: 25rem;
-  min-height: 35rem;
-  padding: 1rem;
-  position: relative; /* For absolutely-positioned children */
+	width: 25rem;
+	min-height: 35rem;
+	padding: 1rem;
+	position: relative; /* For absolutely-positioned children */
 
-  border: var(--border-height) solid black;
-  border-radius: 1rem;
+	border: var(--border-height) solid black;
+	border-radius: 1rem;
 }
 /* TODO: Use variables for element colors */
 .c-card[data-element="earth"] { background-color: darkseagreen }
@@ -23,43 +23,43 @@
 .c-card__figure,
 .c-card__desc,
 .c-card__metadata {
-  display: block;
-  width: 100%;
+	display: block;
+	width: 100%;
 }
 
 .c-card__name {
-  text-align: center;
-  font-size: 2.4rem;
-  font-weight: bold;
+	text-align: center;
+	font-size: 2.4rem;
+	font-weight: bold;
 }
 
 .c-card__figure {
-  height: 10rem;
+	height: 10rem;
 
-  border: 1px solid black;
-  border-radius: 1rem;
+	border: 1px solid black;
+	border-radius: 1rem;
 }
 
 .c-card__desc {
-  margin: 0.5rem 0;
-  /* FAQ: Avoiding `var` and `calc` to reduce prototype complexity */
-  /* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
-  height: 74px; /* line-height * font-size * line count (3) */
-  resize: none;
+	margin: 0.5rem 0;
+	/* FAQ: Avoiding `var` and `calc` to reduce prototype complexity */
+	/* WARN: Without `calc`, may break if user changes font size via browser settings (not zoom) */
+	height: 74px; /* line-height * font-size * line count (3) */
+	resize: none;
 
-  font-size: 1.6rem;
-  text-align: center;
+	font-size: 1.6rem;
+	text-align: center;
 }
 
 .c-card__options {
-  width: 100%;
-  /* WARN: Causes child form elements to need `tabindex="-1"` */
-  position: absolute;
-  left: 0;
-  /* FAQ: The top border affects position */
-  bottom: calc( 100% + var(--border-height) );
+	width: 100%;
+	/* WARN: Causes child form elements to need `tabindex="-1"` */
+	position: absolute;
+	left: 0;
+	/* FAQ: The top border affects position */
+	bottom: calc( 100% + var(--border-height) );
 
-  text-align: center;
+	text-align: center;
 }
 
 /* Options */

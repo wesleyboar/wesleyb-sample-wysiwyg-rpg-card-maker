@@ -1,7 +1,7 @@
 /*! plain:c-media-output */
 
 /* NOTE: For component library implementations, JavaScript managed these styles */
-/* SEE: `src/_shared/item-shape-medias.json`  */
+/* SEE: `src/_shared/item-shape-medias.json` */
 .c-media-output[data-type="image"][data-value="hat"] {
 	background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fhat.png?v=1566530255300");
 }

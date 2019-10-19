@@ -1,13 +1,13 @@
 /*! c-attr-input */
 
 .c-attr-input {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 .c-attr-input__key,
 .c-attr-input__value {
-  flex-basis: 0;
+	flex-basis: 0;
 }
 /* Move input to end of box */
 .c-attr-input__key   { order: 1; }
