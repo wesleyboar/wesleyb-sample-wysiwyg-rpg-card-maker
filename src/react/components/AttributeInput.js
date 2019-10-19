@@ -9,8 +9,8 @@ import { joinClassNames } from '../../_shared/services/markup';
 
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
-  neg: 'is-negative',
-  pos: 'is-positive'
+	neg: 'is-negative',
+	pos: 'is-positive'
 }
 
 /**
@@ -52,7 +52,7 @@ function AttributeInput( props ) {
 	}
 	React.useEffect(() => {
 		if ( onChange ) onChange( value );
-    // 13: Determine and evaluate type of value
+		// 13: Determine and evaluate type of value
 		setSignClassName( ( value > 0 ) ? CLASSNAMES.pos : CLASSNAMES.neg );
 	}, [ value ]);
 
