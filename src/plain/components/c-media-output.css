@@ -1,0 +1,16 @@
+/*! plain:c-media-output */
+
+/* NOTE: For component library implementations, JavaScript managed these styles */
+/* SEE: `src/_shared/item-shape-medias.json` */
+.c-media-output[data-type="image"][data-value="hat"] {
+	background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fhat.png?v=1566530255300");
+}
+.c-media-output[data-type="image"][data-value="glove"] {
+	background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fglove.png?v=1566530251563");
+}
+.c-media-output[data-type="image"][data-value="boot"] {
+	background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fboot.png?v=1566530218139");
+}
+.c-media-output[data-type="image"][data-value="mask"] {
+	background-image: url("https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fmask.png?v=1566530258770");
+}

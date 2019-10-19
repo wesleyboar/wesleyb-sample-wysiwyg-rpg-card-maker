@@ -1,8 +1,9 @@
 // TODO: Implement with polyfill for native Web Components
 
 // NOTE: If processing, use `import`
+import init from '../../src/plain/components/card.js';
 // import * as defaultValues from '../default-values.json';
-const defaultValues = getJSONSync('scripts/default-values.json');
+const defaultValues = getJSONSync('../../src/_shared/data/example/card--item.json');
 
 class CardElement extends HTMLElement {
 	constructor() {
@@ -19,4 +20,4 @@ class CardElement extends HTMLElement {
 window.customElements.define('card-element', CardElement );
 
 // TODO: Let Web Component manage `init`
-initDynamicBehaviourForCard();
+init();

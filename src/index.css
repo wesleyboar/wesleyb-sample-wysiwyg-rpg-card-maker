@@ -1,0 +1,12 @@
+/* FAQ: The settings and tools are made available via CSS processing */
+/* Do not `@import "./_shared/styles/settings.css";` */
+/* Do not `@import "./_shared/styles/tools.css";` */
+
+/* Because this is a small project, each layer may use just one file */
+
+@import "./_shared/styles/generics.css";
+/* @import "./_shared/styles/objects.css"; */
+@import "./_shared/styles/elements.css";
+/* FAQ: Component styles are included modularly as needed */
+/* @import "./_shared/styles/components.css"; */
+@import "./_shared/styles/trumps.css";

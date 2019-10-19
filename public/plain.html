@@ -5,39 +5,21 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<!-- Styles -->
-		<link rel="stylesheet" href="src/index.css">
-		<link rel="stylesheet" href="src/components.css">
-		<link rel="stylesheet" href="src/plain/components.css">
+		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="components.css">
+		<link rel="stylesheet" href="plain/components.css">
+		<script type="module" src="plain/index.mjs"></script>
+		<script nomodule defer src="plain/index.js"></script>
 	</head>
-	<body id="page--index">
+	<body id="page--plain">
 		<header>
 			<h1><abbr title="What You See is What You Get">WYSIWYG</abbr> Card Maker</h1>
 			<p>Fake card. Fake game. Real fun.</p>
 		</header>
 
-		<p>Create a custom card for an imaginary trading card game.</p>
+		<main id="app-root">
+			<p id="intro" class="c-intro">Create a custom card for an imaginary trading card game.</p>
 
-		<main id="card--polyfill">
-			<card-element></card-element>
-		</main>
-
-		<!-- Scripts: React -->
-		<!-- NOTE: When deploying, use processer and `import` instead. -->
-		<!-- NOTE: When time allows, test using `webcomponents-loader.js` instead. -->
-		<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script src="scripts/polyfill/card.js" type="module"></script>
-		<!-- Scripts: Load JSON (syncronous) -->
-		<!-- NOTE: When deploying, use processor and `import`, instead. -->
-		<script>
-			function getJSONSync( url ) {
-				const r = new XMLHttpRequest(); r.open('GET', url, false); r.send();
-				return (r.status === 200) ? JSON.parse( r.responseText ) : undefined;
-			};
-		</script>
-
-		<template id="card-template">
 			<form id="card" class="c-card c-card--options-count-1"
 						data-output-for="card-ident-element" data-value="">
 				<fieldset id="card-ident">
@@ -120,6 +102,6 @@
 					</button>
 				</fieldset>
 			</form>
-		</template>
+		</main>
 	</body>
 </html>

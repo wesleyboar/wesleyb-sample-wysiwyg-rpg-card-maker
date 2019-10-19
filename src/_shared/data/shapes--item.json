@@ -1,0 +1,23 @@
+[
+	{
+		"label": "Clothing",
+		"options": [
+			{
+				"value": "boot",
+				"label": "Boot"
+			},
+			{
+				"value": "hat",
+				"label": "Hat"
+			},
+			{
+				"value": "glove",
+				"label": "Glove"
+			},
+			{
+				"value": "mask",
+				"label": "Mask"
+			}
+		]
+	}
+]
