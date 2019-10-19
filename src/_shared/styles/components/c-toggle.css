@@ -1,0 +1,17 @@
+/*! c-toggle */
+
+.c-toggle {
+	--margin--vert: 0.25rem;
+	--margin--horz: 0;
+	--border-width: 0.1rem;
+
+	margin-block: var(--margin--vert);
+	margin-inline: var(--margin--horz);
+	border-width: var(--border-width);
+}
+.c-toggle > * {
+	display: inline-block;
+	vertical-align: middle;
+	/* FAQ: Prevent unexplained `.c-toggle` height */
+	line-height: 1;
+}

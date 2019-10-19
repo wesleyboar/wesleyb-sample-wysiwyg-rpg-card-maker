@@ -1,0 +1,22 @@
+[
+	{
+		"ident": "boot",
+		"type": "image",
+		"source": "https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fboot.png?v=1566530218139"
+	},
+	{
+		"ident": "hat",
+		"type": "image",
+		"source": "https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fhat.png?v=1566530255300"
+	},
+	{
+		"ident": "glove",
+		"type": "image",
+		"source": "https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fglove.png?v=1566530251563"
+	},
+	{
+		"ident": "mask",
+		"type": "image",
+		"source": "https://cdn.glitch.com/0c7dcc43-4038-42ed-81f7-4e43f6f1a133%2Fmask.png?v=1566530258770"
+	}
+]

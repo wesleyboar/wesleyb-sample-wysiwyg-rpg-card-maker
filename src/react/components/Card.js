@@ -1,10 +1,14 @@
 import React from 'react';
 
+// Styles
+import './Card.css';
+
 // Components
 import NameInput from './NameInput';
 import ShapeInput from './ShapeInput';
 import DescInput from './DescInput';
 import ElementInput from './ElementInput';
+import Gallery from './Gallery';
 import AttributeInput from './AttributeInput';
 import Toggle from './Toggle';
 
@@ -12,9 +16,12 @@ import Toggle from './Toggle';
 import CustomTypes from '../services/custom-types.js';
 import itemShapes from '../../_shared/item-shapes.json';
 
+// Services
+import { joinClassNames } from '../../_shared/services/markup';
+
 /** Dynamically-applied CSS class names */
 const CLASSNAMES = {
-  isPreview: 's-card-preview'
+	isPreview: 's-card-preview'
 }
 
 /**
@@ -31,6 +38,9 @@ function Card( props ) {
 	const [ element, setElement ] = React.useState( identity.element );
 	const [ previewClassName, setPreviewClassName ] = React.useState('');
 
+	function handleElementChange( value ) {
+		setElement( value );
+	}
 	function handlePreviewToggleChange( isActive ) {
 		setShouldPreview( isActive );
 	}
@@ -41,88 +51,61 @@ function Card( props ) {
 
 	return (
 		<form {...markupAttrs}
-			className={"c-card c-card--opts-count-1 " + previewClassName}
-			data-output-for="card-ident-element" data-value={element}>
-			<fieldset id="card-ident" disabled={shouldPreview}>
+			className={joinClassNames(['c-card', 'c-card--options-count-1', previewClassName ])}
+			data-output-for="card-ident-element" data-element={element}>
+
+			<fieldset disabled={shouldPreview} id="card-ident">
 				<legend>Card Identity</legend>
 
-				<NameInput id="card-ident-name"
-					label="Name"
-					desc="The name of the enchanted item"
-					className="c-card__name"
+				<NameInput id="card-ident-name" className="c-card__name"
+					label="Name" desc="The name of the enchanted item"
 					value={identity.name} />
 
-				<ShapeInput id="card-ident-shape"
-					label="Form"
-					desc="The common form of the enchanted item"
-					className="c-card__metadata"
+				<ShapeInput id="card-ident-shape" className="c-card__metadata"
+					label="Form" desc="The common form of the enchanted item"
 					outputClassName="c-card__figure"
 					value={identity.shape} shapes={itemShapes}
 					placeholder="Choose a shape"
 					required />
 
-				<DescInput id="card-ident-desc"
-					label="Description"
-					desc="A description of the enchanted item"
-					className="c-card__desc"
+				<DescInput id="card-ident-desc" className="c-card__desc"
+					label="Description" desc="A description of the enchanted item"
 					value={identity.desc} />
 
-				<ElementInput id="card-ident-element"
-					label="Element"
-					desc="The elemental power of the enchanted item"
-					className="c-card__metadata"
+				<ElementInput id="card-ident-element" className="c-card__metadata"
+					label="Element" desc="The elemental power of the enchanted item"
 					placeholder="Choose an element"
 					value={element}
-					onChange={ value => setElement( value )} />
+					onChange={handleElementChange} />
 			</fieldset>
 
 			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}
 			{/* SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 */}
-			<section id="card-attr" className={"c-card__attr-list " + previewClassName}
-				role="group" aria-labelledby="card-attr-list-title" disabled={shouldPreview}
+			<section disabled={shouldPreview} id="card-attr"
+				role="group" aria-labelledby="card-attr-list-title"
 				data-replaced-tag="fieldset">
 				<span id="card-attr-list-title"
 					data-replaced-tag="legend">Card Attributes</span>
 
-				<div className="c-card__attr">
+				<Gallery tagName="ul" childTagName="li" childClassName="c-card__attr">
 					<AttributeInput id="card-attr-power"
-						label="Power"
-						desc="How many units stronger or weaker"
-						min={-3} max={3} step={1} value={attributes.power}
-						className="c-card__attr-input"
-						labelClassName="c-card__attr-key"
-						outputClassName="c-card__attr-value" />
-				</div>
+						label="Power" desc="How many units stronger or weaker"
+						min={-3} max={3} step={1} value={attributes.power} />
 
-				<div className="c-card__attr">
 					<AttributeInput id="card-attr-speed"
-						label="Speed"
-						desc="How many units faster or slower"
-						min={-3} max={3} step={1} value={attributes.speed}
-						className="c-card__attr-input"
-						labelClassName="c-card__attr-key"
-						outputClassName="c-card__attr-value" />
-				</div>
+						label="Speed" desc="How many units faster or slower"
+						min={-3} max={3} step={1} value={attributes.speed} />
 
-				<div className="c-card__attr">
 					<AttributeInput id="card-attr-defense"
-						label="Defense"
-						desc="How many units less or more vulnerable"
-						min={-3} max={3} step={1} value={attributes.defense}
-						className="c-card__attr-input"
-						labelClassName="c-card__attr-key"
-						outputClassName="c-card__attr-value" />
-				</div>
+						label="Defense" desc="How many units less or more vulnerable"
+						min={-3} max={3} step={1} value={attributes.defense} />
+				</Gallery>
 			</section>
 
-			<fieldset id="card-opts" className="c-card--opts-list">
-				<Toggle id="card-preview-toggle"
-					label="Preview Card"
-					desc="Preview approximate final state of card"
-					className="c-card__opt-toggle"
-					name="card_preview"
-					isOn={shouldPreview}
-					onChange={handlePreviewToggleChange} />
+			<fieldset id="card-opts" className="c-card__options">
+				<Toggle id="card-toggle-preview" name="card_preview"
+					label="Preview Card" desc="Preview approximate final state of card"
+					isOn={shouldPreview} onChange={handlePreviewToggleChange} />
 			</fieldset>
 		</form>
 	);

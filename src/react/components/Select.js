@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import CustomTypes from '../services/custom-types.js';
 
 // Services
-import { getKey } from '../../_shared/scripts/react-helpers.js';
+import * as idService from '../../_shared/services/id.js';
 
 /**
  * Create markup for options based on given data format
- * @param {OptionList|OptionGroupList} options A list of option objects
- * @return {React.Element}
+ * @param {OptionList|OptionGroupList} options - A list of option objects
+ * @return {Array.<React.Element>}
  */
 function getOptionsMarkup( options ) {
 	const testOption = options[ 0 ];
@@ -22,22 +22,28 @@ function getOptionsMarkup( options ) {
 }
 
 /**
- * Options (grouped) for a select dropdown field
+ * List of <optgroup>'s for a <select> dropdown field
  * @param {Object} props
  * @param {OptionGroupList} props.options - A list of available option groups
  * @return {React.Component}
  */
 function OptionGroupList( props ) {
 	const { options } = props;
-	let key;
+
+	let id, identifiers = [], key;
 
 	return (
 		<React.Fragment>
-			{options.map( ( group, i ) => {
-				key = getKey( group.id, [ group.label ], i );
+			{options.map(( group, i ) => {
+				id = group.id;
+				identifiers = [ group.label ];
+				key = idService.create( id, identifiers, i );
+				// NOTE: Too noisy and its okay to have no ID
+				// idService.warn( id, `optgroup[label="${group.label}"]` );
+
 				return (
-					<optgroup label={group.label} key={group.id || key || i}>
-						<OptionList options={group.options} />
+					<optgroup key={key} label={group.label}>
+						<OptionList options={group.options} groupLabel={group.label} />
 					</optgroup>
 				);
 			})}
@@ -46,24 +52,31 @@ function OptionGroupList( props ) {
 }
 OptionGroupList.propTypes = {
 	options: CustomTypes.OptionGroupList.isRequired,
-}
+};
 
 /**
- * Options (not grouped) for a select dropdown field
+ * List of <option>'s for a <select> dropdown field
  * @param {Object} props
  * @param {OptionList} props.options - A list of available options
+ * @param {OptionList} [props.groupLabel] - The label of the parent <optgroup>
  * @return {React.Component}
  */
 function OptionList( props ) {
-	const { options } = props;
-	let key;
+	const { options, groupLabel } = props;
+
+	let id, identifiers = [], key;
 
 	return (
 		<React.Fragment>
-			{options.map( ( option, i ) => {
-				key = getKey( option.id, [ option.label, option.value ], i );
+			{options.map(( option, i ) => {
+				id = option.id;
+				identifiers = [ groupLabel, option.label, option.value ];
+				key = idService.create( id, identifiers, i );
+				// NOTE: Too noisy and its okay to have no ID
+				// idService.warn( id, `option[value="${option.value}"]` );
+
 				return (
-					<option value={option.value} key={key}>
+					<option key={key} value={option.value}>
 						{option.label || option.value}
 					</option>
 				);
@@ -73,7 +86,15 @@ function OptionList( props ) {
 }
 OptionList.propTypes = {
 	options: CustomTypes.OptionList.isRequired,
-}
+
+	groupLabel: PropTypes.string,
+};
+
+/**
+ * Called when input/field value changes
+ * @callback Select~onChange
+ * @param {String} value - Field value i.e. the element
+ */
 
 /**
  * A select dropdown field
@@ -82,18 +103,26 @@ OptionList.propTypes = {
  * @param {OptionList|OptionGroupList} props.options - The available options
  * @param {String} [props.value] - Field value i.e. the form/kind/shape
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
+ * @param {Select~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the select element
  * @return {React.Component}
  */
 function Select( props ) {
-	const { id, options, value: initialValue, placeholder, ...markupAttrs } = props;
+	const { id, options, value: initialValue, placeholder, onChange, ...markupAttrs } = props;
 	const [ value, setValue ] = React.useState( initialValue );
 	const optionsMarkup = getOptionsMarkup( options );
 
-	// FAQ: The default DOM value for `select` element that is unknown to React
+	// We must handle value change internally
+	function handleChange( e ) {
+		setValue( e.target.value );
+	}
+	// We must allow consumer to handle value change
 	React.useEffect(() => {
+		if ( onChange ) onChange( value );
+
+		// FAQ: React must be coerced to respect default DOM value
 		if ( ! value ) setValue( document.getElementById( id ).value );
-	});
+	}, [ value ]);
 
 	let placeholderMarkup;
 	if ( placeholder ) {
@@ -103,7 +132,8 @@ function Select( props ) {
 	}
 
 	return (
-		<select id={id} value={value} {...markupAttrs}>
+		<select id={id} value={value}
+			onChange={handleChange} {...markupAttrs}>
 			{placeholderMarkup}
 			{optionsMarkup}
 		</select>
@@ -115,7 +145,8 @@ Select.propTypes = {
 
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
-}
+	onChange: PropTypes.func,
+};
 
 export default Select;
 export {

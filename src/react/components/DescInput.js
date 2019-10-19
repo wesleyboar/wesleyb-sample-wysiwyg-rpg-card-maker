@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the description
- * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  * @return {React.Component}
  */
@@ -18,9 +18,8 @@ function DescInput( props ) {
 
 	return (
 		<React.Fragment>
-			<label htmlFor={id}
-				title={desc}
-				className={labelClassName}>{label}</label>
+			<label htmlFor={id} className={labelClassName}
+				title={desc}>{label}</label>
 			<textarea id={id} {...markupAttrs}
 				type="text" defaultValue={value} />
 		</React.Fragment>

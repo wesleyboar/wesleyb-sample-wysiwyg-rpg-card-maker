@@ -1,0 +1,9 @@
+@import "../../_shared/styles/components/c-media-output.css";
+
+/* react:MediaOutput */
+
+/* NOTE: JavaScript is managing this style, since 2019-10-17 */
+/* SEE: `src/_shared/item-shape-medias.json`  */
+/*
+.c-media-output[data-type="___"][data-ident="___"] { background-image: url("___"); }
+*/

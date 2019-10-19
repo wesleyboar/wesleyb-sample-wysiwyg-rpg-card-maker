@@ -1,6 +1,13 @@
-- TODO: Migrate component styles to React components.
-- TODO: Split project into packages:
-  - parent `package.json` (shared code)
-  - children `package.json`'s (app-specific code)
+- TODO: Move `_shared/` data files to `_shared/data`.
+- TODO: Use [`PostHTML` tool](https://github.com/posthtml/posthtml) and [`htmlnano` plugin](https://github.com/posthtml/htmlnano).
+- TODO: How to simplify or abstract the overhead of `idService.create`? Once solved, how to use…
+  - `useKeyGen` "custom hook"
+  - `@keyGen` decorator
+  - `ComponentName.keyGen` property (like `propTypes` or `defaultTypes`)
 - TODO: Create test cases for each component.
-  - See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)
+  - React: See [Testing Recipies #Rendering - React](https://reactjs.org/docs/testing-recipes.html#rendering)
+- TODO: Test tree-shaking for React (i.e. a third-party CommonJS library):
+  - SEE: https://github.com/rollup/rollup-plugin-commonjs
+  - SEE: https://stackoverflow.com/questions/46575721/rollup-with-commonjs-import-and-exports-with-treeshaking
+  - SEE: https://stackoverflow.com/questions/48341175/how-does-webpack-bundler-resolves-named-import
+  - If it works, then use `{ thingFromReact }` instead of `React` when importing.

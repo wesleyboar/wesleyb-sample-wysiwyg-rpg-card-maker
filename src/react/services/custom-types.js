@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 
+// Data
+import { MEDIA_DATA_TYPE } from '../../_shared/typedef.js';
+
 const CustomTypes = {};
 
 /* Option Structures */
@@ -41,6 +44,25 @@ CustomTypes.AttributeProps = PropTypes.exact({
 	power: PropTypes.number,
 	speed: PropTypes.number,
 	defense: PropTypes.number,
+});
+
+/* Miscellaneous */
+
+/** @type {MediaDataType} */
+CustomTypes.MediaDataType = PropTypes.oneOf( Object.values( MEDIA_DATA_TYPE ) );
+
+/** @type {MediaDataIdent} */
+CustomTypes.MediaDataIdent = PropTypes.oneOfType([
+	PropTypes.bool,
+	PropTypes.string,
+	PropTypes.number,
+]);
+
+/** @type {MediaData} */
+CustomTypes.MediaData = PropTypes.exact({
+	ident: CustomTypes.MediaDataIdent,
+	type: CustomTypes.MediaDataType,
+	source: PropTypes.string,
 });
 
 export default CustomTypes;

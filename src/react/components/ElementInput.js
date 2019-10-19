@@ -23,19 +23,20 @@ import allElements from '../../_shared/elements.json';
  * @param {String} [props.value] - Field value i.e. the element
  * @param {OptionList|OptionGroupList} [props.elements=allElements] - The available element choices
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
- * @param {String} [props.labelClassName] - The `className` for the `label`
+ * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change
  * @param {*} [props.__ATTRIBUTE__] - Undocumented properties are applied as attributes on the markup of the primary form element
  * @return {React.Component}
  */
 function ElementInput( props ) {
-	const { id, label, desc, value: initialValue, elements: options = allElements, labelClassName, onChange, ...jsxAttrs } = props;
+	const { id, label, desc, value: initialValue, elements: options = allElements, labelClassName, onChange, ...jsxProps } = props;
 	const [ value, setValue ] = React.useState( initialValue );
 
-	// FAQ: We can manage change internally and externally
-	function handleChange( e ) {
-		setValue( e.target.value );
+	// We must handle value change internally
+	function handleChange( value ) {
+		setValue( value );
 	}
+	// We must allow consumer to handle value change
 	React.useEffect(() => {
 		if ( onChange ) onChange( value );
 	}, [ value ]);
@@ -45,7 +46,7 @@ function ElementInput( props ) {
 			<label htmlFor={id} className={labelClassName}
 				title={desc}>{label}</label>
 			<Select id={id} options={options} value={value}
-				onChange={handleChange} {...jsxAttrs} />
+				onChange={handleChange} {...jsxProps} />
 		</React.Fragment>
 	);
 }

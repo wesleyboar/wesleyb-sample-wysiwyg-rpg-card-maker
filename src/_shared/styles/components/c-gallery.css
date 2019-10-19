@@ -1,0 +1,15 @@
+/*! c-gallery */
+
+.c-gallery {
+  display: flex;
+  flex-flow: row wrap;
+}
+ul.c-gallery { padding: 0; margin: 0; }
+
+.c-gallery__item,
+/* HACK: Prevent stretching of dangling item by adding an invisible final item */
+.c-gallery::after {
+  flex-grow: 3; /* that of `…-key` + that of `…-value` */
+  flex-basis: 50%;
+}
+.c-gallery::after { content: ""; }

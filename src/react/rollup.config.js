@@ -5,6 +5,7 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import json from 'rollup-plugin-json';
+import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 
 import react from 'react';
@@ -34,6 +35,7 @@ export default {
 				'react-dom': Object.keys( reactDom )
 			}
 		}),
+		postcss(),
 		json({
 			exclude: 'node_modules/**'
 		}),

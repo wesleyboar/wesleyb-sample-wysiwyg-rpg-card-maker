@@ -1,0 +1,8 @@
+/*! plain:c-card */
+
+/* TODO: Use variables for element colors */
+/* FAQ: The `plain` implementation relies on `data-value` attribue */
+.c-card[data-value="earth"] { background-color: darkseagreen }
+.c-card[data-value="water"] { background-color: lightblue }
+.c-card[data-value="air"]   { background-color: lightyellow }
+.c-card[data-value="fire"]  { background-color: indianred }

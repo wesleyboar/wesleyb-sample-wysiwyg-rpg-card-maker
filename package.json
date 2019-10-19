@@ -18,13 +18,15 @@
 		"build:scripts": "npm-run-all --parallel build:scripts:*",
 		"build:scripts:plain": "rollup --config src/plain/rollup.config.js",
 		"build:scripts:react": "rollup --config src/react/rollup.config.js",
-		"build:styles": "postcss src/*.css --config ./ --dir ./dist --base",
+		"build:styles": "npm-run-all --parallel build:styles:*",
+		"build:styles:shared": "postcss src/*.css --config ./ --dir ./dist --base",
+		"build:styles:plain": "postcss src/plain/*.css --config ./ --dir ./dist/plain --base",
 		"clean:build": "shx rm -rf dist/",
 		"watch": "npm-run-all --parallel watch:*",
 		"watch:build": "npm-run-all --parallel watch:build:*",
 		"watch:build:public": "npm-watch build:public",
-		"watch:build:scripts": "npm-run-all \"build:scripts -- --watch\"",
-		"watch:build:styles": "npm-run-all \"build:styles -- --watch\""
+		"watch:build:scripts": "npm-run-all \"build:scripts:* -- --watch\"",
+		"watch:build:styles": "npm-run-all \"build:styles:* -- --watch\""
 	},
 	"watch": {
 		"build:public": {
@@ -62,6 +64,7 @@
 		"rollup-plugin-commonjs": "^10.1.0",
 		"rollup-plugin-json": "^4.0.0",
 		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-postcss": "^2.0.3",
 		"rollup-plugin-replace": "^2.2.0",
 		"rollup-plugin-terser": "^5.1.2",
 		"shx": "^0.3.2"
