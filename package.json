@@ -6,9 +6,11 @@
 	"license": "UNLICENSED",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wesleyboar/wesleyb-sample-wysiwyg-rpg-card-maker.git"
+		"url": "github:wesleyboar/wesleyb-sample-wysiwyg-rpg-card-maker"
 	},
 	"scripts": {
+		"preinstall": "npm-run-all --parallel preinstall:*",
+		"preinstall:angular": "cd src/angular && npm ci",
 		"start": "npm run build && npm run serve",
 		"serve": "npx http-server -p 1234 ./dist",
 		"prebuild": "npm-run-all --parallel clean:*",
@@ -18,6 +20,7 @@
 		"build:scripts": "npm-run-all --parallel build:scripts:*",
 		"build:scripts:plain": "rollup --config src/plain/rollup.config.js",
 		"build:scripts:react": "rollup --config src/react/rollup.config.js",
+		"build:scripts:angular": "cd src/angular && npm run build",
 		"build:styles": "npm-run-all --parallel build:styles:*",
 		"build:styles:shared": "postcss src/*.css --config ./ --dir ./dist --base",
 		"build:styles:plain": "postcss src/plain/*.css --config ./ --dir ./dist/plain --base",

@@ -1,0 +1,7 @@
+#
+# Compiled Assets
+# These directories contain the compilations of source files
+#
+
+# Final location for compiled files (root)
+/dist

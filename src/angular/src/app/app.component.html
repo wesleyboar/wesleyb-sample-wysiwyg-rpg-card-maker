@@ -1,0 +1,14 @@
+<p id="intro" className="c-intro">Create a custom card for an imaginary trading card game.</p>
+
+<card id="card" [identity]="identity" [attributes]="attributes"></card>
+
+<fieldset>
+	<legend><samp>app.component.html</samp></legend>
+	<dl>
+		<dt>Identity</dt>
+		<dd><pre><samp>{{ identity | json }}</samp></pre></dd>
+
+		<dt>Attributes</dt>
+		<dd><pre><samp>{{ attributes | json }}</samp></pre></dd>
+	</dl>
+</fieldset>
