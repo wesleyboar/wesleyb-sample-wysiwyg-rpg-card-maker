@@ -31,7 +31,7 @@ interface AttributeProps {
 	defense: number,
 }
 
-/* Miscellaneous */
+/* Media Data */
 
 type MediaDataType = MEDIA_DATA_TYPE;
 type MediaDataIdent = Boolean|String|Number;
