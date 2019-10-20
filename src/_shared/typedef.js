@@ -1,3 +1,5 @@
+/* Option Structures */
+
 /**
  * A list of options or option groups for an input choice
  * @typedef {Array.<OptionList|OptionGroupList>} Options
@@ -23,6 +25,8 @@
  * @prop {String} value - The option value
  */
 
+/* Card Properties */
+
 /**
  * The identity of an RPG entity
  * @typedef {Object} IdentityProps
@@ -38,6 +42,8 @@
  * @prop {String} speed - Entity attribute of fastness/slowness
  * @prop {String} defense - Entity attribute of vulernerability
  */
+
+/* Media Data */
 
 /**
  * Enum for {@link MediaData.type} properties

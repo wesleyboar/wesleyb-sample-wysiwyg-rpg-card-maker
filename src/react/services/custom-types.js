@@ -46,7 +46,7 @@ CustomTypes.AttributeProps = PropTypes.exact({
 	defense: PropTypes.number,
 });
 
-/* Miscellaneous */
+/* Media Data */
 
 /** @type {MediaDataType} */
 CustomTypes.MediaDataType = PropTypes.oneOf( Object.values( MEDIA_DATA_TYPE ) );
