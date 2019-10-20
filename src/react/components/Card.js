@@ -81,6 +81,7 @@ function Card( props ) {
 
 			{/* FAQ: Can not use `<fieldset>` with `display: flex` */}
 			{/* SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 */}
+			{/* SEE: https://github.com/w3c/csswg-drafts/issues/321 */}
 			<section disabled={shouldPreview} id="card-attr"
 				role="group" aria-labelledby="card-attr-list-title"
 				data-replaced-tag="fieldset">
