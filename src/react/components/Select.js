@@ -9,7 +9,7 @@ import * as idService from '../../_shared/services/id.js';
 
 /**
  * Create markup for options based on given data format
- * @param {OptionList|OptionGroupList} options - A list of option objects
+ * @param {Options} options - A list of option objects
  * @return {Array.<React.Element>}
  */
 function getOptionsMarkup( options ) {
@@ -100,7 +100,7 @@ OptionList.propTypes = {
  * A select dropdown field
  * @param {Object} props
  * @param {String} props.id - Markup `id` attribute for field
- * @param {OptionList|OptionGroupList} props.options - The available options
+ * @param {Options} props.options - The available options
  * @param {String} [props.value] - Field value i.e. the form/kind/shape
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {Select~onChange} [props.onChange] - Callback on value change

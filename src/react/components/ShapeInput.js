@@ -30,7 +30,7 @@ function getMediaData( ident, list ) {
  * @param {String} props.id - Markup `id` attribute for field
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
- * @param {OptionList|OptionGroupList} props.shapes - The available form choices
+ * @param {Options} props.shapes - The available form choices
  * @param {String} [props.value] - Field value i.e. the form/kind/shape
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {String} [props.labelClassName] - The `className` for the label text

@@ -23,7 +23,7 @@ CustomTypes.OptionGroup = PropTypes.exact({
 /** @type {OptionGroupList} */
 CustomTypes.OptionGroupList = PropTypes.arrayOf( CustomTypes.OptionGroup );
 
-/** @type {OptionList|OptionGroupList} */
+/** @type {Options} */
 CustomTypes.Options = PropTypes.oneOfType([
 	CustomTypes.OptionList,
 	CustomTypes.OptionGroupList,

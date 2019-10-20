@@ -21,7 +21,7 @@ import allElements from '../../_shared/data/elements.json';
  * @param {String} props.label - Field name for humans
  * @param {String} props.desc - Field description
  * @param {String} [props.value] - Field value i.e. the element
- * @param {OptionList|OptionGroupList} [props.elements=allElements] - The available element choices
+ * @param {Options} [props.elements=allElements] - The available element choices
  * @param {String} [props.placeholder] - Realization of the `placeholder` attribute for the `select` dropdown
  * @param {String} [props.labelClassName] - The `className` for the label text
  * @param {ElementInput~onChange} [props.onChange] - Callback on value change

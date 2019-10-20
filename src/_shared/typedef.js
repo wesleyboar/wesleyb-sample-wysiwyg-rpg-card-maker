@@ -1,4 +1,8 @@
 /**
+ * A list of options or option groups for an input choice
+ * @typedef {Array.<OptionList|OptionGroupList>} Options
+ */
+/**
  * A list of sets of options for an input choice
  * @typedef {Array.<OptionGroup>} OptionGroupList
  */
