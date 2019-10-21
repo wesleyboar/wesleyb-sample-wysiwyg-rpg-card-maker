@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 // import { CardModule } from './card.module';
 
 import { AppComponent } from './app.component';
-import { CardComponent } from './card.component';
+import { CardComponent } from './UNUSED.card.component';
 // TODO: How can I use `card.module` to include component?
 import { ElementInputComponent } from './element-input.component';
 import { ToggleComponent } from './toggle.component';
