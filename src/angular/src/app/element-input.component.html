@@ -1,0 +1,6 @@
+<label [attr.for]="id" [attr.class]="labelClassName"
+	[attr.title]="desc">{{ label }}</label>
+<input [(ngModel)]="value" type="text"
+	(change)="handleChange( $event )"/>
+<!--<Select id={id} options={options} value={value}
+	onChange={handleChange( … )} {...jsxProps} />-->

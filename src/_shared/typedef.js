@@ -36,6 +36,18 @@
  */
 
 /**
+ * Enum for elements
+ * @readonly
+ * @enum {String}
+ */
+export const ELEMENT_NAME = Object.freeze({
+	FIRE: 'fire',
+	EARTH: 'earth',
+	AIR: 'air',
+	WIND: 'wind',
+});
+
+/**
  * Enum for {@link MediaData.type} properties
  * @readonly
  * @enum {String}

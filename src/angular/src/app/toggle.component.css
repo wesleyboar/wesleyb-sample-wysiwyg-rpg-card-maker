@@ -1,0 +1,22 @@
+@import "../../../_shared/styles/components/c-toggle.css";
+
+/*! angular:Toggle */
+
+.c-card {
+	--c-toggle-margin--vert: 0.25rem;
+	--c-toggle-margin--horz: 0;
+	--c-toggle-border-width: 0.1rem;
+	/* WARN: Manually-calculated height */
+	--c-toggle-height: 2.7rem;
+
+	--option-height: calc(
+		var(--c-toggle-height)
+		+ ( var(--c-toggle-border-width) * 2 )
+		+ ( var(--c-toggle-margin--vert) * 2 )
+	);
+}
+
+.c-toggle {
+	--margin--vert: var(--c-toggle-margin--vert);
+	--margin--horz: var(--c-toggle-margin--horz);
+}

@@ -1,0 +1,15 @@
+<button role="presentation none"
+	class="c-toggle" [class.external]="className"
+	type="button" tabIndex="-1">
+	<!-- type="button" tabIndex="-1" {...markupAttrs}> -->
+	<input [id]="fieldId"
+		[name]="fieldName"
+		class="c-toggle__field"
+		[class.external]="fieldClassName"
+		type="checkbox" tabIndex="0"
+		[attr.checked]="isOn"(change)="handleChange( $event )" />
+	<label [attr.for]="fieldId"
+		class="c-toggle__label"
+		[class.external]="labelClassName"
+		[attr.title]="desc">{{ label }}</label>
+</button>

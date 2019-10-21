@@ -1,44 +1,54 @@
 // Data
-import { MEDIA_DATA_TYPE } from './typedef.js';
+import { MEDIA_DATA_TYPE, ELEMENT_NAME } from './typedef.js';
 
 /* Option Structures */
 
-interface Option {
+export interface Option {
 	label: string,
 	value?: string,
 }
-interface OptionList extends Array<Option>{}
+export interface OptionList extends Array<Option>{}
 
-interface OptionGroup {
+export interface OptionGroup {
 	label: string,
 	options?: OptionList,
 }
-interface OptionGroupList extends Array<OptionGroup>{}
+export interface OptionGroupList extends Array<OptionGroup>{}
 
-type Options = OptionList|OptionGroupList;
+export type Options = OptionList|OptionGroupList;
 
 /* Card Properties */
 
-interface IdentityProps {
+export interface IdentityProps {
 	name: string,
 	shape: string,
 	desc: string,
 	element: string,
 }
-interface AttributeProps {
+export interface AttributeProps {
 	power: number,
 	speed: number,
 	defense: number,
 }
 
+/* Card Data */
+
+export type ElementName = ELEMENT_NAME;
+
 /* Media Data */
 
-type MediaDataType = MEDIA_DATA_TYPE;
-type MediaDataIdent = Boolean|String|Number;
+export type MediaDataType = MEDIA_DATA_TYPE;
+export type MediaDataIdent = Boolean|String|Number;
 
-interface MediaData {
+export interface MediaData {
 	ident: MediaDataIdent,
 	type: MediaDataType,
 	source: string,
 }
-interface MediaDataList extends Array<MediaData>{}
+export interface MediaDataList extends Array<MediaData>{}
+
+/* Common Function Definitions */
+
+export interface ChangeFunc {
+	( event: Event ): void;
+}

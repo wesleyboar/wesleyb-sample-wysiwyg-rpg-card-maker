@@ -6,17 +6,28 @@
 
 		<dt>Attributes</dt>
 		<dd><pre><samp>{{ attributes | json }}</samp></pre></dd>
+
+		<dt><samp>element</samp></dt>
+		<dd><pre><samp>{{ element }}</samp></pre></dd>
+
+		<dt><samp>shouldPreview</samp></dt>
+		<dd><pre><samp>{{ shouldPreview }}</samp></pre></dd>
+
+		<dt><samp>previewClass</samp></dt>
+		<dd><pre><samp>{{ previewClass }}</samp></pre></dd>
 	</dl>
 </fieldset>
 
-<!--
-<form {...markupAttrs}
-	className={joinClassNames(['c-card', 'c-card--options-count-1', previewClassName ])}
-	data-output-for="card-ident-element" data-element={element}>
+<!--<form {...markupAttrs}-->
+<form
+	class="c-card c-card--options-count-1"
+	[class.isPreview]="previewClassName"
+	[attr.data-element]="element">
 
-	<fieldset disabled={shouldPreview} id="card-ident">
+	<fieldset [disabled]="shouldPreview" id="card-ident">
 		<legend>Card Identity</legend>
 
+<!--
 		<NameInput id="card-ident-name" className="c-card__name"
 			label="Name" desc="The name of the enchanted item"
 			value={identity.name} />
@@ -31,14 +42,15 @@
 		<DescInput id="card-ident-desc" className="c-card__desc"
 			label="Description" desc="A description of the enchanted item"
 			value={identity.desc} />
-
-		<ElementInput id="card-ident-element" className="c-card__metadata"
+-->
+		<element-input id="card-ident-element" class="c-card__metadata"
 			label="Element" desc="The elemental power of the enchanted item"
 			placeholder="Choose an element"
-			value={element}
-			onChange={handleElementChange} />
+			[value]="element"
+			(valueChange)="handleElementChange( $event )"></element-input>
 	</fieldset>
 
+<!--
 	<!-- FAQ: Can not use `<fieldset>` with `display: flex` --
 	<!-- SEE: https://bugs.chromium.org/p/chromium/issues/detail?id=375693 --
 	<!-- SEE: https://github.com/w3c/csswg-drafts/issues/321 --
@@ -63,10 +75,13 @@
 		</Gallery>
 	</section>
 
-	<fieldset id="card-opts" className="c-card__options">
-		<Toggle id="card-toggle-preview" name="card_preview"
+	-->
+	<fieldset id="card-opts" class="c-card__options">
+		<toggle fieldId="card-toggle-preview"
 			label="Preview Card" desc="Preview approximate final state of card"
-			isOn={shouldPreview} onChange={handlePreviewToggleChange} />
+			[isOn]="shouldPreview"
+			(isOnChange)="handlePreviewToggleChange( $event )"></toggle>
 	</fieldset>
+	<!--
 </form>
 -->
